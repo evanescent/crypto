@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="EUC-KR"?>
+<!--
+	build.xml
+
+	Copyright 20013 Torpedo, Corp.
+-->
+<project name="bizframe-crypto" default="archive" basedir=".">
+
+	<description>eTax Service</description>
+
+	<regexp id="ant.version.pattern" pattern="1.[5-9]" />
+	<regexp id="java.version.pattern" pattern="1.[4-9]" />
+
+	<!--
+		@target prerequire
+	-->
+	<target name="prerequire">
+		<echo message="Ant Version: ${ant.version}" />
+		<echo message="Java Version: ${java.version}" />
+		<echo message="Java Home: ${java.home}" />
+
+		<fail message="It needs Ant version 1.5 or higher">
+			<condition>
+				<not>
+					<matches string="${ant.version}">
+						<regexp refid="ant.version.pattern" />
+					</matches>
+				</not>
+			</condition>
+		</fail>
+
+		<fail message="It needs Java version 1.4 or higher">
+			<condition>
+				<not>
+					<matches string="${java.version}">
+						<regexp refid="java.version.pattern" />
+					</matches>
+				</not>
+			</condition>
+		</fail>
+	</target>
+
+	<!--
+		@target init
+	-->
+	<target name="init" depends="prerequire">
+		<property file="build.properties" />
+		<buildnumber file="${build.number.property}" />
+		<property file="${build.number.property}" />
+
+		<property name="project.version" value="${project.major.version}.${project.minor.version}.${project.patch.version}" />
+		<property name="dist.source.dir" value="${dist.dir}/${project.version}/${source.dir}" />
+
+		<mkdir dir="${build.classes.dir}" />
+		<mkdir dir="${dist.dir}" />
+
+		<path id="project.classpath">
+			<fileset dir="${library.dir}">
+				<include name="*.jar" />
+			</fileset>
+		</path>
+
+		<tstamp>
+			<format property="timestamp.isoformat"
+				pattern="dd/MMM/yyyy HH:mm:ss" locale="en" />
+		</tstamp>
+
+		<echo message="/**" />
+		<echo message=" *  Building '${project.title}' ${project.version}" />
+		<echo message=" */" />
+	</target>
+
+	<target name="compile" depends="init"
+		description="Compiles the source codes">
+
+		<javac
+			srcdir="${source.dir}"
+			destdir="${build.classes.dir}"
+			debug="${javac.debug}"
+			deprecation="${javac.deprecation}"
+			optimize="${javac.optimize}"
+			encoding="${javac.encoding}"
+			target="${javac.target.version}"
+			source="${javac.source.version}">
+			<include name="${base.package.dir}/**/*.java" />
+			<exclude name="${test.package.dir}/**/*.java" />
+			<classpath refid="project.classpath" />
+		</javac>
+		<echo message="Compilation complete" />
+	</target>
+
+	<!--dist.source.dir=src
+		@target archive
+	-->
+	<target name="archive" depends="compile"
+		description="Creates the JAR file">
+		<property name="manifest.mf"
+			location="${build.base.dir}/manifest.mf" />
+		<manifest file="${manifest.mf}">
+			<attribute name="Built-By" value="${author.name}" />
+			<attribute name="Sealed" value="true" />
+			<attribute name="Built-On" value="${timestamp.isoformat}" />
+			<attribute name="Package" value="${base.package.dir}" />
+			<attribute name="Specification-Title" value="${project.title}"/>
+			<attribute name="Specification-Vendor" value="${company.name}" />
+			<attribute name="Implementation-Title" value="${base.package.dir}" />
+			<attribute name="Implementation-Version" value="${project.version}" />
+			<attribute name="Implementation-Vendor" value="${company.name}" />
+		</manifest>
+
+		<!-- byte-codes -->
+		<jar
+			destfile="${dist.dir}/${project.name}-${project.version}.jar"
+			manifest="${manifest.mf}"
+			basedir="${build.classes.dir}">
+			<include name="${base.package.dir}/**/*" />
+		</jar>
+
+		<signjar destDir="${dist.dir}"
+		    alias="bfjca" keystore="${key.dir}/bfjca.jks"
+		    storepass="xhvleh"
+		    preservelastmodified="true">
+			<path>
+		    	<fileset dir="${dist.dir}" includes="${project.name}-${project.version}.jar" />
+		  	</path>
+		  	<flattenmapper />
+		</signjar>
+
+		<!-- source-files -->
+		<jar
+			destfile="${dist.dir}/${project.name}-${project.version}-src.jar"
+			manifest="${manifest.mf}"
+			basedir="${source.dir}">
+		</jar>
+
+		<echo message="Making the JAR files complete" />
+
+		<copy file="./dist/${project.name}-${project.version}.jar"  todir="../bizframe_security_jce/lib/"/>
+		<copy file="./dist/${project.name}-${project.version}.jar"  todir="../bizframe_security_jce_test/lib/"/>
+
+	</target>
+
+	<!--
+		@target execute
+	-->
+	<target name="execute" depends="compile"
+		description="Runs the program">
+		<echo message="running" />
+		<java
+			classname="org.test.Main"
+			classpath="${build.classes.dir}">
+		</java>
+	</target>
+
+	<!--
+		@target clean
+	-->
+	<target name="clean" depends="init"
+		description="Removes the temporary directories used">
+		<delete dir="${build.base.dir}" />
+		<delete dir="${dist.dir}/${project.version}" />
+		<echo message="Cleaning complete" />
+	</target>
+
+</project>
