@@ -6,9 +6,7 @@
  */
 package kr.co.bizframe.crypto.digests;
 
-/**
- * 
- */
+
 public class HAS160Digest extends GeneralDigest {
 
 	private static final int DIGEST_LENGTH = 20;
@@ -17,7 +15,7 @@ public class HAS160Digest extends GeneralDigest {
 	private int wOff;
 
 	/**
-	 * Standard constructor
+	 * 기본 생성자
 	 */
 	public HAS160Digest() {
 		reset();

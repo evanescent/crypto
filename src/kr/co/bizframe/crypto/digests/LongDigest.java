@@ -10,7 +10,8 @@ import kr.co.bizframe.crypto.ExtendedDigest;
 import kr.co.bizframe.crypto.util.Pack;
 
 /**
- * Base class for SHA-384 and SHA-512.
+ * SHA-384 and SHA-512를 위한 기본 클래스이다.
+ * 
  */
 public abstract class LongDigest implements ExtendedDigest {
 

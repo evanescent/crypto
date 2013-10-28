@@ -7,8 +7,8 @@
 package kr.co.bizframe.crypto.digests;
 
 /**
- * implementation of MD5 as outlined in "Handbook of Applied Cryptography",
- * pages 346 - 347.
+ * "Handbook of Applied Cryptography" pages 346 - 347 를 
+ * 토대로 한  MD5의 구현이다.
  */
 public class MD5Digest extends GeneralDigest {
 
@@ -20,15 +20,16 @@ public class MD5Digest extends GeneralDigest {
 	private int xOff;
 
 	/**
-	 * Standard constructor
+	 * 기본 생성자
 	 */
 	public MD5Digest() {
 		reset();
 	}
 
+	
 	/**
-	 * Copy constructor. This will copy the state of the provided message
-	 * digest.
+	 * 제공된 Message Digest를 복제하는 생성자이다.
+	 * @param MD5Digest
 	 */
 	public MD5Digest(MD5Digest t) {
 		super(t);
@@ -42,14 +43,25 @@ public class MD5Digest extends GeneralDigest {
 		xOff = t.xOff;
 	}
 
+	/**
+	 * 알고리즘 명을 반환한다.
+	 * @return MD5 알고리즘 명
+	 */
 	public String getAlgorithmName() {
 		return "MD5";
 	}
 
+	/**
+	 * Digest 길이를 반환한다.
+	 * @return Digest 길이
+	 */
 	public int getDigestSize() {
 		return DIGEST_LENGTH;
 	}
 
+	/**
+	 * 
+	 */
 	protected void processWord(byte[] in, int inOff) {
 		X[xOff++] = (in[inOff] & 0xff) | ((in[inOff + 1] & 0xff) << 8)
 				| ((in[inOff + 2] & 0xff) << 16)
@@ -90,7 +102,7 @@ public class MD5Digest extends GeneralDigest {
 	}
 
 	/**
-	 * reset the chaining variables to the IV values.
+	 * 초기화를 시키고 해쉬 초기값을 설정한다.
 	 */
 	public void reset() {
 		super.reset();
@@ -108,7 +120,7 @@ public class MD5Digest extends GeneralDigest {
 	}
 
 	//
-	// round 1 left rotates
+	// 첫번째 left rotates
 	//
 	private static final int S11 = 7;
 	private static final int S12 = 12;
