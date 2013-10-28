@@ -12,12 +12,12 @@ import kr.co.bizframe.crypto.DataLengthException;
 import kr.co.bizframe.crypto.params.KeyParameter;
 
 /**
- * FIPS-197¿¡ µû¶ó ±¸ÇöµÈ AES (Rijndael)ÀÇ ±¸ÇöÀÌ´Ù.
+ * FIPS-197ì— ë”°ë¼ êµ¬í˜„ëœ AES (Rijndael)ì˜ êµ¬í˜„ì´ë‹¤.
  * <p>
- * º¸´Ù ÀÚ¼¼ÇÑ »çÇ×Àº ´ÙÀ½À» ÂüÁ¶: <a href="http://csrc.nist.gov/encryption/aes/">http://csrc.nist.gov/encryption/aes/</a>. 
+ * ë³´ë‹¤ ìì„¸í•œ ì‚¬í•­ì€ ë‹¤ìŒì„ ì°¸ì¡°: <a href="http://csrc.nist.gov/encryption/aes/">http://csrc.nist.gov/encryption/aes/</a>. 
  * <p>
  * 
- * ÃÖÀûÈ­¸¦ À§ÇØ °¢ ¶ó¿îµåº° ÀüÃ³¸®µÈ 8k ¹ÙÀÌÆ®ÀÇ ºÒº¯ Å×ÀÌºíÀÌ Æ÷ÇÔµÇ¾î ÀÖ´Ù.
+ * ìµœì í™”ë¥¼ ìœ„í•´ ê° ë¼ìš´ë“œë³„ ì „ì²˜ë¦¬ëœ 8k ë°”ì´íŠ¸ì˜ ë¶ˆë³€ í…Œì´ë¸”ì´ í¬í•¨ë˜ì–´ ìˆë‹¤.
  */
 public class AESFastEngine implements BlockCipher {
 

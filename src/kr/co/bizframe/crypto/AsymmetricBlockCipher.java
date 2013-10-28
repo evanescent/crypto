@@ -7,42 +7,42 @@
 package kr.co.bizframe.crypto;
 
 /**
- * °ø°³/ºñ°ø°³ Å° ºí·Ï ¾ÏÈ£ ¾ÏÈ£ ¿£ÁøÀÌ ±¸ÇöÇØ¾ß ÇÒ ÀÎÅÍÆäÀÌ½º
+ * ê³µê°œ/ë¹„ê³µê°œ í‚¤ ë¸”ë¡ ì•”í˜¸ ì•”í˜¸ ì—”ì§„ì´ êµ¬í˜„í•´ì•¼ í•  ì¸í„°í˜ì´ìŠ¤
  */
 public interface AsymmetricBlockCipher {
 
 	/**
-	 * ¿£Áø ÃÊ±âÈ­ ½Ã¿¡ È£ÃâÇÑ´Ù.
+	 * ì—”ì§„ ì´ˆê¸°í™” ì‹œì— í˜¸ì¶œí•œë‹¤.
 	 *  
-	 * @param forEncryption ¾ÏÈ£È­ ¿©ºÎ, <code>true</code>¸é ¾ÏÈ£È­, 
-	 *                      <code>false</code>¸é º¹È£È­.
-	 * @param params Ã³¸®¿¡ ÇÊ¿äÇÑ Å°¿Í ±âÅ¸ ÃÊ±âÈ­ ¸Å°³º¯¼ö
-	 * @throws IllegalArgumentException ¼³Á¤ÀÌ ¿Ã¹Ù¸£Áö ¾ÊÀº °æ¿ì
+	 * @param forEncryption ì•”í˜¸í™” ì—¬ë¶€, <code>true</code>ë©´ ì•”í˜¸í™”, 
+	 *                      <code>false</code>ë©´ ë³µí˜¸í™”.
+	 * @param params ì²˜ë¦¬ì— í•„ìš”í•œ í‚¤ì™€ ê¸°íƒ€ ì´ˆê¸°í™” ë§¤ê°œë³€ìˆ˜
+	 * @throws IllegalArgumentException ì„¤ì •ì´ ì˜¬ë°”ë¥´ì§€ ì•Šì€ ê²½ìš°
 	 */
 	public void init(boolean forEncryption, CipherParameters param);
 
 	/**
-	 * ÀÔ·Â ºí·Ï Å©±â¸¦ ¹İÈ¯ÇÑ´Ù.
+	 * ì…ë ¥ ë¸”ë¡ í¬ê¸°ë¥¼ ë°˜í™˜í•œë‹¤.
 	 * 
-	 * @return ÀÔ·Â ºí·Ï Å©±â
+	 * @return ì…ë ¥ ë¸”ë¡ í¬ê¸°
 	 */
 	public int getInputBlockSize();
 
 	/**
-	 * Ãâ·Â ºí·Ï Å©±â¸¦ ¹İÈ¯ÇÑ´Ù.
+	 * ì¶œë ¥ ë¸”ë¡ í¬ê¸°ë¥¼ ë°˜í™˜í•œë‹¤.
 	 * 
-	 * @return Ãâ·Â ºí·Ï Å©±â
+	 * @return ì¶œë ¥ ë¸”ë¡ í¬ê¸°
 	 */
 	public int getOutputBlockSize();
 
 	/**
-	 * ¸Å°³º¯¼ö¸¦ ¹ŞÀº ºí·Ï¿¡ ´ëÇÑ Ã³¸®¸¦ ÁøÇàÇÑ´Ù.
+	 * ë§¤ê°œë³€ìˆ˜ë¥¼ ë°›ì€ ë¸”ë¡ì— ëŒ€í•œ ì²˜ë¦¬ë¥¼ ì§„í–‰í•œë‹¤.
 	 * 
-	 * @param in ÀÔ·Â ºí·Ï ¹ÙÀÌÆ® ¹è¿­
-	 * @param inOff ÀÔ·Â ºí·Ï ¹ÙÀÌÆ® À§Ä¡
-	 * @param len ÀÔ·Â ºí·Ï ¹ÙÀÌÆ® Å©±â
-	 * @return Ãâ·Â ºí·Ï ¹ÙÀÌÆ® ¹è¿­
-	 * @throws InvalidCipherTextException ºí·Ï ¾ÏÈ£È­ Ã³¸® µµÁß ¿À·ù°¡ ¹ß»ıÇÑ °æ¿ì
+	 * @param in ì…ë ¥ ë¸”ë¡ ë°”ì´íŠ¸ ë°°ì—´
+	 * @param inOff ì…ë ¥ ë¸”ë¡ ë°”ì´íŠ¸ ìœ„ì¹˜
+	 * @param len ì…ë ¥ ë¸”ë¡ ë°”ì´íŠ¸ í¬ê¸°
+	 * @return ì¶œë ¥ ë¸”ë¡ ë°”ì´íŠ¸ ë°°ì—´
+	 * @throws InvalidCipherTextException ë¸”ë¡ ì•”í˜¸í™” ì²˜ë¦¬ ë„ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒí•œ ê²½ìš°
 	 */
 	public byte[] processBlock(byte[] in, int inOff, int len) 
 			throws InvalidCipherTextException;

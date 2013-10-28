@@ -9,7 +9,7 @@ package kr.co.bizframe.crypto.digests;
 import kr.co.bizframe.crypto.ExtendedDigest;
 
 /**
- * MD4ÀÇ ±âº» ±¸Çö. ±âÅ¸ MD4 familyÀÇ °ñÀÚ°¡ µÈ´Ù.
+ * MD4ì˜ ê¸°ë³¸ êµ¬í˜„. ê¸°íƒ€ MD4 familyì˜ ê³¨ìê°€ ëœë‹¤.
  */
 public abstract class GeneralDigest implements ExtendedDigest {
 
@@ -20,7 +20,7 @@ public abstract class GeneralDigest implements ExtendedDigest {
 	private long byteCount;
 
 	/**
-	 * ±âº» »ı¼ºÀÚ
+	 * ê¸°ë³¸ ìƒì„±ì
 	 */
 	protected GeneralDigest() {
 		xBuf = new byte[4];
@@ -28,9 +28,9 @@ public abstract class GeneralDigest implements ExtendedDigest {
 	}
 
 	/**
-	 * º¹»ç »ı¼ºÀÚ
+	 * ë³µì‚¬ ìƒì„±ì
 	 * 
-	 * @param t º¹»ç ´ë»ó
+	 * @param t ë³µì‚¬ ëŒ€ìƒ
 	 */
 	protected GeneralDigest(GeneralDigest t) {
 		xBuf = new byte[t.xBuf.length];
@@ -53,7 +53,7 @@ public abstract class GeneralDigest implements ExtendedDigest {
 
 	public void update(byte[] in, int inOff, int len) {
 		//
-		// ÇöÀç ´Ü¾î¸¦ Ã¤¿î´Ù.
+		// í˜„ì¬ ë‹¨ì–´ë¥¼ ì±„ìš´ë‹¤.
 		//
 		while ((xBufOff != 0) && (len > 0)) {
 			update(in[inOff]);
@@ -63,7 +63,7 @@ public abstract class GeneralDigest implements ExtendedDigest {
 		}
 
 		//
-		// ¸ğµç ´Ü¾î¸¦ Ã³¸®ÇÑ´Ù.
+		// ëª¨ë“  ë‹¨ì–´ë¥¼ ì²˜ë¦¬í•œë‹¤.
 		//
 		while (len > xBuf.length) {
 			processWord(in, inOff);
@@ -74,7 +74,7 @@ public abstract class GeneralDigest implements ExtendedDigest {
 		}
 
 		//
-		// ³²°ÜÁø ´Ü¾î¸¦ ·Îµå½ÃÅ²´Ù.
+		// ë‚¨ê²¨ì§„ ë‹¨ì–´ë¥¼ ë¡œë“œì‹œí‚¨ë‹¤.
 		//
 		while (len > 0) {
 			update(in[inOff]);
@@ -85,13 +85,13 @@ public abstract class GeneralDigest implements ExtendedDigest {
 	}
 
 	/**
-	 * ÆĞµù µîÀÇ ÃÖÁ¾ Ã³¸®¸¦ ¿Ï·áÇÑ´Ù.
+	 * íŒ¨ë”© ë“±ì˜ ìµœì¢… ì²˜ë¦¬ë¥¼ ì™„ë£Œí•œë‹¤.
 	 */
 	public void finish() {
 		long bitLength = (byteCount << 3);
 
 		//
-		// ÆĞµù ¹ÙÀÌÆ®¸¦ Ãß°¡ÇÑ´Ù.
+		// íŒ¨ë”© ë°”ì´íŠ¸ë¥¼ ì¶”ê°€í•œë‹¤.
 		//
 		update((byte) 128);
 

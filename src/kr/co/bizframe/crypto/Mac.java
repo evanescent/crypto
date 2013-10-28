@@ -7,66 +7,66 @@
 package kr.co.bizframe.crypto;
 
 /**
- * ¸Ş½ÃÁö ÀÎÁõ ÄÚµå(MACs)°¡ ±¸ÇöÇÒ ±âº» ÀÎÅÍÆäÀÌ½º
+ * ë©”ì‹œì§€ ì¸ì¦ ì½”ë“œ(MACs)ê°€ êµ¬í˜„í•  ê¸°ë³¸ ì¸í„°í˜ì´ìŠ¤
  */
 public interface Mac {
 
 	/**
-	 * ¸Ş½ÃÁö ÀÎÁõ ÄÚµå ÃÊ±âÈ­ ½Ã¿¡ È£ÃâÇÑ´Ù.
+	 * ë©”ì‹œì§€ ì¸ì¦ ì½”ë“œ ì´ˆê¸°í™” ì‹œì— í˜¸ì¶œí•œë‹¤.
 	 * 
-	 * @param params Ã³¸®¿¡ ÇÊ¿äÇÑ Å°¿Í ±âÅ¸ ÃÊ±âÈ­ ¸Å°³º¯¼ö
-	 * @throws IllegalArgumentException ¼³Á¤ÀÌ ¿Ã¹Ù¸£Áö ¾ÊÀº °æ¿ì
+	 * @param params ì²˜ë¦¬ì— í•„ìš”í•œ í‚¤ì™€ ê¸°íƒ€ ì´ˆê¸°í™” ë§¤ê°œë³€ìˆ˜
+	 * @throws IllegalArgumentException ì„¤ì •ì´ ì˜¬ë°”ë¥´ì§€ ì•Šì€ ê²½ìš°
 	 */
 	public void init(CipherParameters params) throws IllegalArgumentException;
 
 	/**
-	 * ¾Ë°í¸®Áò¸íÀ» ¹İÈ¯ÇÑ´Ù.
+	 * ì•Œê³ ë¦¬ì¦˜ëª…ì„ ë°˜í™˜í•œë‹¤.
 	 *  
-	 * @return ¾Ë°í¸®Áò¸í
+	 * @return ì•Œê³ ë¦¬ì¦˜ëª…
 	 */
 	public String getAlgorithmName();
 
 	/**
-	 * ¸Ş½ÃÁö ÀÎÁõ ÄÚµå °á°ú Å©±â¸¦ ¹İÈ¯ÇÑ´Ù.
+	 * ë©”ì‹œì§€ ì¸ì¦ ì½”ë“œ ê²°ê³¼ í¬ê¸°ë¥¼ ë°˜í™˜í•œë‹¤.
 	 * 
-	 * @return ¸Ş½ÃÁö ÀÎÁõ ÄÚµå °á°ú Å©±â
+	 * @return ë©”ì‹œì§€ ì¸ì¦ ì½”ë“œ ê²°ê³¼ í¬ê¸°
 	 */
 	public int getMacSize();
 
 	/**
-	 * ÁÖ¾îÁø ¹ÙÀÌÆ®·Î ¾÷µ¥ÀÌÆ®ÇÑ´Ù.
+	 * ì£¼ì–´ì§„ ë°”ì´íŠ¸ë¡œ ì—…ë°ì´íŠ¸í•œë‹¤.
 	 * 
-	 * @param in ÀÔ·Â ¹ÙÀÌÆ®
-	 * @throws IllegalStateException Ã³¸® »óÅÂ°¡ ¿Ã¹Ù¸£Áö ¾ÊÀº °æ¿ì
+	 * @param in ì…ë ¥ ë°”ì´íŠ¸
+	 * @throws IllegalStateException ì²˜ë¦¬ ìƒíƒœê°€ ì˜¬ë°”ë¥´ì§€ ì•Šì€ ê²½ìš°
 	 */
 	public void update(byte in) throws IllegalStateException;
 
 	/**
-	 * ÁÖ¾îÁø ¹ÙÀÌÆ® ¹è¿­·Î ¾÷µ¥ÀÌÆ®ÇÑ´Ù.
+	 * ì£¼ì–´ì§„ ë°”ì´íŠ¸ ë°°ì—´ë¡œ ì—…ë°ì´íŠ¸í•œë‹¤.
 	 * 
-	 * @param in ÀÔ·Â ¹ÙÀÌÆ® ¹è¿­
-	 * @param inOff ÀÔ·Â ¹ÙÀÌÆ® À§Ä¡
-	 * @param len ÀÔ·Â ¹ÙÀÌÆ® ±æÀÌ
-	 * @throws DataLengthException ºí·Ï ±æÀÌ°¡ ¿Ã¹Ù¸£Áö ¾ÊÀº °æ¿ì
-	 * @throws IllegalStateException Ã³¸® »óÅÂ°¡ ¿Ã¹Ù¸£Áö ¾ÊÀº °æ¿ì
+	 * @param in ì…ë ¥ ë°”ì´íŠ¸ ë°°ì—´
+	 * @param inOff ì…ë ¥ ë°”ì´íŠ¸ ìœ„ì¹˜
+	 * @param len ì…ë ¥ ë°”ì´íŠ¸ ê¸¸ì´
+	 * @throws DataLengthException ë¸”ë¡ ê¸¸ì´ê°€ ì˜¬ë°”ë¥´ì§€ ì•Šì€ ê²½ìš°
+	 * @throws IllegalStateException ì²˜ë¦¬ ìƒíƒœê°€ ì˜¬ë°”ë¥´ì§€ ì•Šì€ ê²½ìš°
 	 */
 	public void update(byte[] in, int inOff, int len)
 			throws DataLengthException, IllegalStateException;
 
 	/**
-	 * ÁÖ¾îÁø ¹ÙÀÌÆ® ¹è¿­¿¡ °á°ú¸¦ Ãâ·ÂÇÑ´Ù.
+	 * ì£¼ì–´ì§„ ë°”ì´íŠ¸ ë°°ì—´ì— ê²°ê³¼ë¥¼ ì¶œë ¥í•œë‹¤.
 	 * 
-	 * @param out Ãâ·Â ¹ÙÀÌÆ® ¹è¿­
-	 * @param outOff Ãâ·Â ¹ÙÀÌÆ® À§Ä¡
-	 * @return Ã³¸®ÇÑ ¹ÙÀÌÆ® ¹è¿­ Å©±â
-	 * @throws DataLengthException ºí·Ï ±æÀÌ°¡ ¿Ã¹Ù¸£Áö ¾ÊÀº °æ¿ì
-	 * @throws IllegalStateException Ã³¸® »óÅÂ°¡ ¿Ã¹Ù¸£Áö ¾ÊÀº °æ¿ì
+	 * @param out ì¶œë ¥ ë°”ì´íŠ¸ ë°°ì—´
+	 * @param outOff ì¶œë ¥ ë°”ì´íŠ¸ ìœ„ì¹˜
+	 * @return ì²˜ë¦¬í•œ ë°”ì´íŠ¸ ë°°ì—´ í¬ê¸°
+	 * @throws DataLengthException ë¸”ë¡ ê¸¸ì´ê°€ ì˜¬ë°”ë¥´ì§€ ì•Šì€ ê²½ìš°
+	 * @throws IllegalStateException ì²˜ë¦¬ ìƒíƒœê°€ ì˜¬ë°”ë¥´ì§€ ì•Šì€ ê²½ìš°
 	 */
 	public int doFinal(byte[] out, int outOff) throws DataLengthException,
 			IllegalStateException;
 
 	/**
-	 * »óÅÂ¸¦ ÃÊ±âÈ­ ÀüÀ¸·Î µ¹¸°´Ù.
+	 * ìƒíƒœë¥¼ ì´ˆê¸°í™” ì „ìœ¼ë¡œ ëŒë¦°ë‹¤.
 	 */
 	public void reset();
 	

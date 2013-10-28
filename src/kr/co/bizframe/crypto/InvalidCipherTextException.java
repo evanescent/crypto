@@ -7,20 +7,20 @@
 package kr.co.bizframe.crypto;
 
 /**
- * ¾ÏÈ£È­ ¹®±¸°¡ ¿Ã¹Ù¸£Áö ¾ÊÀº °æ¿ì ¹ß»ıÇÏ´Â ¿À·ù
+ * ì•”í˜¸í™” ë¬¸êµ¬ê°€ ì˜¬ë°”ë¥´ì§€ ì•Šì€ ê²½ìš° ë°œìƒí•˜ëŠ” ì˜¤ë¥˜
  */
 public class InvalidCipherTextException extends CryptoException {
 
 	/**
-	 * ±âº» »ı¼ºÀÚ
+	 * ê¸°ë³¸ ìƒì„±ì
 	 */
 	public InvalidCipherTextException() {
 	}
 
 	/**
-	 * ÁÖ¾îÁø ¸Ş½ÃÁö¸¦ °¡Áö´Â »ı¼ºÀÚ
+	 * ì£¼ì–´ì§„ ë©”ì‹œì§€ë¥¼ ê°€ì§€ëŠ” ìƒì„±ì
 	 *
-	 * @param message ¿À·ù°¡ ´ã°í ÀÖÀ» ¸Ş½ÃÁö
+	 * @param message ì˜¤ë¥˜ê°€ ë‹´ê³  ìˆì„ ë©”ì‹œì§€
 	 */
 	public InvalidCipherTextException(String message) {
 		super(message);

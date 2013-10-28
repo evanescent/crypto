@@ -7,54 +7,54 @@
 package kr.co.bizframe.crypto;
 
 /**
- * ÀÏ¹İÀûÀÎ ÀüÀÚ¼­¸í±â°¡ ±¸ÇöÇÒ ÀÎÅÍÆäÀÌ½º
+ * ì¼ë°˜ì ì¸ ì „ìì„œëª…ê¸°ê°€ êµ¬í˜„í•  ì¸í„°í˜ì´ìŠ¤
  */
 public interface Signer {
 
 	/**
-	 * ÃÊ±âÈ­ ½Ã¿¡ È£ÃâÇÑ´Ù.
+	 * ì´ˆê¸°í™” ì‹œì— í˜¸ì¶œí•œë‹¤.
 	 *  
-	 * @param forSigning ¼­¸í ¿©ºÎ, <code>true</code>¸é ¼­¸í, 
-	 *                   <code>false</code>¸é °ËÁõ.
-	 * @param param Ã³¸®¿¡ ÇÊ¿äÇÑ Å°¿Í ±âÅ¸ ÃÊ±âÈ­ ¸Å°³º¯¼ö
+	 * @param forSigning ì„œëª… ì—¬ë¶€, <code>true</code>ë©´ ì„œëª…, 
+	 *                   <code>false</code>ë©´ ê²€ì¦.
+	 * @param param ì²˜ë¦¬ì— í•„ìš”í•œ í‚¤ì™€ ê¸°íƒ€ ì´ˆê¸°í™” ë§¤ê°œë³€ìˆ˜
 	 */
 	public void init(boolean forSigning, CipherParameters param);
 
 	/**
-	 * ÁÖ¾îÁø ¹ÙÀÌÆ®·Î ¾÷µ¥ÀÌÆ®ÇÑ´Ù.
+	 * ì£¼ì–´ì§„ ë°”ì´íŠ¸ë¡œ ì—…ë°ì´íŠ¸í•œë‹¤.
 	 * 
-	 * @param b ÀÔ·Â ¹ÙÀÌÆ®
+	 * @param b ì…ë ¥ ë°”ì´íŠ¸
 	 */
 	public void update(byte b);
 
 	/**
-	 * ÁÖ¾îÁø ¹ÙÀÌÆ® ¹è¿­·Î ¾÷µ¥ÀÌÆ®ÇÑ´Ù.
+	 * ì£¼ì–´ì§„ ë°”ì´íŠ¸ ë°°ì—´ë¡œ ì—…ë°ì´íŠ¸í•œë‹¤.
 	 * 
-	 * @param in ÀÔ·Â ¹ÙÀÌÆ® ¹è¿­
-	 * @param off ÀÔ·Â ¹ÙÀÌÆ® À§Ä¡
-	 * @param len ÀÔ·Â ¹ÙÀÌÆ® ±æÀÌ
+	 * @param in ì…ë ¥ ë°”ì´íŠ¸ ë°°ì—´
+	 * @param off ì…ë ¥ ë°”ì´íŠ¸ ìœ„ì¹˜
+	 * @param len ì…ë ¥ ë°”ì´íŠ¸ ê¸¸ì´
 	 */
 	public void update(byte[] in, int off, int len);
 
 	/**
-	 * ÀüÀÚ¼­¸íÀ» »ı¼ºÇÑ´Ù.
+	 * ì „ìì„œëª…ì„ ìƒì„±í•œë‹¤.
 	 * 
-	 * @return »ı¼ºµÈ ÀüÀÚ¼­¸í ¹ÙÀÌÆ® ¹è¿­
-	 * @throws CryptoException ¼­¸í µµÁß ¿À·ù°¡ ¹ß»ıÇÑ °æ¿ì 
-	 * @throws DataLengthException µ¥ÀÌÅÍ ±æÀÌ°¡ ÃæºĞÄ¡ ¾ÊÀº °æ¿ì
+	 * @return ìƒì„±ëœ ì „ìì„œëª… ë°”ì´íŠ¸ ë°°ì—´
+	 * @throws CryptoException ì„œëª… ë„ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒí•œ ê²½ìš° 
+	 * @throws DataLengthException ë°ì´í„° ê¸¸ì´ê°€ ì¶©ë¶„ì¹˜ ì•Šì€ ê²½ìš°
 	 */
 	public byte[] generateSignature() throws CryptoException,
 			DataLengthException;
 
 	/**
-	 * ÁÖ¾îÁø ÀüÀÚ¼­¸íÀ» °ËÁõÇÑ´Ù.
+	 * ì£¼ì–´ì§„ ì „ìì„œëª…ì„ ê²€ì¦í•œë‹¤.
 	 * 
-	 * @return °ËÁõ °á°ú°¡ ¿Ã¹Ù¸£´Ù¸é <code>true</code>, ¾Æ´Ï¶ó¸é <code>false</code>
+	 * @return ê²€ì¦ ê²°ê³¼ê°€ ì˜¬ë°”ë¥´ë‹¤ë©´ <code>true</code>, ì•„ë‹ˆë¼ë©´ <code>false</code>
 	 */
 	public boolean verifySignature(byte[] signature);
 
 	/**
-	 * ÃÖÃÊ »óÅÂ·Î µÇµ¹¸°´Ù.
+	 * ìµœì´ˆ ìƒíƒœë¡œ ë˜ëŒë¦°ë‹¤.
 	 */
 	public void reset();
 	

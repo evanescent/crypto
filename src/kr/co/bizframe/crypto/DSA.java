@@ -9,33 +9,33 @@ package kr.co.bizframe.crypto;
 import java.math.BigInteger;
 
 /**
- * ÀüÀÚ¼­¸í ¾Ë°í¸®Áò(Digital Signature Algorithm)ÀÌ ±¸ÇöÇØ¾ß ÇÒ ÀÎÅÍÆäÀÌ½º.
+ * ì „ìì„œëª… ì•Œê³ ë¦¬ì¦˜(Digital Signature Algorithm)ì´ êµ¬í˜„í•´ì•¼ í•  ì¸í„°í˜ì´ìŠ¤.
  */
 public interface DSA {
 
 	/**
-	 * ÀüÀÚ¼­¸í »ı¼º ¶Ç´Â °ËÁõ ½Ã¿¡ È£ÃâÇÒ ÃÊ±âÈ­ ÇÔ¼ö
+	 * ì „ìì„œëª… ìƒì„± ë˜ëŠ” ê²€ì¦ ì‹œì— í˜¸ì¶œí•  ì´ˆê¸°í™” í•¨ìˆ˜
 	 *
-	 * @param forSigning ÀüÀÚ¼­¸í »ı¼º ¿©ºÎ, <code>true</code>¸é »ı¼º, 
-	 *                   <code>false</code>¸é °ËÁõ.
-	 * @param params Ã³¸®¿¡ ÇÊ¿äÇÑ Å°¿Í ±âÅ¸ ÃÊ±âÈ­ ¸Å°³º¯¼ö
+	 * @param forSigning ì „ìì„œëª… ìƒì„± ì—¬ë¶€, <code>true</code>ë©´ ìƒì„±, 
+	 *                   <code>false</code>ë©´ ê²€ì¦.
+	 * @param params ì²˜ë¦¬ì— í•„ìš”í•œ í‚¤ì™€ ê¸°íƒ€ ì´ˆê¸°í™” ë§¤ê°œë³€ìˆ˜
 	 */
 	public void init(boolean forSigning, CipherParameters param);
 
 	/**
-	 * ÁÖ¾îÁø ¹ÙÀÌÆ® ¹è¿­¿¡ ´ëÇØ ÀüÀÚ¼­¸íÀ» »ı¼ºÇÑ´Ù.
+	 * ì£¼ì–´ì§„ ë°”ì´íŠ¸ ë°°ì—´ì— ëŒ€í•´ ì „ìì„œëª…ì„ ìƒì„±í•œë‹¤.
 	 *
-	 * @param message ¼­¸íÇÒ ¸Ş½ÃÁö ¹ÙÀÌÆ® ¹è¿­
-	 * @return r°ú s·Î Ç¥ÇöµÇ´Â 2°³ÀÇ Å« Á¤¼ö°ª
+	 * @param message ì„œëª…í•  ë©”ì‹œì§€ ë°”ì´íŠ¸ ë°°ì—´
+	 * @return rê³¼ së¡œ í‘œí˜„ë˜ëŠ” 2ê°œì˜ í° ì •ìˆ˜ê°’
 	 */
 	public BigInteger[] generateSignature(byte[] message);
 
 	/**
-	 * ¼­¸í°ª r°ú s¿¡ ´ëÇØ ÁÖ¾îÁø ¸Ş½ÃÁö¿¡ ´ëÇÑ °ËÁõÀ» ½ÃµµÇÑ´Ù.
+	 * ì„œëª…ê°’ rê³¼ sì— ëŒ€í•´ ì£¼ì–´ì§„ ë©”ì‹œì§€ì— ëŒ€í•œ ê²€ì¦ì„ ì‹œë„í•œë‹¤.
 	 *
-	 * @param message ¼­¸í¿¡ »ç¿ëÇÑ ¸Ş½ÃÁö
-	 * @param r ¼­¸í°ª r
-	 * @param s ¼­¸í°ª s
+	 * @param message ì„œëª…ì— ì‚¬ìš©í•œ ë©”ì‹œì§€
+	 * @param r ì„œëª…ê°’ r
+	 * @param s ì„œëª…ê°’ s
 	 */
 	public boolean verifySignature(byte[] message, BigInteger r, BigInteger s);
 }

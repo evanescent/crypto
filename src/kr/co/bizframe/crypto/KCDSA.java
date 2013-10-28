@@ -7,19 +7,19 @@
 package kr.co.bizframe.crypto;
 
 /**
- * KCDSAÀÇ ±¸Çö ÀÎÅÍÆäÀÌ½º
+ * KCDSAì˜ êµ¬í˜„ ì¸í„°í˜ì´ìŠ¤
  */
 public interface KCDSA extends DSA {
 
 	/**
-	 * Ã³¸® Àü ÁØºñ ½Ã È£ÃâÇÑ´Ù.
+	 * ì²˜ë¦¬ ì „ ì¤€ë¹„ ì‹œ í˜¸ì¶œí•œë‹¤.
 	 */
 	public void prepare();
 
 	/**
-	 * »ç¿ëÇÒ ÇØ½¬ ÇÔ¼ö¸¦ ¼³Á¤ÇÑ´Ù.
+	 * ì‚¬ìš©í•  í•´ì‰¬ í•¨ìˆ˜ë¥¼ ì„¤ì •í•œë‹¤.
 	 * 
-	 * @param digest »ç¿ëÇÒ ÇØ½¬ ÇÔ¼ö
+	 * @param digest ì‚¬ìš©í•  í•´ì‰¬ í•¨ìˆ˜
 	 */
 	public void setDigest(ExtendedDigest digest);
 

@@ -17,16 +17,16 @@ public class HAS160Digest extends GeneralDigest {
 	private int wOff;
 
 	/**
-	 * ±âº» »ı¼ºÀÚ
+	 * ê¸°ë³¸ ìƒì„±ì
 	 */
 	public HAS160Digest() {
 		reset();
 	}
 
 	/**
-	 * º¹»ç »ı¼ºÀÚ
+	 * ë³µì‚¬ ìƒì„±ì
 	 * 
-	 * @param t º¹»ç ´ë»ó
+	 * @param t ë³µì‚¬ ëŒ€ìƒ
 	 */
 	public HAS160Digest(HAS160Digest t) {
 		super(t);

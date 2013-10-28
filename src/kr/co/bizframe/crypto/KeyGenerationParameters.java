@@ -9,7 +9,7 @@ package kr.co.bizframe.crypto;
 import java.security.SecureRandom;
 
 /**
- * Å° »ı¼º±â¿¡ ¼³Á¤ÇÒ ¸Å°³º¯¼öÀÇ ±âº» Å¬·¡½º
+ * í‚¤ ìƒì„±ê¸°ì— ì„¤ì •í•  ë§¤ê°œë³€ìˆ˜ì˜ ê¸°ë³¸ í´ë˜ìŠ¤
  */
 public class KeyGenerationParameters {
 
@@ -17,10 +17,10 @@ public class KeyGenerationParameters {
 	private int strength;
 
 	/**
-	 * ³­¼ö»ı¼º±â¿Í °­µµ(ºñÆ®)¸¦ ¼³Á¤ÇÑ´Ù.
+	 * ë‚œìˆ˜ìƒì„±ê¸°ì™€ ê°•ë„(ë¹„íŠ¸)ë¥¼ ì„¤ì •í•œë‹¤.
 	 * 
-	 * @param random ³­¼ö»ı¼º±â
-	 * @param strength »ı¼ºÇÒ Å°°¡ °¡Áú °­µµ(ºñÆ®)
+	 * @param random ë‚œìˆ˜ìƒì„±ê¸°
+	 * @param strength ìƒì„±í•  í‚¤ê°€ ê°€ì§ˆ ê°•ë„(ë¹„íŠ¸)
 	 */
 	public KeyGenerationParameters(SecureRandom random, int strength) {
 		this.random = random;
@@ -28,18 +28,18 @@ public class KeyGenerationParameters {
 	}
 
 	/**
-	 * »ı¼º±â¿¡¼­ »ç¿ëÇÒ ³­¼ö»ı¼º±â¸¦ ¹İÈ¯ÇÑ´Ù.
+	 * ìƒì„±ê¸°ì—ì„œ ì‚¬ìš©í•  ë‚œìˆ˜ìƒì„±ê¸°ë¥¼ ë°˜í™˜í•œë‹¤.
 	 * 
-	 * @return »ı¼º±â¿¡¼­ »ç¿ëÇÒ ³­¼ö»ı¼º±â
+	 * @return ìƒì„±ê¸°ì—ì„œ ì‚¬ìš©í•  ë‚œìˆ˜ìƒì„±ê¸°
 	 */
 	public SecureRandom getRandom() {
 		return random;
 	}
 
 	/**
-	 * »ı¼º±â¿¡ ÀÇÇØ Á¦ÀÛµÉ Å°ÀÇ °­µµ(ºñÆ®)¸¦ ¹İÈ¯ÇÑ´Ù.
+	 * ìƒì„±ê¸°ì— ì˜í•´ ì œì‘ë  í‚¤ì˜ ê°•ë„(ë¹„íŠ¸)ë¥¼ ë°˜í™˜í•œë‹¤.
 	 * 
-	 * @return »ı¼º±â¿¡ ÀÇÇØ Á¦ÀÛµÉ Å°ÀÇ °­µµ(ºñÆ®)
+	 * @return ìƒì„±ê¸°ì— ì˜í•´ ì œì‘ë  í‚¤ì˜ ê°•ë„(ë¹„íŠ¸)
 	 */
 	public int getStrength() {
 		return strength;

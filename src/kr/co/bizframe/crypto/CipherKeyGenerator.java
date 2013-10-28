@@ -9,7 +9,7 @@ package kr.co.bizframe.crypto;
 import java.security.SecureRandom;
 
 /**
- * ´ëÄª ¾ÏÈ£È­ Å° »ı¼º±âÀÇ ±âº» Å¬·¡½º
+ * ëŒ€ì¹­ ì•”í˜¸í™” í‚¤ ìƒì„±ê¸°ì˜ ê¸°ë³¸ í´ë˜ìŠ¤
  */
 public class CipherKeyGenerator {
 
@@ -17,9 +17,9 @@ public class CipherKeyGenerator {
 	protected int strength;
 
 	/**
-	 * »ı¼ºÇÒ Å°¿¡ ´ëÇÑ ¸Å°³º¯¼ö¸¦ ¼³Á¤ÇÑ´Ù. 
+	 * ìƒì„±í•  í‚¤ì— ëŒ€í•œ ë§¤ê°œë³€ìˆ˜ë¥¼ ì„¤ì •í•œë‹¤. 
 	 * 
-	 * @param param »ı¼ºÇÒ Å°¿¡ ´ëÇÑ ¸Å°³º¯¼ö
+	 * @param param ìƒì„±í•  í‚¤ì— ëŒ€í•œ ë§¤ê°œë³€ìˆ˜
 	 */
 	public void init(KeyGenerationParameters param) {
 		this.random = param.getRandom();
@@ -27,9 +27,9 @@ public class CipherKeyGenerator {
 	}
 
 	/**
-	 * Å°¸¦ »ı¼ºÇØ ¹İÈ¯ÇÑ´Ù.
+	 * í‚¤ë¥¼ ìƒì„±í•´ ë°˜í™˜í•œë‹¤.
 	 * 
-	 * @return »ı¼ºÇÑ Å°
+	 * @return ìƒì„±í•œ í‚¤
 	 */
 	public byte[] generateKey() {
 		byte[] key = new byte[strength];

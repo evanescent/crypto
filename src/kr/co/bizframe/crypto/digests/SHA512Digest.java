@@ -9,7 +9,7 @@ package kr.co.bizframe.crypto.digests;
 import kr.co.bizframe.crypto.util.Pack;
 
 /**
- * FIPS 180-2, SHA-512ÀÇ ±¸Çö.
+ * FIPS 180-2, SHA-512ì˜ êµ¬í˜„.
  *
  * <pre>
  *         block  word  digest
@@ -24,15 +24,15 @@ public class SHA512Digest extends LongDigest {
 	private static final int DIGEST_LENGTH = 64;
 
 	/**
-	 * ±âº» »ı¼ºÀÚ
+	 * ê¸°ë³¸ ìƒì„±ì
 	 */
 	public SHA512Digest() {
 	}
 
 	/**
-	 * º¹»ç »ı¼ºÀÚ
+	 * ë³µì‚¬ ìƒì„±ì
 	 * 
-	 * @param t º¹»ç ´ë»ó
+	 * @param t ë³µì‚¬ ëŒ€ìƒ
 	 */
 	public SHA512Digest(SHA512Digest t) {
 		super(t);
@@ -67,7 +67,7 @@ public class SHA512Digest extends LongDigest {
 		super.reset();
 
 		/*
-		 * SHA-512ÀÇ ÃÊ±â°ª
+		 * SHA-512ì˜ ì´ˆê¸°ê°’
 		 */
 		H0 = 0x6a09e667f3bcc908L;
 		H1 = 0xbb67ae8584caa73bL;

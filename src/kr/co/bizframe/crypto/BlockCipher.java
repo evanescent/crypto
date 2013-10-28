@@ -7,51 +7,51 @@
 package kr.co.bizframe.crypto;
 
 /**
- * ºí·Ï ¾ÏÈ£ ¿£ÁøÀÌ ±¸ÇöÇØ¾ß ÇÒ ÀÎÅÍÆäÀÌ½º
+ * ë¸”ë¡ ì•”í˜¸ ì—”ì§„ì´ êµ¬í˜„í•´ì•¼ í•  ì¸í„°í˜ì´ìŠ¤
  */
 public interface BlockCipher {
 
 	/**
-	 * ¿£Áø ÃÊ±âÈ­ ½Ã¿¡ È£ÃâÇÑ´Ù.
+	 * ì—”ì§„ ì´ˆê¸°í™” ì‹œì— í˜¸ì¶œí•œë‹¤.
 	 *  
-	 * @param forEncryption ¾ÏÈ£È­ ¿©ºÎ, <code>true</code>¸é ¾ÏÈ£È­, 
-	 *                      <code>false</code>¸é º¹È£È­.
-	 * @param params Ã³¸®¿¡ ÇÊ¿äÇÑ Å°¿Í ±âÅ¸ ÃÊ±âÈ­ ¸Å°³º¯¼ö
-	 * @throws IllegalArgumentException ¼³Á¤ÀÌ ¿Ã¹Ù¸£Áö ¾ÊÀº °æ¿ì
+	 * @param forEncryption ì•”í˜¸í™” ì—¬ë¶€, <code>true</code>ë©´ ì•”í˜¸í™”, 
+	 *                      <code>false</code>ë©´ ë³µí˜¸í™”.
+	 * @param params ì²˜ë¦¬ì— í•„ìš”í•œ í‚¤ì™€ ê¸°íƒ€ ì´ˆê¸°í™” ë§¤ê°œë³€ìˆ˜
+	 * @throws IllegalArgumentException ì„¤ì •ì´ ì˜¬ë°”ë¥´ì§€ ì•Šì€ ê²½ìš°
 	 */
 	public void init(boolean forEncryption, CipherParameters params)
 			throws IllegalArgumentException;
 
 	/**
-	 * ¾Ë°í¸®Áò¸íÀ» ¹İÈ¯ÇÑ´Ù.
+	 * ì•Œê³ ë¦¬ì¦˜ëª…ì„ ë°˜í™˜í•œë‹¤.
 	 * 
-	 * @return ¾Ë°í¸®Áò¸í
+	 * @return ì•Œê³ ë¦¬ì¦˜ëª…
 	 */
 	public String getAlgorithmName();
 
 	/**
-	 * ºí·Ï Å©±â¸¦ ¹İÈ¯ÇÑ´Ù.
+	 * ë¸”ë¡ í¬ê¸°ë¥¼ ë°˜í™˜í•œë‹¤.
 	 * 
-	 * @return ºí·Ï Å©±â
+	 * @return ë¸”ë¡ í¬ê¸°
 	 */
 	public int getBlockSize();
 
 	/**
-	 * ¸Å°³º¯¼ö¸¦ ¹ŞÀº ºí·Ï¿¡ ´ëÇÑ Ã³¸®¸¦ ÁøÇàÇÑ´Ù.
+	 * ë§¤ê°œë³€ìˆ˜ë¥¼ ë°›ì€ ë¸”ë¡ì— ëŒ€í•œ ì²˜ë¦¬ë¥¼ ì§„í–‰í•œë‹¤.
 	 * 
-	 * @param in ÀÔ·Â ºí·Ï ¹ÙÀÌÆ® ¹è¿­
-	 * @param inOff ÀÔ·Â ºí·Ï ¹ÙÀÌÆ® À§Ä¡
-	 * @param out Ãâ·Â ºí·Ï ¹ÙÀÌÆ® ¹è¿­
-	 * @param outOff Ãâ·Â ºí·Ï ¹ÙÀÌÆ® À§Ä¡
-	 * @return Ã³¸®ÇÑ ºí·Ï ¹ÙÀÌÆ® Å©±â
-	 * @throws DataLengthException ºí·Ï ±æÀÌ°¡ ¿Ã¹Ù¸£Áö ¾ÊÀº °æ¿ì
-	 * @throws IllegalStateException Ã³¸® »óÅÂ°¡ ¿Ã¹Ù¸£Áö ¾ÊÀº °æ¿ì
+	 * @param in ì…ë ¥ ë¸”ë¡ ë°”ì´íŠ¸ ë°°ì—´
+	 * @param inOff ì…ë ¥ ë¸”ë¡ ë°”ì´íŠ¸ ìœ„ì¹˜
+	 * @param out ì¶œë ¥ ë¸”ë¡ ë°”ì´íŠ¸ ë°°ì—´
+	 * @param outOff ì¶œë ¥ ë¸”ë¡ ë°”ì´íŠ¸ ìœ„ì¹˜
+	 * @return ì²˜ë¦¬í•œ ë¸”ë¡ ë°”ì´íŠ¸ í¬ê¸°
+	 * @throws DataLengthException ë¸”ë¡ ê¸¸ì´ê°€ ì˜¬ë°”ë¥´ì§€ ì•Šì€ ê²½ìš°
+	 * @throws IllegalStateException ì²˜ë¦¬ ìƒíƒœê°€ ì˜¬ë°”ë¥´ì§€ ì•Šì€ ê²½ìš°
 	 */
 	public int processBlock(byte[] in, int inOff, byte[] out, int outOff)
 			throws DataLengthException, IllegalStateException;
 
 	/**
-	 * »óÅÂ¸¦ ÃÊ±âÈ­ ÀüÀ¸·Î µ¹¸°´Ù.
+	 * ìƒíƒœë¥¼ ì´ˆê¸°í™” ì „ìœ¼ë¡œ ëŒë¦°ë‹¤.
 	 */
 	public void reset();
 

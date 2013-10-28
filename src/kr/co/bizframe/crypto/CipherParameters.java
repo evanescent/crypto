@@ -7,7 +7,7 @@
 package kr.co.bizframe.crypto;
 
 /**
- * ¾Ï/º¹È£È­¿¡ ÇÊ¿äÇÑ ¸Å°³º¯¼ö¿¡ ´ëÇÑ ÀÎÅÍÆäÀÌ½º
+ * ì•”/ë³µí˜¸í™”ì— í•„ìš”í•œ ë§¤ê°œë³€ìˆ˜ì— ëŒ€í•œ ì¸í„°í˜ì´ìŠ¤
  */
 public interface CipherParameters {
 }

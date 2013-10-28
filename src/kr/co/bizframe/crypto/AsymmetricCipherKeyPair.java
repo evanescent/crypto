@@ -7,7 +7,7 @@
 package kr.co.bizframe.crypto;
 
 /**
- * °ø°³/ºñ°ø°³ ½ÖÀÇ ¸Å°³º¯¼ö Å¬·¡½º
+ * ê³µê°œ/ë¹„ê³µê°œ ìŒì˜ ë§¤ê°œë³€ìˆ˜ í´ë˜ìŠ¤
  */
 public class AsymmetricCipherKeyPair {
 
@@ -15,10 +15,10 @@ public class AsymmetricCipherKeyPair {
 	private CipherParameters privateParam;
 
 	/**
-	 * ÁÖ¾îÁø ¸Å°³º¯¼ö¸¦ »ç¿ëÇÏ´Â »ı¼ºÀÚ
+	 * ì£¼ì–´ì§„ ë§¤ê°œë³€ìˆ˜ë¥¼ ì‚¬ìš©í•˜ëŠ” ìƒì„±ì
 	 * 
-	 * @param publicParam °ø°³Å° ¸Å°³º¯¼ö
-	 * @param privateParam ºñ°ø°³Å° ¸Å°³º¯¼ö
+	 * @param publicParam ê³µê°œí‚¤ ë§¤ê°œë³€ìˆ˜
+	 * @param privateParam ë¹„ê³µê°œí‚¤ ë§¤ê°œë³€ìˆ˜
 	 */
 	public AsymmetricCipherKeyPair(CipherParameters publicParam,
 			CipherParameters privateParam) {
@@ -27,18 +27,18 @@ public class AsymmetricCipherKeyPair {
 	}
 
 	/**
-	 * °ø°³Å° ¸Å°³º¯¼ö¸¦ ¹İÈ¯ÇÑ´Ù.
+	 * ê³µê°œí‚¤ ë§¤ê°œë³€ìˆ˜ë¥¼ ë°˜í™˜í•œë‹¤.
 	 * 
-	 * @return °ø°³Å° ¸Å°³º¯¼ö
+	 * @return ê³µê°œí‚¤ ë§¤ê°œë³€ìˆ˜
 	 */
 	public CipherParameters getPublic() {
 		return publicParam;
 	}
 
 	/**
-	 * ºñ°ø°³Å° ¸Å°³º¯¼ö¸¦ ¹İÈ¯ÇÑ´Ù.
+	 * ë¹„ê³µê°œí‚¤ ë§¤ê°œë³€ìˆ˜ë¥¼ ë°˜í™˜í•œë‹¤.
 	 * 
-	 * @return ºñ°ø°³Å° ¸Å°³º¯¼ö
+	 * @return ë¹„ê³µê°œí‚¤ ë§¤ê°œë³€ìˆ˜
 	 */
 	public CipherParameters getPrivate() {
 		return privateParam;

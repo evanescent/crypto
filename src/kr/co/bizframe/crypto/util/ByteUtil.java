@@ -83,12 +83,12 @@ public final class ByteUtil {
 
 
 	/**
-	 *  "0123456789abcdef"ÀÇ ¹®ÀÚ·Î ±¸¼ºµÈ Base-16 Çü½ÄÀÇ ¹®ÀÚ¿­À» byte ¹è¿­·Î ¹Ù²ãÁØ´Ù.
+	 *  "0123456789abcdef"ì˜ ë¬¸ìë¡œ êµ¬ì„±ëœ Base-16 í˜•ì‹ì˜ ë¬¸ìì—´ì„ byte ë°°ì—´ë¡œ ë°”ê¿”ì¤€ë‹¤.
 	 *
-	 * @param hexString Base-16 Çü½ÄÀÇ ¹®ÀÚ¿­
-	 * @return byte ¹è¿­
-	 * @throws NullPointerException ¹®ÀÚ¿­ÀÌ <code>null</code>ÀÎ °æ¿ì.
-	 * @throws IllegalArgumentException ¹®ÀÚ¿­ÀÇ ±æÀÌ°¡ Â¦¼ö°¡ ¾Æ´Ñ °æ¿ì, ¶Ç´Â Base-16 Çü½ÄÀÇ ¹®ÀÚ¿­ÀÌ ¾Æ´Ñ °æ¿ì.
+	 * @param hexString Base-16 í˜•ì‹ì˜ ë¬¸ìì—´
+	 * @return byte ë°°ì—´
+	 * @throws NullPointerException ë¬¸ìì—´ì´ <code>null</code>ì¸ ê²½ìš°.
+	 * @throws IllegalArgumentException ë¬¸ìì—´ì˜ ê¸¸ì´ê°€ ì§ìˆ˜ê°€ ì•„ë‹Œ ê²½ìš°, ë˜ëŠ” Base-16 í˜•ì‹ì˜ ë¬¸ìì—´ì´ ì•„ë‹Œ ê²½ìš°.
 	 * @since 0.4.2
 	 */
 	public static byte[] toByteArray(boolean removeSpace, String hexString) {

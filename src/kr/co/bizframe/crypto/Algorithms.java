@@ -13,28 +13,28 @@ import kr.co.bizframe.crypto.ciphers.CipherManager;
 import kr.co.bizframe.crypto.digests.DigestManager;
 
 /**
- * Áö¿øÇÏ´Â ¾Ë°í¸®ÁòÀ» ´ã°í ÀÖ´Â Å¬·¡½º
+ * ì§€ì›í•˜ëŠ” ì•Œê³ ë¦¬ì¦˜ì„ ë‹´ê³  ìˆëŠ” í´ë˜ìŠ¤
  */
 public class Algorithms {
 
 	public static enum Type {
 		/**
-		 * ºí·Ï ¾ÏÈ£ ¾Ë°í¸®Áò
+		 * ë¸”ë¡ ì•”í˜¸ ì•Œê³ ë¦¬ì¦˜
 		 */
 		BLOCK_CIPHER, 
 		
 		/**
-		 * ¿î¿ë ¸ğµå
+		 * ìš´ìš© ëª¨ë“œ
 		 */
 		MODE, 
 		
 		/**
-		 * ¸Ş½ÃÁö ÀÎÁõ ÄÚµå
+		 * ë©”ì‹œì§€ ì¸ì¦ ì½”ë“œ
 		 */
 		MAC,
 		
 		/**
-		 * ÇØ½¬ ÇÔ¼ö
+		 * í•´ì‰¬ í•¨ìˆ˜
 		 */
 		DIGEST
 	}
@@ -42,10 +42,10 @@ public class Algorithms {
 	private Map<String, Algorithm> algorithms = new HashMap<String, Algorithm>();
 
 	/**
-	 * ºí·Ï ¾ÏÈ£ ¾Ë°í¸®ÁòÀ» Ãß°¡ÇÑ´Ù.
+	 * ë¸”ë¡ ì•”í˜¸ ì•Œê³ ë¦¬ì¦˜ì„ ì¶”ê°€í•œë‹¤.
 	 * 
-	 * @param name ºí·Ï ¾ÏÈ£ ¾Ë°í¸®Áò¸í
-	 * @param clazz ºí·Ï ¾ÏÈ£ ¾Ë°í¸®Áò ±¸Çö Å¬·¡½º
+	 * @param name ë¸”ë¡ ì•”í˜¸ ì•Œê³ ë¦¬ì¦˜ëª…
+	 * @param clazz ë¸”ë¡ ì•”í˜¸ ì•Œê³ ë¦¬ì¦˜ êµ¬í˜„ í´ë˜ìŠ¤
 	 */
 	public void addBlockCipher(String name, Class<? extends BlockCipher> clazz) {
 		Algorithm algo = new BlockCipherAlgorithm(name, Type.BLOCK_CIPHER, clazz, null);
@@ -53,11 +53,11 @@ public class Algorithms {
 	}
 
 	/**
-	 * ºí·Ï ¾ÏÈ£ ¾Ë°í¸®ÁòÀ» Ãß°¡ÇÑ´Ù.
+	 * ë¸”ë¡ ì•”í˜¸ ì•Œê³ ë¦¬ì¦˜ì„ ì¶”ê°€í•œë‹¤.
 	 * 
-	 * @param name ºí·Ï ¾ÏÈ£ ¾Ë°í¸®Áò¸í
-	 * @param clazz ºí·Ï ¾ÏÈ£ ¾Ë°í¸®Áò ±¸Çö Å¬·¡½º
-	 * @param mode ¿î¿ë ¸ğµå
+	 * @param name ë¸”ë¡ ì•”í˜¸ ì•Œê³ ë¦¬ì¦˜ëª…
+	 * @param clazz ë¸”ë¡ ì•”í˜¸ ì•Œê³ ë¦¬ì¦˜ êµ¬í˜„ í´ë˜ìŠ¤
+	 * @param mode ìš´ìš© ëª¨ë“œ
 	 */
 	public void addBlockCipher(String name, Class<? extends BlockCipher> clazz, 
 			Class<? extends BlockCipher> mode) {
@@ -66,10 +66,10 @@ public class Algorithms {
 	}
 
 	/**
-	 * ÇØ½¬ ÇÔ¼ö¸¦ Ãß°¡ÇÑ´Ù.
+	 * í•´ì‰¬ í•¨ìˆ˜ë¥¼ ì¶”ê°€í•œë‹¤.
 	 * 
-	 * @param name ÇØ½¬ ÇÔ¼ö¸í
-	 * @param clazz ÇØ½¬ ÇÔ¼ö ±¸Çö Å¬·¡½º
+	 * @param name í•´ì‰¬ í•¨ìˆ˜ëª…
+	 * @param clazz í•´ì‰¬ í•¨ìˆ˜ êµ¬í˜„ í´ë˜ìŠ¤
 	 */
 	public void addDigest(String name, Class<? extends Digest> clazz) {
 		DigestAlgorithm algo = new DigestAlgorithm(name, Type.DIGEST, clazz);
@@ -77,12 +77,12 @@ public class Algorithms {
 	}
 
 	/**
-	 * ÁÖ¾îÁø ¾Ë°í¸®Áò¸í¿¡ ÇØ´çÇÏ´Â ºí·Ï ¾ÏÈ£ ¾Ë°í¸®Áò ±¸ÇöÀ» ¹İÈ¯ÇÑ´Ù.
+	 * ì£¼ì–´ì§„ ì•Œê³ ë¦¬ì¦˜ëª…ì— í•´ë‹¹í•˜ëŠ” ë¸”ë¡ ì•”í˜¸ ì•Œê³ ë¦¬ì¦˜ êµ¬í˜„ì„ ë°˜í™˜í•œë‹¤.
 	 * 
-	 * @param name ºí·Ï ¾ÏÈ£ ¾Ë°í¸®Áò¸í
-	 * @return ÇØ´çÇÏ´Â ¾Ë°í¸®Áò¿¡ ´ëÇÑ ±¸Çö
-	 * @throws NullPointerException ÇØ´ç ¾Ë°í¸®Áò¸íÀÌ µî·ÏµÇ¾î ÀÖÁö ¾ÊÀº °æ¿ì
-	 * @throws IllegalStateException ÇØ´ç ¾Ë°í¸®Áò¿¡ ´ëÇÑ ±¸ÇöÃ¼¸¦ »ı¼ºÇÒ ¼ö ¾ø´Â °æ¿ì
+	 * @param name ë¸”ë¡ ì•”í˜¸ ì•Œê³ ë¦¬ì¦˜ëª…
+	 * @return í•´ë‹¹í•˜ëŠ” ì•Œê³ ë¦¬ì¦˜ì— ëŒ€í•œ êµ¬í˜„
+	 * @throws NullPointerException í•´ë‹¹ ì•Œê³ ë¦¬ì¦˜ëª…ì´ ë“±ë¡ë˜ì–´ ìˆì§€ ì•Šì€ ê²½ìš°
+	 * @throws IllegalStateException í•´ë‹¹ ì•Œê³ ë¦¬ì¦˜ì— ëŒ€í•œ êµ¬í˜„ì²´ë¥¼ ìƒì„±í•  ìˆ˜ ì—†ëŠ” ê²½ìš°
 	 */
 	public CipherManager getBlockCipher(String name) {
 		BlockCipherAlgorithm algo = (BlockCipherAlgorithm) algorithms.get(name);
@@ -107,12 +107,12 @@ public class Algorithms {
 	}
 
 	/**
-	 * ÁÖ¾îÁø ¾Ë°í¸®Áò¸í¿¡ ÇØ´çÇÏ´Â ÇØ½¬ ÇÔ¼ö ±¸ÇöÀ» ¹İÈ¯ÇÑ´Ù.
+	 * ì£¼ì–´ì§„ ì•Œê³ ë¦¬ì¦˜ëª…ì— í•´ë‹¹í•˜ëŠ” í•´ì‰¬ í•¨ìˆ˜ êµ¬í˜„ì„ ë°˜í™˜í•œë‹¤.
 	 * 
-	 * @param name ÇØ½¬ ÇÔ¼ö ¾Ë°í¸®Áò¸í
-	 * @return ÇØ´çÇÏ´Â ¾Ë°í¸®Áò¿¡ ´ëÇÑ ±¸Çö
-	 * @throws NullPointerException ÇØ´ç ¾Ë°í¸®Áò¸íÀÌ µî·ÏµÇ¾î ÀÖÁö ¾ÊÀº °æ¿ì
-	 * @throws IllegalStateException ÇØ´ç ¾Ë°í¸®Áò¿¡ ´ëÇÑ ±¸ÇöÃ¼¸¦ »ı¼ºÇÒ ¼ö ¾ø´Â °æ¿ì
+	 * @param name í•´ì‰¬ í•¨ìˆ˜ ì•Œê³ ë¦¬ì¦˜ëª…
+	 * @return í•´ë‹¹í•˜ëŠ” ì•Œê³ ë¦¬ì¦˜ì— ëŒ€í•œ êµ¬í˜„
+	 * @throws NullPointerException í•´ë‹¹ ì•Œê³ ë¦¬ì¦˜ëª…ì´ ë“±ë¡ë˜ì–´ ìˆì§€ ì•Šì€ ê²½ìš°
+	 * @throws IllegalStateException í•´ë‹¹ ì•Œê³ ë¦¬ì¦˜ì— ëŒ€í•œ êµ¬í˜„ì²´ë¥¼ ìƒì„±í•  ìˆ˜ ì—†ëŠ” ê²½ìš°
 	 */
 	public DigestManager getDigest(String name) {
 		DigestAlgorithm algo = (DigestAlgorithm) algorithms.get(name);

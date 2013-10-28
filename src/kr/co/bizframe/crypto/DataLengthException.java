@@ -7,20 +7,20 @@
 package kr.co.bizframe.crypto;
 
 /**
- * ÀÌ ¿À·ù´Â ÁÖ¾îÁø ÀÔ·ÂÀÇ ±æÀÌ°¡ ÃæºĞÄ¡ ¾Ê¾Æ Ãâ·Â °á°ú¸¦ »ı¼ºÇÒ ¼ö ¾ø´Â °æ¿ì ¹ß»ıÇÑ´Ù.
+ * ì´ ì˜¤ë¥˜ëŠ” ì£¼ì–´ì§„ ì…ë ¥ì˜ ê¸¸ì´ê°€ ì¶©ë¶„ì¹˜ ì•Šì•„ ì¶œë ¥ ê²°ê³¼ë¥¼ ìƒì„±í•  ìˆ˜ ì—†ëŠ” ê²½ìš° ë°œìƒí•œë‹¤.
  */
 public class DataLengthException extends RuntimeCryptoException {
 
 	/**
-	 * ±âº» »ı¼ºÀÚ
+	 * ê¸°ë³¸ ìƒì„±ì
 	 */
 	public DataLengthException() {
 	}
 
 	/**
-	 * ÁÖ¾îÁø ¸Ş½ÃÁö¸¦ °¡Áö´Â »ı¼ºÀÚ
+	 * ì£¼ì–´ì§„ ë©”ì‹œì§€ë¥¼ ê°€ì§€ëŠ” ìƒì„±ì
 	 * 
-	 * @param message ¿À·ù°¡ ´ã°í ÀÖÀ» ¸Ş½ÃÁö
+	 * @param message ì˜¤ë¥˜ê°€ ë‹´ê³  ìˆì„ ë©”ì‹œì§€
 	 */
 	public DataLengthException(String message) {
 		super(message);

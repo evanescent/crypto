@@ -7,7 +7,7 @@
 package kr.co.bizframe.crypto;
 
 /**
- * {@link kr.co.bizframe.crypto.BlockCipher}¿¡ ´ëÇÑ ·¡ÆÛ Å¬·¡½º
+ * {@link kr.co.bizframe.crypto.BlockCipher}ì— ëŒ€í•œ ë˜í¼ í´ë˜ìŠ¤
  */
 public class BufferedBlockCipher {
 
@@ -21,15 +21,15 @@ public class BufferedBlockCipher {
 	protected boolean pgpCFB;
 
 	/**
-	 * ¼­ºêÅ¬·¡½ÌÀ» À§ÇÑ ±âº» »ı¼ºÀÚ
+	 * ì„œë¸Œí´ë˜ì‹±ì„ ìœ„í•œ ê¸°ë³¸ ìƒì„±ì
 	 */
 	protected BufferedBlockCipher() {
 	}
 
 	/**
-	 * ÆĞµùÀ» Àû¿ëÇÏÁö ¾ÊÀº ¹öÆÛ ºí·Ï ¾ÏÈ£ ¿£Â¡À» »ı¼ºÇÑ´Ù.
+	 * íŒ¨ë”©ì„ ì ìš©í•˜ì§€ ì•Šì€ ë²„í¼ ë¸”ë¡ ì•”í˜¸ ì—”ì§•ì„ ìƒì„±í•œë‹¤.
 	 * 
-	 * @param cipher ¹öÆÛ¸µÀ» Àû¿ëÇÒ ºí·Ï ¾ÏÈ£ ¿£Áø
+	 * @param cipher ë²„í¼ë§ì„ ì ìš©í•  ë¸”ë¡ ì•”í˜¸ ì—”ì§„
 	 */
 	public BufferedBlockCipher(BlockCipher cipher) {
 
@@ -58,21 +58,21 @@ public class BufferedBlockCipher {
 	}
 
 	/**
-	 * °¨½ÎÁø ´ë»ó ¾ÏÈ£ ¿£ÁøÀ» ¹İÈ¯ÇÑ´Ù.
+	 * ê°ì‹¸ì§„ ëŒ€ìƒ ì•”í˜¸ ì—”ì§„ì„ ë°˜í™˜í•œë‹¤.
 	 * 
-	 * @return °¨½ÎÁø ´ë»ó ¾ÏÈ£ ¿£ÁøÀ» ¹İÈ¯
+	 * @return ê°ì‹¸ì§„ ëŒ€ìƒ ì•”í˜¸ ì—”ì§„ì„ ë°˜í™˜
 	 */
 	public BlockCipher getUnderlyingCipher() {
 		return cipher;
 	}
 
 	/**
-	 * ¿£Áø ÃÊ±âÈ­ ½Ã¿¡ È£ÃâÇÑ´Ù.
+	 * ì—”ì§„ ì´ˆê¸°í™” ì‹œì— í˜¸ì¶œí•œë‹¤.
 	 *  
-	 * @param forEncryption ¾ÏÈ£È­ ¿©ºÎ, <code>true</code>¸é ¾ÏÈ£È­, 
-	 *                      <code>false</code>¸é º¹È£È­.
-	 * @param params Ã³¸®¿¡ ÇÊ¿äÇÑ Å°¿Í ±âÅ¸ ÃÊ±âÈ­ ¸Å°³º¯¼ö
-	 * @throws IllegalArgumentException ¼³Á¤ÀÌ ¿Ã¹Ù¸£Áö ¾ÊÀº °æ¿ì
+	 * @param forEncryption ì•”í˜¸í™” ì—¬ë¶€, <code>true</code>ë©´ ì•”í˜¸í™”, 
+	 *                      <code>false</code>ë©´ ë³µí˜¸í™”.
+	 * @param params ì²˜ë¦¬ì— í•„ìš”í•œ í‚¤ì™€ ê¸°íƒ€ ì´ˆê¸°í™” ë§¤ê°œë³€ìˆ˜
+	 * @throws IllegalArgumentException ì„¤ì •ì´ ì˜¬ë°”ë¥´ì§€ ì•Šì€ ê²½ìš°
 	 */
 	public void init(boolean forEncryption, CipherParameters params)
 			throws IllegalArgumentException {
@@ -82,19 +82,19 @@ public class BufferedBlockCipher {
 	}
 
 	/**
-	 * ºí·Ï Å©±â¸¦ ¹İÈ¯ÇÑ´Ù.
+	 * ë¸”ë¡ í¬ê¸°ë¥¼ ë°˜í™˜í•œë‹¤.
 	 * 
-	 * @return ºí·Ï Å©±â
+	 * @return ë¸”ë¡ í¬ê¸°
 	 */
 	public int getBlockSize() {
 		return cipher.getBlockSize();
 	}
 
 	/**
-	 * ¾÷µ¥ÀÌÆ® ÇÒ ÀÔ·Â ¹ÙÀÌÆ® ¹è¿­ÀÇ ±æÀÌ·ÎºÎÅÍ ÇÊ¿äÇÑ Ãâ·Â ¹öÆÛÀÇ Å©±â¸¦ ¹İÈ¯ÇÑ´Ù.
+	 * ì—…ë°ì´íŠ¸ í•  ì…ë ¥ ë°”ì´íŠ¸ ë°°ì—´ì˜ ê¸¸ì´ë¡œë¶€í„° í•„ìš”í•œ ì¶œë ¥ ë²„í¼ì˜ í¬ê¸°ë¥¼ ë°˜í™˜í•œë‹¤.
 	 * 
-	 * @param len ÀÔ·Â ¹ÙÀÌÆ® ¹è¿­ÀÇ Å©±â
-	 * @return ¾÷µ¥ÀÌÆ®¿¡ ÇÊ¿äÇÑ Ãâ·Â ¹öÆÛÀÇ Å©±â
+	 * @param len ì…ë ¥ ë°”ì´íŠ¸ ë°°ì—´ì˜ í¬ê¸°
+	 * @return ì—…ë°ì´íŠ¸ì— í•„ìš”í•œ ì¶œë ¥ ë²„í¼ì˜ í¬ê¸°
 	 */
 	public int getUpdateOutputSize(int len) {
 
@@ -111,24 +111,24 @@ public class BufferedBlockCipher {
 	}
 
 	/**
-	 * ÁÖ¾îÁø ±æÀÌ¿¡ Ãâ·Â ¹öÆÛ¸¦ ´õÇÑ ±æÀÌ¸¦ ¹İÈ¯ÇÑ´Ù.
+	 * ì£¼ì–´ì§„ ê¸¸ì´ì— ì¶œë ¥ ë²„í¼ë¥¼ ë”í•œ ê¸¸ì´ë¥¼ ë°˜í™˜í•œë‹¤.
 	 * 
-	 * @param length ÀÔ·Â ±æÀÌ
-	 * @return ÁÖ¾îÁø ±æÀÌ¿¡ Ãâ·Â ¹öÆÛ¸¦ ´õÇÑ ±æÀÌ
+	 * @param length ì…ë ¥ ê¸¸ì´
+	 * @return ì£¼ì–´ì§„ ê¸¸ì´ì— ì¶œë ¥ ë²„í¼ë¥¼ ë”í•œ ê¸¸ì´
 	 */
 	public int getOutputSize(int length) {
 		return length + bufOff;
 	}
 
 	/**
-	 * ´ÜÀÏ ¹ÙÀÌÆ®¿¡ ´ëÇÑ Ã³¸®¸¦ ÁøÇàÇÑ´Ù.
+	 * ë‹¨ì¼ ë°”ì´íŠ¸ì— ëŒ€í•œ ì²˜ë¦¬ë¥¼ ì§„í–‰í•œë‹¤.
 	 * 
-	 * @param in ÀÔ·Â ¹ÙÀÌÆ®
-	 * @param out Ãâ·Â ¹ÙÀÌÆ® ¹è¿­
-	 * @param outOff Ãâ·Â ¹ÙÀÌÆ® À§Ä¡
-	 * @return Ãâ·Â ¹ÙÀÌÆ® °á°ú¿¡ º¹»çµÈ ±æÀÌ
-	 * @exception DataLengthException Ãâ·Â ¹ÙÀÌÆ® ¹è¿­ÀÌ ÃæºĞÄ¡ ¾ÊÀº °æ¿ì
-	 * @exception IllegalStateException ÃÊ±âÈ­µÇÁö ¾ÊÀº °æ¿ì
+	 * @param in ì…ë ¥ ë°”ì´íŠ¸
+	 * @param out ì¶œë ¥ ë°”ì´íŠ¸ ë°°ì—´
+	 * @param outOff ì¶œë ¥ ë°”ì´íŠ¸ ìœ„ì¹˜
+	 * @return ì¶œë ¥ ë°”ì´íŠ¸ ê²°ê³¼ì— ë³µì‚¬ëœ ê¸¸ì´
+	 * @exception DataLengthException ì¶œë ¥ ë°”ì´íŠ¸ ë°°ì—´ì´ ì¶©ë¶„ì¹˜ ì•Šì€ ê²½ìš°
+	 * @exception IllegalStateException ì´ˆê¸°í™”ë˜ì§€ ì•Šì€ ê²½ìš°
 	 */
 	public int processByte(byte in, byte[] out, int outOff)
 			throws DataLengthException, IllegalStateException {
@@ -146,15 +146,15 @@ public class BufferedBlockCipher {
 	}
 
 	/**
-	 * ¹ÙÀÌÆ® ¹è¿­¿¡ ´ëÇÑ Ã³¸®¸¦ ÁøÇàÇÑ´Ù.
+	 * ë°”ì´íŠ¸ ë°°ì—´ì— ëŒ€í•œ ì²˜ë¦¬ë¥¼ ì§„í–‰í•œë‹¤.
 	 * 
-	 * @param in ÀÔ·Â ¹ÙÀÌÆ® ¹è¿­
-	 * @param inOff ÀÔ·Â ¹ÙÀÌÆ® À§Ä¡
-	 * @param out Ãâ·Â ¹ÙÀÌÆ® ¹è¿­
-	 * @param outOff Ãâ·Â ¹ÙÀÌÆ® À§Ä¡
-	 * @return Ãâ·Â ¹ÙÀÌÆ® °á°ú¿¡ º¹»çµÈ ±æÀÌ
-	 * @exception DataLengthException Ãâ·Â ¹ÙÀÌÆ® ¹è¿­ÀÌ ÃæºĞÄ¡ ¾ÊÀº °æ¿ì
-	 * @exception IllegalStateException ÃÊ±âÈ­µÇÁö ¾ÊÀº °æ¿ì
+	 * @param in ì…ë ¥ ë°”ì´íŠ¸ ë°°ì—´
+	 * @param inOff ì…ë ¥ ë°”ì´íŠ¸ ìœ„ì¹˜
+	 * @param out ì¶œë ¥ ë°”ì´íŠ¸ ë°°ì—´
+	 * @param outOff ì¶œë ¥ ë°”ì´íŠ¸ ìœ„ì¹˜
+	 * @return ì¶œë ¥ ë°”ì´íŠ¸ ê²°ê³¼ì— ë³µì‚¬ëœ ê¸¸ì´
+	 * @exception DataLengthException ì¶œë ¥ ë°”ì´íŠ¸ ë°°ì—´ì´ ì¶©ë¶„ì¹˜ ì•Šì€ ê²½ìš°
+	 * @exception IllegalStateException ì´ˆê¸°í™”ë˜ì§€ ì•Šì€ ê²½ìš°
 	 */
 	public int processBytes(byte[] in, int inOff, int len, byte[] out,
 			int outOff) throws DataLengthException, IllegalStateException {
@@ -207,15 +207,15 @@ public class BufferedBlockCipher {
 	}
 
 	/**
-	 * ¹öÆÛÀÇ ¸¶Áö¸· ºí·Ï¿¡ ´ëÇÑ Ã³¸®¸¦ ÁøÇàÇÑ´Ù.
+	 * ë²„í¼ì˜ ë§ˆì§€ë§‰ ë¸”ë¡ì— ëŒ€í•œ ì²˜ë¦¬ë¥¼ ì§„í–‰í•œë‹¤.
 	 * 
-	 * @param out Ãâ·Â ¹ÙÀÌÆ® ¹è¿­
-	 * @param outOff Ãâ·Â ¹ÙÀÌÆ® ¹è¿­ À§Ä¡
-	 * @return Ãâ·Â ¹ÙÀÌÆ® °á°ú¿¡ º¹»çµÈ ±æÀÌ
-	 * @exception DataLengthException Ãâ·Â ¹ÙÀÌÆ® ¹è¿­ÀÌ ÃæºĞÄ¡ ¾ÊÀº °æ¿ì
-	 * @exception IllegalStateException ÃÊ±âÈ­µÇÁö ¾ÊÀº °æ¿ì
-	 * @exception InvalidCipherTextException ÆĞµùÀÌ Á¸ÀçÇÏÁö ¾Ê´Â °æ¿ì
-	 * @exception DataLengthException ºí·Ï Å©±â°¡ ¸ÂÁö ¾Ê´Â °æ¿ì
+	 * @param out ì¶œë ¥ ë°”ì´íŠ¸ ë°°ì—´
+	 * @param outOff ì¶œë ¥ ë°”ì´íŠ¸ ë°°ì—´ ìœ„ì¹˜
+	 * @return ì¶œë ¥ ë°”ì´íŠ¸ ê²°ê³¼ì— ë³µì‚¬ëœ ê¸¸ì´
+	 * @exception DataLengthException ì¶œë ¥ ë°”ì´íŠ¸ ë°°ì—´ì´ ì¶©ë¶„ì¹˜ ì•Šì€ ê²½ìš°
+	 * @exception IllegalStateException ì´ˆê¸°í™”ë˜ì§€ ì•Šì€ ê²½ìš°
+	 * @exception InvalidCipherTextException íŒ¨ë”©ì´ ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ê²½ìš°
+	 * @exception DataLengthException ë¸”ë¡ í¬ê¸°ê°€ ë§ì§€ ì•ŠëŠ” ê²½ìš°
 	 */
 	public int doFinal(byte[] out, int outOff) throws DataLengthException,
 			IllegalStateException, InvalidCipherTextException {
@@ -249,7 +249,7 @@ public class BufferedBlockCipher {
 	 */
 	public void reset() {
 		//
-		// ¹öÆÛ¸¦ ºñ¿î´Ù.
+		// ë²„í¼ë¥¼ ë¹„ìš´ë‹¤.
 		//
 		for (int i = 0; i < buf.length; i++) {
 			buf[i] = 0;
@@ -258,7 +258,7 @@ public class BufferedBlockCipher {
 		bufOff = 0;
 
 		//
-		// ¾ÏÈ£È­ ¿£ÁøÀ» ¸®¼ÂÇÑ´Ù.
+		// ì•”í˜¸í™” ì—”ì§„ì„ ë¦¬ì…‹í•œë‹¤.
 		//
 		cipher.reset();
 	}

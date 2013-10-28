@@ -9,7 +9,7 @@ package kr.co.bizframe.crypto.digests;
 import kr.co.bizframe.crypto.util.Pack;
 
 /**
- * SHA-1ÀÇ ±¸Çö
+ * SHA-1ì˜ êµ¬í˜„
  */
 public class SHA1Digest extends GeneralDigest {
 
@@ -21,16 +21,16 @@ public class SHA1Digest extends GeneralDigest {
 	private int wOff;
 
 	/**
-	 * ±âº» »ı¼ºÀÚ
+	 * ê¸°ë³¸ ìƒì„±ì
 	 */
 	public SHA1Digest() {
 		reset();
 	}
 
 	/**
-	 * º¹»ç »ı¼ºÀÚ
+	 * ë³µì‚¬ ìƒì„±ì
 	 * 
-	 * @param t º¹»ç ´ë»ó
+	 * @param t ë³µì‚¬ ëŒ€ìƒ
 	 */
 	public SHA1Digest(SHA1Digest t) {
 		super(t);
@@ -96,7 +96,7 @@ public class SHA1Digest extends GeneralDigest {
 	public void reset() {
 		super.reset();
 
-		// ÇØ½Ã ÃÊ±â°ª
+		// í•´ì‹œ ì´ˆê¸°ê°’
 		H0 = 0x67452301;
 		H1 = 0xefcdab89;
 		H2 = 0x98badcfe;
@@ -132,7 +132,7 @@ public class SHA1Digest extends GeneralDigest {
 	protected void processBlock() {
 
 		//
-		// 512 ºñÆ® ÀÔ·Â 80°³ÀÇ 32ºñÆ® ºí·ÏÀ¸·Î È®Àå
+		// 512 ë¹„íŠ¸ ì…ë ¥ 80ê°œì˜ 32ë¹„íŠ¸ ë¸”ë¡ìœ¼ë¡œ í™•ì¥
 		//
 		for (int i = 16; i < 80; i++) {
 			int t = W[i - 3] ^ W[i - 8] ^ W[i - 14] ^ W[i - 16];
@@ -151,7 +151,7 @@ public class SHA1Digest extends GeneralDigest {
 		int idx = 0;
 
 		// ////////////////////////////////////////////////////////////
-		// ÃÑ 4¶ó¿îµå, ¶ó¿îµå ´ç 20´Ü°è
+		// ì´ 4ë¼ìš´ë“œ, ë¼ìš´ë“œ ë‹¹ 20ë‹¨ê³„
 		//
 		// ////////////////////////////////////////////////////////////
 

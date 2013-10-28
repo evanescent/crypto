@@ -7,7 +7,7 @@
 package kr.co.bizframe.crypto;
 
 /**
- * Å°/¹ÙÀÌÆ® ¹è¿­ À¯µµÇÔ¼ö(Derivation Function; DF)¿¡ »ç¿ëÇÒ ¸Å°³º¯¼ö¿¡ ´ëÇÑ ÀÎÅÍÆäÀÌ½º
+ * í‚¤/ë°”ì´íŠ¸ ë°°ì—´ ìœ ë„í•¨ìˆ˜(Derivation Function; DF)ì— ì‚¬ìš©í•  ë§¤ê°œë³€ìˆ˜ì— ëŒ€í•œ ì¸í„°í˜ì´ìŠ¤
  */
 public interface DerivationParameters {
 }

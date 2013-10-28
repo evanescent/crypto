@@ -7,7 +7,7 @@
 package kr.co.bizframe.crypto.digests;
 
 /**
- * MD5ÀÇ ±¸Çö
+ * MD5ì˜ êµ¬í˜„
  */
 public class MD5Digest extends GeneralDigest {
 
@@ -19,16 +19,16 @@ public class MD5Digest extends GeneralDigest {
 	private int xOff;
 
 	/**
-	 * ±âº» »ı¼ºÀÚ
+	 * ê¸°ë³¸ ìƒì„±ì
 	 */
 	public MD5Digest() {
 		reset();
 	}
 
 	/**
-	 * º¹»ç »ı¼ºÀÚ
+	 * ë³µì‚¬ ìƒì„±ì
 	 * 
-	 * @param t º¹»ç ´ë»ó
+	 * @param t ë³µì‚¬ ëŒ€ìƒ
 	 */
 	public MD5Digest(MD5Digest t) {
 		super(t);
@@ -43,16 +43,16 @@ public class MD5Digest extends GeneralDigest {
 	}
 
 	/**
-	 * ¾Ë°í¸®Áò ¸íÀ» ¹İÈ¯ÇÑ´Ù.
-	 * @return MD5 ¾Ë°í¸®Áò ¸í
+	 * ì•Œê³ ë¦¬ì¦˜ ëª…ì„ ë°˜í™˜í•œë‹¤.
+	 * @return MD5 ì•Œê³ ë¦¬ì¦˜ ëª…
 	 */
 	public String getAlgorithmName() {
 		return "MD5";
 	}
 
 	/**
-	 * Digest ±æÀÌ¸¦ ¹İÈ¯ÇÑ´Ù.
-	 * @return Digest ±æÀÌ
+	 * Digest ê¸¸ì´ë¥¼ ë°˜í™˜í•œë‹¤.
+	 * @return Digest ê¸¸ì´
 	 */
 	public int getDigestSize() {
 		return DIGEST_LENGTH;
@@ -101,7 +101,7 @@ public class MD5Digest extends GeneralDigest {
 	}
 
 	/**
-	 * ÃÊ±âÈ­¸¦ ½ÃÅ°°í ÇØ½¬ ÃÊ±â°ªÀ» ¼³Á¤ÇÑ´Ù.
+	 * ì´ˆê¸°í™”ë¥¼ ì‹œí‚¤ê³  í•´ì‰¬ ì´ˆê¸°ê°’ì„ ì„¤ì •í•œë‹¤.
 	 */
 	public void reset() {
 		super.reset();
@@ -119,7 +119,7 @@ public class MD5Digest extends GeneralDigest {
 	}
 
 	//
-	// Ã¹¹øÂ° left rotates
+	// ì²«ë²ˆì§¸ left rotates
 	//
 	private static final int S11 = 7;
 	private static final int S12 = 12;

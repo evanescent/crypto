@@ -168,7 +168,7 @@ public class EMEOAEPEncoding implements AsymmetricBlockCipher {
 		}
 
 		System.out.println("xxx block=" + ByteUtil.toHexString(block));
-		// engine ¾ÏÈ£È­ Àû¿ë
+		// engine ì•”í˜¸í™” ì ìš©
 		return engine.processBlock(block, 0, block.length);
 	}
 

@@ -9,7 +9,7 @@ package kr.co.bizframe.crypto;
 import kr.co.bizframe.crypto.util.Strings;
 
 /**
- * ¸ðµç PBE(Password Based Encryption) ¸Å°³º¯¼ö »ý¼º±â¿¡¼­ »ç¿ëÇÒ ºÎ¸ð Å¬·¡½º
+ * ëª¨ë“  PBE(Password Based Encryption) ë§¤ê°œë³€ìˆ˜ ìƒì„±ê¸°ì—ì„œ ì‚¬ìš©í•  ë¶€ëª¨ í´ëž˜ìŠ¤
  */
 public abstract class PBEParametersGenerator {
 	protected byte[] password;
@@ -17,17 +17,17 @@ public abstract class PBEParametersGenerator {
 	protected int iterationCount;
 
 	/**
-	 * ±âº» »ý¼ºÀÚ
+	 * ê¸°ë³¸ ìƒì„±ìž
 	 */
 	protected PBEParametersGenerator() {
 	}
 
 	/**
-	 * PBE »ý¼º±â¸¦ ÃÊ±âÈ­ÇÑ´Ù.
+	 * PBE ìƒì„±ê¸°ë¥¼ ì´ˆê¸°í™”í•œë‹¤.
 	 * 
-	 * @param password ºñ¹Ð¹øÈ£
+	 * @param password ë¹„ë°€ë²ˆí˜¸
 	 * @param salt salt
-	 * @param iterationCount ¹Ýº¹¼ö
+	 * @param iterationCount ë°˜ë³µìˆ˜
 	 */
 	public void init(byte[] password, byte[] salt, int iterationCount) {
 		this.password = password;
@@ -36,63 +36,63 @@ public abstract class PBEParametersGenerator {
 	}
 
 	/**
-	 * ¼³Á¤ÇÑ ºñ¹Ð¹øÈ£¸¦ ¹ÝÈ¯ÇÑ´Ù.
+	 * ì„¤ì •í•œ ë¹„ë°€ë²ˆí˜¸ë¥¼ ë°˜í™˜í•œë‹¤.
 	 *
-	 * @return ¼³Á¤ÇÑ ºñ¹Ð¹øÈ£
+	 * @return ì„¤ì •í•œ ë¹„ë°€ë²ˆí˜¸
 	 */
 	public byte[] getPassword() {
 		return password;
 	}
 
 	/**
-	 * ¼³Á¤ÇÑ salt¸¦ ¹ÝÈ¯ÇÑ´Ù.
+	 * ì„¤ì •í•œ saltë¥¼ ë°˜í™˜í•œë‹¤.
 	 *
-	 * @return ¼³Á¤ÇÑ salt
+	 * @return ì„¤ì •í•œ salt
 	 */
 	public byte[] getSalt() {
 		return salt;
 	}
 
 	/**
-	 * ¼³Á¤ÇÑ ¹Ýº¹¼ö¸¦ ¹ÝÈ¯ÇÑ´Ù.
+	 * ì„¤ì •í•œ ë°˜ë³µìˆ˜ë¥¼ ë°˜í™˜í•œë‹¤.
 	 *
-	 * @return ¼³Á¤ÇÑ ¹Ýº¹¼ö
+	 * @return ì„¤ì •í•œ ë°˜ë³µìˆ˜
 	 */
 	public int getIterationCount() {
 		return iterationCount;
 	}
 
 	/**
-	 * ÁÖ¾îÁø Å° ±æÀÌ¿¡ µû¶ó À¯µµµÈ ¸Å°³º¯¼ö¸¦ »ý¼ºÇÑ´Ù.
+	 * ì£¼ì–´ì§„ í‚¤ ê¸¸ì´ì— ë”°ë¼ ìœ ë„ëœ ë§¤ê°œë³€ìˆ˜ë¥¼ ìƒì„±í•œë‹¤.
 	 *
-	 * @param keySize Å° ±æÀÌ (ºñÆ®)
-	 * @return »ý¼ºµÈ ¸Å°³º¯¼ö
+	 * @param keySize í‚¤ ê¸¸ì´ (ë¹„íŠ¸)
+	 * @return ìƒì„±ëœ ë§¤ê°œë³€ìˆ˜
 	 */
 	public abstract CipherParameters generateDerivedParameters(int keySize);
 
 	/**
-	 * ÁÖ¾îÁø Å°/IV ±æÀÌ¿¡ µû¶ó À¯µµµÈ ¸Å°³º¯¼ö¸¦ »ý¼ºÇÑ´Ù.
+	 * ì£¼ì–´ì§„ í‚¤/IV ê¸¸ì´ì— ë”°ë¼ ìœ ë„ëœ ë§¤ê°œë³€ìˆ˜ë¥¼ ìƒì„±í•œë‹¤.
 	 *
-	 * @param keySize Å° ±æÀÌ (ºñÆ®)
-	 * @param ivSize IV ±æÀÌ (ºñÆ®)
-	 * @return »ý¼ºµÈ ¸Å°³º¯¼ö
+	 * @param keySize í‚¤ ê¸¸ì´ (ë¹„íŠ¸)
+	 * @param ivSize IV ê¸¸ì´ (ë¹„íŠ¸)
+	 * @return ìƒì„±ëœ ë§¤ê°œë³€ìˆ˜
 	 */
 	public abstract CipherParameters generateDerivedParameters(int keySize,
 			int ivSize);
 
 	/**
-	 * ÁÖ¾îÁø Å°/IV ±æÀÌ¿¡ µû¶ó À¯µµµÈ MAC ¸Å°³º¯¼ö¸¦ »ý¼ºÇÑ´Ù.
+	 * ì£¼ì–´ì§„ í‚¤/IV ê¸¸ì´ì— ë”°ë¼ ìœ ë„ëœ MAC ë§¤ê°œë³€ìˆ˜ë¥¼ ìƒì„±í•œë‹¤.
 	 *
-	 * @param keySize Å° ±æÀÌ (ºñÆ®)
-	 * @return »ý¼ºµÈ ¸Å°³º¯¼ö
+	 * @param keySize í‚¤ ê¸¸ì´ (ë¹„íŠ¸)
+	 * @return ìƒì„±ëœ ë§¤ê°œë³€ìˆ˜
 	 */
 	public abstract CipherParameters generateDerivedMacParameters(int keySize);
 
 	/**
-	 * PKCS #5¿¡ µû¶ó ASCII ¹®ÀÚ ¹è¿­À» ¹ÙÀÌÆ® ¹è¿­·Î º¯È¯ÇÑ´Ù.
+	 * PKCS #5ì— ë”°ë¼ ASCII ë¬¸ìž ë°°ì—´ì„ ë°”ì´íŠ¸ ë°°ì—´ë¡œ ë³€í™˜í•œë‹¤.
 	 *
-	 * @param password ASCII ¹®ÀÚ ¹è¿­
-	 * @return º¯È¯µÈ ¹ÙÀÌÆ® ¹è¿­
+	 * @param password ASCII ë¬¸ìž ë°°ì—´
+	 * @return ë³€í™˜ëœ ë°”ì´íŠ¸ ë°°ì—´
 	 */
 	public static byte[] PKCS5PasswordToBytes(char[] password) {
 		byte[] bytes = new byte[password.length];
@@ -105,21 +105,21 @@ public abstract class PBEParametersGenerator {
 	}
 
 	/**
-	 * PKCS #5¿¡ µû¶ó UTF-8 ¹®ÀÚ ¹è¿­À» ¹ÙÀÌÆ® ¹è¿­·Î º¯È¯ÇÑ´Ù.
+	 * PKCS #5ì— ë”°ë¼ UTF-8 ë¬¸ìž ë°°ì—´ì„ ë°”ì´íŠ¸ ë°°ì—´ë¡œ ë³€í™˜í•œë‹¤.
 	 *
-	 * @param password UTF-8 ¹®ÀÚ ¹è¿­
-	 * @return º¯È¯µÈ ¹ÙÀÌÆ® ¹è¿­
+	 * @param password UTF-8 ë¬¸ìž ë°°ì—´
+	 * @return ë³€í™˜ëœ ë°”ì´íŠ¸ ë°°ì—´
 	 */
 	public static byte[] PKCS5PasswordToUTF8Bytes(char[] password) {
 		return Strings.toUTF8ByteArray(password);
 	}
 
 	/**
-	 * PKCS #12¿¡ µû¶ó (2°³ÀÇ ÆÐµå ¹ÙÀÌÆ®°¡ ³¡¿¡ Ãß°¡µÈ) À¯´ÏÄÚµå(ºò ¿£µð¾È) ¹è¿­À» 
-	 * ¹ÙÀÌÆ® ¹è¿­·Î º¯È¯ÇÑ´Ù.
+	 * PKCS #12ì— ë”°ë¼ (2ê°œì˜ íŒ¨ë“œ ë°”ì´íŠ¸ê°€ ëì— ì¶”ê°€ëœ) ìœ ë‹ˆì½”ë“œ(ë¹… ì—”ë””ì•ˆ) ë°°ì—´ì„ 
+	 * ë°”ì´íŠ¸ ë°°ì—´ë¡œ ë³€í™˜í•œë‹¤.
 	 *
-	 * @param password À¯´ÏÄÚµå(ºò ¿£µð¾È) ¹®ÀÚ ¹è¿­
-	 * @return º¯È¯µÈ ¹ÙÀÌÆ® ¹è¿­
+	 * @param password ìœ ë‹ˆì½”ë“œ(ë¹… ì—”ë””ì•ˆ) ë¬¸ìž ë°°ì—´
+	 * @return ë³€í™˜ëœ ë°”ì´íŠ¸ ë°°ì—´
 	 */
 	public static byte[] PKCS12PasswordToBytes(char[] password) {
 		if (password.length > 0) {

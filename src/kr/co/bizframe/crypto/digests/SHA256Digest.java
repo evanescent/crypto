@@ -9,7 +9,7 @@ package kr.co.bizframe.crypto.digests;
 import kr.co.bizframe.crypto.util.Pack;
 
 /**
- * FIPS 180-2, SHA-256ÀÇ ±¸Çö.
+ * FIPS 180-2, SHA-256ì˜ êµ¬í˜„.
  * 
  * <pre>
  *         block  word  digest
@@ -29,16 +29,16 @@ public class SHA256Digest extends GeneralDigest {
 	private int wOff;
 
 	/**
-	 * ±âº» »ı¼ºÀÚ
+	 * ê¸°ë³¸ ìƒì„±ì
 	 */
 	public SHA256Digest() {
 		reset();
 	}
 
 	/**
-	 * º¹»ç »ı¼ºÀÚ
+	 * ë³µì‚¬ ìƒì„±ì
 	 * 
-	 * @param t º¹»ç ´ë»ó
+	 * @param t ë³µì‚¬ ëŒ€ìƒ
 	 */
 	public SHA256Digest(SHA256Digest t) {
 		super(t);
@@ -109,7 +109,7 @@ public class SHA256Digest extends GeneralDigest {
 		super.reset();
 
 		/*
-		 * SHA-256 ÃÊ±â°ª ¼³Á¤
+		 * SHA-256 ì´ˆê¸°ê°’ ì„¤ì •
 		 */
 
 		H0 = 0x6a09e667;
@@ -129,14 +129,14 @@ public class SHA256Digest extends GeneralDigest {
 
 	protected void processBlock() {
 		//
-		// ºí·Ï È®Àå
+		// ë¸”ë¡ í™•ì¥
 		//
 		for (int t = 16; t < 64; t++) {
 			W[t] = Theta1(W[t - 2]) + W[t - 7] + Theta0(W[t - 15]) + W[t - 16];
 		}
 
 		//
-		// ½ÃÀÛ°ª ¼³Á¤
+		// ì‹œì‘ê°’ ì„¤ì •
 		//
 		int a = H0;
 		int b = H1;
@@ -197,7 +197,7 @@ public class SHA256Digest extends GeneralDigest {
 		H7 += h;
 
 		//
-		// ÃÊ±âÈ­
+		// ì´ˆê¸°í™”
 		//
 		wOff = 0;
 		for (int i = 0; i < 16; i++) {
@@ -205,7 +205,7 @@ public class SHA256Digest extends GeneralDigest {
 		}
 	}
 
-	/* SHA-256 ÇÔ¼ö */
+	/* SHA-256 í•¨ìˆ˜ */
 	private int Ch(int x, int y, int z) {
 		return (x & y) ^ ((~x) & z);
 	}
@@ -233,7 +233,7 @@ public class SHA256Digest extends GeneralDigest {
 	}
 
 	/*
-	 * SHA-256ÀÇ »ó¼ö
+	 * SHA-256ì˜ ìƒìˆ˜
 	 */
 	static final int K[] = { 0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5,
 			0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5, 0xd807aa98,

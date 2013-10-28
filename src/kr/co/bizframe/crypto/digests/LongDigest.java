@@ -10,7 +10,7 @@ import kr.co.bizframe.crypto.ExtendedDigest;
 import kr.co.bizframe.crypto.util.Pack;
 
 /**
- * SHA-384¿Í SHA-512¸¦ À§ÇÑ ±âº» Å¬·¡½ºÀÌ´Ù.
+ * SHA-384ì™€ SHA-512ë¥¼ ìœ„í•œ ê¸°ë³¸ í´ë˜ìŠ¤ì´ë‹¤.
  */
 public abstract class LongDigest implements ExtendedDigest {
 
@@ -28,7 +28,7 @@ public abstract class LongDigest implements ExtendedDigest {
 	private int wOff;
 
 	/**
-	 * ±âº» »ı¼ºÀÚ
+	 * ê¸°ë³¸ ìƒì„±ì
 	 */
 	protected LongDigest() {
 		xBuf = new byte[8];
@@ -38,9 +38,9 @@ public abstract class LongDigest implements ExtendedDigest {
 	}
 
 	/**
-	 * º¹»ç »ı¼ºÀÚ
+	 * ë³µì‚¬ ìƒì„±ì
 	 * 
-	 * @param t º¹»ç ´ë»ó
+	 * @param t ë³µì‚¬ ëŒ€ìƒ
 	 */
 	protected LongDigest(LongDigest t) {
 		xBuf = new byte[t.xBuf.length];
@@ -108,7 +108,7 @@ public abstract class LongDigest implements ExtendedDigest {
 	}
 
 	/**
-	 * ÆĞµù µîÀÇ ÃÖÁ¾ Ã³¸®¸¦ ¿Ï·áÇÑ´Ù.
+	 * íŒ¨ë”© ë“±ì˜ ìµœì¢… ì²˜ë¦¬ë¥¼ ì™„ë£Œí•œë‹¤.
 	 */
 	public void finish() {
 		adjustByteCounts();
@@ -117,7 +117,7 @@ public abstract class LongDigest implements ExtendedDigest {
 		long hiBitLength = byteCount2;
 
 		//
-		// ÆĞµù ¹ÙÀÌÆ®¸¦ Ãß°¡ÇÑ´Ù.
+		// íŒ¨ë”© ë°”ì´íŠ¸ë¥¼ ì¶”ê°€í•œë‹¤.
 		//
 		update((byte) 128);
 

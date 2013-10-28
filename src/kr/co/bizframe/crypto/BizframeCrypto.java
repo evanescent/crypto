@@ -22,10 +22,10 @@ public class BizframeCrypto {
 	}
 
 	public void init() {
-		// °ËÁõ ´ë»ó ÇÔ¼ö·Îµù
+		// ê²€ì¦ ëŒ€ìƒ í•¨ìˆ˜ë¡œë”©
 		loadApproved();
 
-		// ºñ°ËÁõ ´ë»ó ÇÔ¼ö ·Îµù
+		// ë¹„ê²€ì¦ ëŒ€ìƒ í•¨ìˆ˜ ë¡œë”©
 		loadUnapproved();
 	}
 

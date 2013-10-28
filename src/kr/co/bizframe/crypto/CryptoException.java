@@ -7,20 +7,20 @@
 package kr.co.bizframe.crypto;
 
 /**
- * crypto ¸ğµâ¿¡ ÀÇÇØ ¹ß»ıÇÏ´Â ±âº» ¿À·ù Å¬·¡½º
+ * crypto ëª¨ë“ˆì— ì˜í•´ ë°œìƒí•˜ëŠ” ê¸°ë³¸ ì˜¤ë¥˜ í´ë˜ìŠ¤
  */
 public class CryptoException extends Exception {
 
 	/**
-	 * ±âº» »ı¼ºÀÚ.
+	 * ê¸°ë³¸ ìƒì„±ì.
 	 */
 	public CryptoException() {
 	}
 
 	/**
-	 * ÁÖ¾îÁø ¸Ş½ÃÁö¸¦ °¡Áö´Â »ı¼ºÀÚ
+	 * ì£¼ì–´ì§„ ë©”ì‹œì§€ë¥¼ ê°€ì§€ëŠ” ìƒì„±ì
 	 *
-	 * @param message ¿À·ù°¡ ´ã°í ÀÖÀ» ¸Ş½ÃÁö
+	 * @param message ì˜¤ë¥˜ê°€ ë‹´ê³  ìˆì„ ë©”ì‹œì§€
 	 */
 	public CryptoException(String message) {
 		super(message);

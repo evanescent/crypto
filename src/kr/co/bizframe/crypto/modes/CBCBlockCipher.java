@@ -13,7 +13,7 @@ import kr.co.bizframe.crypto.params.ParametersWithIV;
 import kr.co.bizframe.crypto.util.Arrays;
 
 /**
- * CBC(Cipher-Block-Chaining) ¿î¿ë ¸ğµå¿¡ ´ëÇÑ ±¸Çö
+ * CBC(Cipher-Block-Chaining) ìš´ìš© ëª¨ë“œì— ëŒ€í•œ êµ¬í˜„
  */
 public class CBCBlockCipher implements BlockCipher {
 
@@ -26,9 +26,9 @@ public class CBCBlockCipher implements BlockCipher {
 	private boolean encrypting;
 
 	/**
-	 * ±âº» »ı¼ºÀÚ
+	 * ê¸°ë³¸ ìƒì„±ì
 	 *
-	 * @param cipher ´ë»ó ºí·Ï ¾ÏÈ£È­ ¿£Áø
+	 * @param cipher ëŒ€ìƒ ë¸”ë¡ ì•”í˜¸í™” ì—”ì§„
 	 */
 	public CBCBlockCipher(BlockCipher cipher) {
 		this.cipher = cipher;
@@ -40,21 +40,21 @@ public class CBCBlockCipher implements BlockCipher {
 	}
 
 	/**
-	 * ºí·Ï ¾ÏÈ£ ¿£ÁøÀ» ¹İÈ¯ÇÑ´Ù.
+	 * ë¸”ë¡ ì•”í˜¸ ì—”ì§„ì„ ë°˜í™˜í•œë‹¤.
 	 *
-	 * @return ºí·Ï ¾ÏÈ£ ¿£Áø
+	 * @return ë¸”ë¡ ì•”í˜¸ ì—”ì§„
 	 */
 	public BlockCipher getUnderlyingCipher() {
 		return cipher;
 	}
 
 	/**
-	 * ¿£Áø ÃÊ±âÈ­ ½Ã¿¡ È£ÃâÇÑ´Ù. IV°¡ ¾ø´Ù¸é '0'(zero)¸¦ »ç¿ëÇÑ´Ù.
+	 * ì—”ì§„ ì´ˆê¸°í™” ì‹œì— í˜¸ì¶œí•œë‹¤. IVê°€ ì—†ë‹¤ë©´ '0'(zero)ë¥¼ ì‚¬ìš©í•œë‹¤.
 	 *  
-	 * @param forEncryption ¾ÏÈ£È­ ¿©ºÎ, <code>true</code>¸é ¾ÏÈ£È­, 
-	 *                      <code>false</code>¸é º¹È£È­.
-	 * @param params Ã³¸®¿¡ ÇÊ¿äÇÑ Å°¿Í ±âÅ¸ ÃÊ±âÈ­ ¸Å°³º¯¼ö
-	 * @throws IllegalArgumentException ¼³Á¤ÀÌ ¿Ã¹Ù¸£Áö ¾ÊÀº °æ¿ì
+	 * @param forEncryption ì•”í˜¸í™” ì—¬ë¶€, <code>true</code>ë©´ ì•”í˜¸í™”, 
+	 *                      <code>false</code>ë©´ ë³µí˜¸í™”.
+	 * @param params ì²˜ë¦¬ì— í•„ìš”í•œ í‚¤ì™€ ê¸°íƒ€ ì´ˆê¸°í™” ë§¤ê°œë³€ìˆ˜
+	 * @throws IllegalArgumentException ì„¤ì •ì´ ì˜¬ë°”ë¥´ì§€ ì•Šì€ ê²½ìš°
 	 */
 	public void init(boolean encrypting, CipherParameters params)
 			throws IllegalArgumentException {
@@ -82,33 +82,33 @@ public class CBCBlockCipher implements BlockCipher {
 	}
 
 	/**
-	 * ¾Ë°í¸®Áò¸í°ú ¿î¿ë¸ğµå¸¦ ¹İÈ¯ÇÑ´Ù.
+	 * ì•Œê³ ë¦¬ì¦˜ëª…ê³¼ ìš´ìš©ëª¨ë“œë¥¼ ë°˜í™˜í•œë‹¤.
 	 *
-	 * @return ºí·Ï ¾ÏÈ£ ¾Ë°í¸®Áò¸í + "/CBC"
+	 * @return ë¸”ë¡ ì•”í˜¸ ì•Œê³ ë¦¬ì¦˜ëª… + "/CBC"
 	 */
 	public String getAlgorithmName() {
 		return cipher.getAlgorithmName() + "/CBC";
 	}
 
 	/**
-	 * ºí·Ï ¾ÏÈ£ÀÇ ºí·Ï Å©±â¸¦ ¹İÈ¯ÇÑ´Ù.
+	 * ë¸”ë¡ ì•”í˜¸ì˜ ë¸”ë¡ í¬ê¸°ë¥¼ ë°˜í™˜í•œë‹¤.
 	 * 
-	 * @return ºí·Ï ¾ÏÈ£ÀÇ ºí·Ï Å©±â
+	 * @return ë¸”ë¡ ì•”í˜¸ì˜ ë¸”ë¡ í¬ê¸°
 	 */
 	public int getBlockSize() {
 		return cipher.getBlockSize();
 	}
 
 	/**
-	 * ÁÖ¾îÁø ÀÔ/Ãâ·Â ¹ÙÀÌÆ® ¹è¿­À» »ç¿ëÇØ Ã³¸®ÇÑ´Ù.
+	 * ì£¼ì–´ì§„ ì…/ì¶œë ¥ ë°”ì´íŠ¸ ë°°ì—´ì„ ì‚¬ìš©í•´ ì²˜ë¦¬í•œë‹¤.
 	 *
-	 * @param in ÀÔ·Â ¹ÙÀÌÆ® ¹è¿­
-	 * @param inOff ÀÔ·Â ¹ÙÀÌÆ® À§Ä¡
-	 * @param out Ãâ·Â ¹ÙÀÌÆ® ¹è¿­
-	 * @param outOff Ãâ·Â ¹ÙÀÌÆ® À§Ä¡
-	 * @exception DataLengthException ¹ÙÀÌÆ® ¹è¿­ÀÌ ÃæºĞÄ¡ ¾ÊÀº °æ¿ì
-	 * @exception IllegalStateException ÃÊ±âÈ­µÇÁö ¾ÊÀº °æ¿ì
-	 * @return Ã³¸®µÈ ¹ÙÀÌÆ® ¹è¿­ÀÇ ±æÀÌ
+	 * @param in ì…ë ¥ ë°”ì´íŠ¸ ë°°ì—´
+	 * @param inOff ì…ë ¥ ë°”ì´íŠ¸ ìœ„ì¹˜
+	 * @param out ì¶œë ¥ ë°”ì´íŠ¸ ë°°ì—´
+	 * @param outOff ì¶œë ¥ ë°”ì´íŠ¸ ìœ„ì¹˜
+	 * @exception DataLengthException ë°”ì´íŠ¸ ë°°ì—´ì´ ì¶©ë¶„ì¹˜ ì•Šì€ ê²½ìš°
+	 * @exception IllegalStateException ì´ˆê¸°í™”ë˜ì§€ ì•Šì€ ê²½ìš°
+	 * @return ì²˜ë¦¬ëœ ë°”ì´íŠ¸ ë°°ì—´ì˜ ê¸¸ì´
 	 */
 	public int processBlock(byte[] in, int inOff, byte[] out, int outOff)
 			throws DataLengthException, IllegalStateException {
@@ -117,7 +117,7 @@ public class CBCBlockCipher implements BlockCipher {
 	}
 
 	/**
-	 * IV¿Í ºí·Ï ¾ÏÈ£ ¿£ÁøÀ» ÃÊ±âÈ­ ÀüÀ¸·Î µÇµ¹¸°´Ù.
+	 * IVì™€ ë¸”ë¡ ì•”í˜¸ ì—”ì§„ì„ ì´ˆê¸°í™” ì „ìœ¼ë¡œ ë˜ëŒë¦°ë‹¤.
 	 */
 	public void reset() {
 		System.arraycopy(IV, 0, cbcV, 0, IV.length);

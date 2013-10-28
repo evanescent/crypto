@@ -9,7 +9,7 @@ package kr.co.bizframe.crypto.digests;
 import kr.co.bizframe.crypto.Digest;
 
 /**
- * {@link kr.co.bizframe.crypto.Digest}ÀÇ ·¡ÆÛ Å¬·¡½º
+ * {@link kr.co.bizframe.crypto.Digest}ì˜ ë˜í¼ í´ë˜ìŠ¤
  */
 public class DigestManager {
 
@@ -18,45 +18,45 @@ public class DigestManager {
 	/**
 	 * 
 	 * 
-	 * @param digest Digest ±¸Çö ÀÎÅÍÆäÀÌ½º
+	 * @param digest Digest êµ¬í˜„ ì¸í„°í˜ì´ìŠ¤
 	 */
 	public DigestManager(Digest digest) {
 		this.digest = digest;
 	}
 
 	/**
-	 * ÇØ½¬ÇÔ¼öÀÇ °á°ú Å©±â¸¦ ¹İÈ¯ÇÑ´Ù.
+	 * í•´ì‰¬í•¨ìˆ˜ì˜ ê²°ê³¼ í¬ê¸°ë¥¼ ë°˜í™˜í•œë‹¤.
 	 * 
-	 * @return ÇØ½¬ÇÔ¼öÀÇ °á°ú Å©±â
+	 * @return í•´ì‰¬í•¨ìˆ˜ì˜ ê²°ê³¼ í¬ê¸°
 	 */
 	public int getDigestSize() {
 		return digest.getDigestSize();
 	}
 
 	/**
-	 * ÁÖ¾îÁø ¹ÙÀÌÆ®·Î ¾÷µ¥ÀÌÆ®ÇÑ´Ù.
+	 * ì£¼ì–´ì§„ ë°”ì´íŠ¸ë¡œ ì—…ë°ì´íŠ¸í•œë‹¤.
 	 * 
-	 * @param in ÀÔ·Â ¹ÙÀÌÆ®
+	 * @param in ì…ë ¥ ë°”ì´íŠ¸
 	 */
 	public void update(byte in) {
 		digest.update(in);
 	}
 
 	/**
-	 * ÁÖ¾îÁø ¹ÙÀÌÆ® ¹è¿­·Î ¾÷µ¥ÀÌÆ®ÇÑ´Ù.
+	 * ì£¼ì–´ì§„ ë°”ì´íŠ¸ ë°°ì—´ë¡œ ì—…ë°ì´íŠ¸í•œë‹¤.
 	 * 
-	 * @param in ÀÔ·Â ¹ÙÀÌÆ® ¹è¿­
-	 * @param inOff ÀÔ·Â ¹ÙÀÌÆ® À§Ä¡
-	 * @param len ÀÔ·Â ¹ÙÀÌÆ® ±æÀÌ
+	 * @param in ì…ë ¥ ë°”ì´íŠ¸ ë°°ì—´
+	 * @param inOff ì…ë ¥ ë°”ì´íŠ¸ ìœ„ì¹˜
+	 * @param len ì…ë ¥ ë°”ì´íŠ¸ ê¸¸ì´
 	 */
 	public void update(byte[] in, int inOff, int len) {
 		digest.update(in, inOff, len);
 	}
 
 	/**
-	 * °á°ú¸¦ ¹İÈ¯ÇÑ´Ù.
+	 * ê²°ê³¼ë¥¼ ë°˜í™˜í•œë‹¤.
 	 * 
-	 * @return byte[] °á°ú ¹ÙÀÌÆ® ¹è¿­
+	 * @return byte[] ê²°ê³¼ ë°”ì´íŠ¸ ë°°ì—´
 	 */
 	public byte[] digest() {
 		byte[] digestBytes = new byte[digest.getDigestSize()];
@@ -65,7 +65,7 @@ public class DigestManager {
 	}
 
 	/**
-	 * »óÅÂ¸¦ ÃÊ±âÈ­ ÀüÀ¸·Î µ¹¸°´Ù.
+	 * ìƒíƒœë¥¼ ì´ˆê¸°í™” ì „ìœ¼ë¡œ ëŒë¦°ë‹¤.
 	 */
 	public void reset() {
 		digest.reset();

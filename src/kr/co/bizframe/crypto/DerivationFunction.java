@@ -7,31 +7,31 @@
 package kr.co.bizframe.crypto;
 
 /**
- * ÀÏ¹İÀûÀÎ ¸ñÀûÀÇ ¹ÙÀÌÆ® ¹è¿­ À¯µµÇÔ¼ö(Derivation Function; DF)¸¦ À§ÇÑ ÀÎÅÍÆäÀÌ½º
+ * ì¼ë°˜ì ì¸ ëª©ì ì˜ ë°”ì´íŠ¸ ë°°ì—´ ìœ ë„í•¨ìˆ˜(Derivation Function; DF)ë¥¼ ìœ„í•œ ì¸í„°í˜ì´ìŠ¤
  */
 public interface DerivationFunction {
 	
 	/**
-	 * ÁÖ¾îÁø ¸Å°³º¯¼ö¸¦ »ç¿ëÇØ ÃÊ±âÈ­ÇÑ´Ù.
+	 * ì£¼ì–´ì§„ ë§¤ê°œë³€ìˆ˜ë¥¼ ì‚¬ìš©í•´ ì´ˆê¸°í™”í•œë‹¤.
 	 * 
-	 * @param param ÃÊ±âÈ­¿¡ »ç¿ëÇÒ ¸Å°³º¯¼ö
+	 * @param param ì´ˆê¸°í™”ì— ì‚¬ìš©í•  ë§¤ê°œë³€ìˆ˜
 	 */
 	public void init(DerivationParameters param);
 
 	/**
-	 * À¯µµÇÔ¼ö°¡ »ç¿ëÇÒ ÇØ½¬ÇÔ¼ö¸¦ ¹İÈ¯ÇÑ´Ù.
+	 * ìœ ë„í•¨ìˆ˜ê°€ ì‚¬ìš©í•  í•´ì‰¬í•¨ìˆ˜ë¥¼ ë°˜í™˜í•œë‹¤.
 	 */
 	public Digest getDigest();
 
 	/**
-	 * ¹ÙÀÌÆ® ¹è¿­À» À¯µµÇØ ¹İÈ¯ÇÑ´Ù.
+	 * ë°”ì´íŠ¸ ë°°ì—´ì„ ìœ ë„í•´ ë°˜í™˜í•œë‹¤.
 	 *  
-	 * @param out Ãâ·Â ¹ÙÀÌÆ® ¹è¿­
-	 * @param outOff Ãâ·Â ºí·Ï ¹ÙÀÌÆ® À§Ä¡
-	 * @param len À¯µµÇÒ ¹ÙÀÌÆ® ±æÀÌ
-	 * @return »ı¼ºÇÑ ¹ÙÀÌÆ® ¹è¿­ÀÇ ±æÀÌ
-	 * @throws DataLengthException ºí·Ï ±æÀÌ°¡ ¿Ã¹Ù¸£Áö ¾ÊÀº °æ¿ì
-	 * @throws IllegalStateException Ã³¸® »óÅÂ°¡ ¿Ã¹Ù¸£Áö ¾ÊÀº °æ¿ì
+	 * @param out ì¶œë ¥ ë°”ì´íŠ¸ ë°°ì—´
+	 * @param outOff ì¶œë ¥ ë¸”ë¡ ë°”ì´íŠ¸ ìœ„ì¹˜
+	 * @param len ìœ ë„í•  ë°”ì´íŠ¸ ê¸¸ì´
+	 * @return ìƒì„±í•œ ë°”ì´íŠ¸ ë°°ì—´ì˜ ê¸¸ì´
+	 * @throws DataLengthException ë¸”ë¡ ê¸¸ì´ê°€ ì˜¬ë°”ë¥´ì§€ ì•Šì€ ê²½ìš°
+	 * @throws IllegalStateException ì²˜ë¦¬ ìƒíƒœê°€ ì˜¬ë°”ë¥´ì§€ ì•Šì€ ê²½ìš°
 	 */
 	public int generateBytes(byte[] out, int outOff, int len) 
 			throws DataLengthException, IllegalArgumentException;

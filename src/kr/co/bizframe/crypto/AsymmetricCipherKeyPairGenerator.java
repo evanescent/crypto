@@ -7,21 +7,21 @@
 package kr.co.bizframe.crypto;
 
 /**
- * °ø°³/ºñ°ø°³ Å° ½Ö »ı¼º±âÀÇ ÀÎÅÍÆäÀÌ½º
+ * ê³µê°œ/ë¹„ê³µê°œ í‚¤ ìŒ ìƒì„±ê¸°ì˜ ì¸í„°í˜ì´ìŠ¤
  */
 public interface AsymmetricCipherKeyPairGenerator {
 
 	/**
-	 * ÁÖ¾îÁø Å° »ı¼º±âÀÇ ¸Å°³º¯¼ö·Î ÃÊ±âÈ­ÇÑ´Ù.
+	 * ì£¼ì–´ì§„ í‚¤ ìƒì„±ê¸°ì˜ ë§¤ê°œë³€ìˆ˜ë¡œ ì´ˆê¸°í™”í•œë‹¤.
 	 *  
-	 * @param param Å° »ı¼º±âÀÇ ÃÊ±âÈ­ ¸Å°³º¯¼ö
+	 * @param param í‚¤ ìƒì„±ê¸°ì˜ ì´ˆê¸°í™” ë§¤ê°œë³€ìˆ˜
 	 */
 	public void init(KeyGenerationParameters param);
 
 	/**
-	 * °ø°³/ºñ°ø°³ Å° ½ÖÀ» »ı¼º, ¹İÈ¯ÇÑ´Ù.
+	 * ê³µê°œ/ë¹„ê³µê°œ í‚¤ ìŒì„ ìƒì„±, ë°˜í™˜í•œë‹¤.
 	 *  
-	 * @return »ı¼ºÇÑ °ø°³/ºñ°ø°³ Å° ½Ö 
+	 * @return ìƒì„±í•œ ê³µê°œ/ë¹„ê³µê°œ í‚¤ ìŒ 
 	 */
 	public AsymmetricCipherKeyPair generateKeyPair();
 	
