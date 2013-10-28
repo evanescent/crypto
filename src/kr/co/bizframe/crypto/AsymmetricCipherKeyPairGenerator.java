@@ -7,19 +7,21 @@
 package kr.co.bizframe.crypto;
 
 /**
- * interface that a public/private key pair generator should conform to.
+ * 공개/비공개 키 쌍 생성기의 인터페이스
  */
 public interface AsymmetricCipherKeyPairGenerator {
 
 	/**
-	 * 
-	 * @param param
+	 * 주어진 키 생성기의 매개변수로 초기화한다.
+	 *  
+	 * @param param 키 생성기의 초기화 매개변수
 	 */
 	public void init(KeyGenerationParameters param);
 
 	/**
-	 * 
-	 * @return
+	 * 공개/비공개 키 쌍을 생성, 반환한다.
+	 *  
+	 * @return 생성한 공개/비공개 키 쌍 
 	 */
 	public AsymmetricCipherKeyPair generateKeyPair();
 	
