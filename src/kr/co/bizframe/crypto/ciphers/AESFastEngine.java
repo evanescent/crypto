@@ -11,29 +11,13 @@ import kr.co.bizframe.crypto.CipherParameters;
 import kr.co.bizframe.crypto.DataLengthException;
 import kr.co.bizframe.crypto.params.KeyParameter;
 
-
 /**
- * an implementation of the AES (Rijndael), from FIPS-197.
+ * FIPS-197에 따라 구현된 AES (Rijndael)의 구현이다.
  * <p>
- * For further details see: <a href="http://csrc.nist.gov/encryption/aes/">http://csrc.nist.gov/encryption/aes/</a>.
- *
- * This implementation is based on optimizations from Dr. Brian Gladman's paper and C code at
- * <a href="http://fp.gladman.plus.com/cryptography_technology/rijndael/">http://fp.gladman.plus.com/cryptography_technology/rijndael/</a>
- *
- * There are three levels of tradeoff of speed vs memory
- * Because java has no preprocessor, they are written as three separate classes from which to choose
- *
- * The fastest uses 8Kbytes of static tables to precompute round calculations, 4 256 word tables for encryption
- * and 4 for decryption.
- *
- * The middle performance version uses only one 256 word table for each, for a total of 2Kbytes,
- * adding 12 rotate operations per round to compute the values contained in the other tables from
- * the contents of the first
- *
- * The slowest version uses no static tables at all and computes the values in each round
+ * 보다 자세한 사항은 다음을 참조: <a href="http://csrc.nist.gov/encryption/aes/">http://csrc.nist.gov/encryption/aes/</a>. 
  * <p>
- * This file contains the fast version with 8Kbytes of static tables for round precomputation
- *
+ * 
+ * 최적화를 위해 각 라운드별 전처리된 8k 바이트의 불변 테이블이 포함되어 있다.
  */
 public class AESFastEngine implements BlockCipher {
 

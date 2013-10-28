@@ -7,12 +7,7 @@
 package kr.co.bizframe.crypto;
 
 /**
- * A wrapper class that allows block ciphers to be used to process data in a
- * piecemeal fashion. The BufferedBlockCipher outputs a block only when the
- * buffer is full and more data is being added, or on a doFinal.
- * <p>
- * Note: in the case where the underlying cipher is either a CFB cipher or an
- * OFB one the last block may not be a multiple of the block size.
+ * {@link kr.co.bizframe.crypto.BlockCipher}에 대한 래퍼 클래스
  */
 public class BufferedBlockCipher {
 
@@ -26,16 +21,15 @@ public class BufferedBlockCipher {
 	protected boolean pgpCFB;
 
 	/**
-	 * constructor for subclasses
+	 * 서브클래싱을 위한 기본 생성자
 	 */
 	protected BufferedBlockCipher() {
 	}
 
 	/**
-	 * Create a buffered block cipher without padding.
+	 * 패딩을 적용하지 않은 버퍼 블록 암호 엔징을 생성한다.
 	 * 
-	 * @param cipher
-	 *            the underlying block cipher this buffering object wraps.
+	 * @param cipher 버퍼링을 적용할 블록 암호 엔진
 	 */
 	public BufferedBlockCipher(BlockCipher cipher) {
 
@@ -64,52 +58,43 @@ public class BufferedBlockCipher {
 	}
 
 	/**
-	 * return the cipher this object wraps.
+	 * 감싸진 대상 암호 엔진을 반환한다.
 	 * 
-	 * @return the cipher this object wraps.
+	 * @return 감싸진 대상 암호 엔진을 반환
 	 */
 	public BlockCipher getUnderlyingCipher() {
 		return cipher;
 	}
 
 	/**
-	 * initialise the cipher.
-	 * 
-	 * @param forEncryption
-	 *            if true the cipher is initialised for encryption, if false for
-	 *            decryption.
-	 * @param params
-	 *            the key and other data required by the cipher.
-	 * @exception IllegalArgumentException
-	 *                if the params argument is inappropriate.
+	 * 엔진 초기화 시에 호출한다.
+	 *  
+	 * @param forEncryption 암호화 여부, <code>true</code>면 암호화, 
+	 *                      <code>false</code>면 복호화.
+	 * @param params 처리에 필요한 키와 기타 초기화 매개변수
+	 * @throws IllegalArgumentException 설정이 올바르지 않은 경우
 	 */
 	public void init(boolean forEncryption, CipherParameters params)
 			throws IllegalArgumentException {
-
 		this.forEncryption = forEncryption;
-
 		reset();
-
 		cipher.init(forEncryption, params);
 	}
 
 	/**
-	 * return the blocksize for the underlying cipher.
+	 * 블록 크기를 반환한다.
 	 * 
-	 * @return the blocksize for the underlying cipher.
+	 * @return 블록 크기
 	 */
 	public int getBlockSize() {
 		return cipher.getBlockSize();
 	}
 
 	/**
-	 * return the size of the output buffer required for an update an input of
-	 * len bytes.
+	 * 업데이트 할 입력 바이트 배열의 길이로부터 필요한 출력 버퍼의 크기를 반환한다.
 	 * 
-	 * @param len
-	 *            the length of the input.
-	 * @return the space required to accommodate a call to update with len bytes
-	 *         of input.
+	 * @param len 입력 바이트 배열의 크기
+	 * @return 업데이트에 필요한 출력 버퍼의 크기
 	 */
 	public int getUpdateOutputSize(int len) {
 
