@@ -7,8 +7,7 @@
 package kr.co.bizframe.crypto.digests;
 
 /**
- * "Handbook of Applied Cryptography" pages 346 - 347 를 
- * 토대로 한  MD5의 구현이다.
+ * MD5의 구현
  */
 public class MD5Digest extends GeneralDigest {
 
@@ -26,10 +25,10 @@ public class MD5Digest extends GeneralDigest {
 		reset();
 	}
 
-	
 	/**
-	 * 제공된 Message Digest를 복제하는 생성자이다.
-	 * @param MD5Digest
+	 * 복사 생성자
+	 * 
+	 * @param t 복사 대상
 	 */
 	public MD5Digest(MD5Digest t) {
 		super(t);

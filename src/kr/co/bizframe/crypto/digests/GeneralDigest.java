@@ -9,7 +9,7 @@ package kr.co.bizframe.crypto.digests;
 import kr.co.bizframe.crypto.ExtendedDigest;
 
 /**
- * "Handbook of Applied Cryptography" pages 344 - 347 를 토대로 한 MD4의 기본 구현이다.
+ * MD4의 기본 구현. 기타 MD4 family의 골자가 된다.
  */
 public abstract class GeneralDigest implements ExtendedDigest {
 
@@ -28,8 +28,9 @@ public abstract class GeneralDigest implements ExtendedDigest {
 	}
 
 	/**
-	 * J2ME에서 지원하지 않는 Object.clone() 인터페이스 대신 이 생성자를 사용한다.
-	 * @param GeneralDigest 
+	 * 복사 생성자
+	 * 
+	 * @param t 복사 대상
 	 */
 	protected GeneralDigest(GeneralDigest t) {
 		xBuf = new byte[t.xBuf.length];
@@ -39,10 +40,6 @@ public abstract class GeneralDigest implements ExtendedDigest {
 		byteCount = t.byteCount;
 	}
 
-	/**
-	 * 암복호화 대상을  byte 형태로 Digest를 갱신한다.
-	 * @param in 암복호화 대상인 byte 데이터
-	 */
 	public void update(byte in) {
 		xBuf[xBufOff++] = in;
 
@@ -54,13 +51,6 @@ public abstract class GeneralDigest implements ExtendedDigest {
 		byteCount++;
 	}
 
-	/**
-	 * 
-	 * 암복호화 대상을  byte 형태로 지정된 inOff로부터 시작하여 Digest를 갱신한다.
-	 * @param in 암복호화 대상인 byte 데이터
-	 * @param inOff 시작 offset
-	 * @param len 사용되는 바이트 수 
-	 */
 	public void update(byte[] in, int inOff, int len) {
 		//
 		// 현재 단어를 채운다.
@@ -95,7 +85,7 @@ public abstract class GeneralDigest implements ExtendedDigest {
 	}
 
 	/**
-	 * 패딩 등의 최종 처리를 하여 Digest를 완료한다.
+	 * 패딩 등의 최종 처리를 완료한다.
 	 */
 	public void finish() {
 		long bitLength = (byteCount << 3);
@@ -114,9 +104,6 @@ public abstract class GeneralDigest implements ExtendedDigest {
 		processBlock();
 	}
 
-	/**
-	 * 초기화 시킨다.
-	 */
 	public void reset() {
 		byteCount = 0;
 
@@ -126,10 +113,6 @@ public abstract class GeneralDigest implements ExtendedDigest {
 		}
 	}
 
-	/**
-	 * byte 길이를 반환한다.
-	 * @return byte 길이 64
-	 */
 	public int getByteLength() {
 		return BYTE_LENGTH;
 	}

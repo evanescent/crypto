@@ -35,7 +35,7 @@ public class HMac implements Mac {
 	private static Hashtable<String, Integer> blockLengths;
 
 	static {
-		blockLengths= new Hashtable<String, Integer>();
+		blockLengths = new Hashtable<String, Integer>();
 		blockLengths.put("MD5", new Integer(64));
 		blockLengths.put("SHA1", new Integer(64));
 		blockLengths.put("SHA256", new Integer(64));

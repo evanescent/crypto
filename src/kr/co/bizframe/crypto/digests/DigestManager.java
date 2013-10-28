@@ -8,67 +8,67 @@ package kr.co.bizframe.crypto.digests;
 
 import kr.co.bizframe.crypto.Digest;
 
-
+/**
+ * {@link kr.co.bizframe.crypto.Digest}의 래퍼 클래스
+ */
 public class DigestManager {
 
 	private Digest digest;
 
 	/**
-	 * Digest를 반환한다.
+	 * 
+	 * 
 	 * @param digest Digest 구현 인터페이스
 	 */
-	public DigestManager(Digest digest){
+	public DigestManager(Digest digest) {
 		this.digest = digest;
 	}
 
 	/**
-	 * Digest의 Size를 반환한다.
- 	 * @return Digest size
+	 * 해쉬함수의 결과 크기를 반환한다.
+	 * 
+	 * @return 해쉬함수의 결과 크기
 	 */
-	public int getDigestSize(){
+	public int getDigestSize() {
 		return digest.getDigestSize();
 	}
 
 	/**
-	 * 암복호화 대상을  byte 형태로 Digest를 갱신한다.
-	 * @param in 암복호화 대상인 byte 데이터
+	 * 주어진 바이트로 업데이트한다.
+	 * 
+	 * @param in 입력 바이트
 	 */
-	public void update(byte in){
+	public void update(byte in) {
 		digest.update(in);
 	}
 
-	
 	/**
+	 * 주어진 바이트 배열로 업데이트한다.
 	 * 
-	 * 암복호화 대상을  byte 형태로 지정된 inOff로부터 시작하여 Digest를 갱신한다.
-	 * @param in 암복호화 대상인 byte 데이터
-	 * @param inOff 시작 offset
-	 * @param len 사용되는 바이트 수 
+	 * @param in 입력 바이트 배열
+	 * @param inOff 입력 바이트 위치
+	 * @param len 입력 바이트 길이
 	 */
-	public void update(byte[] in, int inOff, int len){
+	public void update(byte[] in, int inOff, int len) {
 		digest.update(in, inOff, len);
 	}
 
-	//public int doFinal(byte[] out, int outOff){
-	//	return digest.doFinal(out, outOff);
-	//}
-
 	/**
-	 * 암복호화를 처리한뒤 결과를 반환한다.
-	 * @return byte[] 암복호화된 데이터
+	 * 결과를 반환한다.
+	 * 
+	 * @return byte[] 결과 바이트 배열
 	 */
-	public byte[] digest(){
-		byte[]  digestBytes = new byte[digest.getDigestSize()];
+	public byte[] digest() {
+		byte[] digestBytes = new byte[digest.getDigestSize()];
 		digest.doFinal(digestBytes, 0);
 		return digestBytes;
 	}
 
 	/**
-	 * 재사용을 위해 Digest를 초기화 시킨다.
+	 * 상태를 초기화 전으로 돌린다.
 	 */
-	public void reset(){
+	public void reset() {
 		digest.reset();
 	}
-
 
 }

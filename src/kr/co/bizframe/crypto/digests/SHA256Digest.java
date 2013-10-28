@@ -9,7 +9,7 @@ package kr.co.bizframe.crypto.digests;
 import kr.co.bizframe.crypto.util.Pack;
 
 /**
- * FIPS 180-2 implementation of SHA-256.
+ * FIPS 180-2, SHA-256의 구현.
  * 
  * <pre>
  *         block  word  digest
@@ -36,9 +36,9 @@ public class SHA256Digest extends GeneralDigest {
 	}
 
 	/**
-	 * 제공된 Message Digest를 복제하는 생성자이다.
+	 * 복사 생성자
 	 * 
-	 * @param SHA256Digest
+	 * @param t 복사 대상
 	 */
 	public SHA256Digest(SHA256Digest t) {
 		super(t);
@@ -55,27 +55,16 @@ public class SHA256Digest extends GeneralDigest {
 		System.arraycopy(t.W, 0, W, 0, t.W.length);
 		wOff = t.wOff;
 	}
-
-	/**
-	 * 알고리즘 명을 반환한다.
-	 * 
-	 * @return SHA-256 알고리즘 명
-	 */
+	
 	public String getAlgorithmName() {
 		return "SHA-256";
 	}
-
-	/**
-	 * Digest 길이를 반환한다.
-	 * 
-	 * @return Digest 길이
-	 */
+	
 	public int getDigestSize() {
 		return DIGEST_LENGTH;
 	}
 
 	protected void processWord(byte[] in, int inOff) {
-		// Note: Inlined for performance
 		// X[xOff] = Pack.bigEndianToInt(in, inOff);
 		int n = in[inOff] << 24;
 		n |= (in[++inOff] & 0xff) << 16;
@@ -114,17 +103,13 @@ public class SHA256Digest extends GeneralDigest {
 
 		return DIGEST_LENGTH;
 	}
-
-	/**
-	 * reset the chaining variables
-	 */
+	
 	public void reset() {
 
 		super.reset();
 
 		/*
-		 * SHA-256 initial hash value The first 32 bits of the fractional parts
-		 * of the square roots of the first eight prime numbers
+		 * SHA-256 초기값 설정
 		 */
 
 		H0 = 0x6a09e667;
@@ -144,14 +129,14 @@ public class SHA256Digest extends GeneralDigest {
 
 	protected void processBlock() {
 		//
-		// expand 16 word block into 64 word blocks.
+		// 블록 확장
 		//
 		for (int t = 16; t < 64; t++) {
 			W[t] = Theta1(W[t - 2]) + W[t - 7] + Theta0(W[t - 15]) + W[t - 16];
 		}
 
 		//
-		// set up working variables.
+		// 시작값 설정
 		//
 		int a = H0;
 		int b = H1;
@@ -212,7 +197,7 @@ public class SHA256Digest extends GeneralDigest {
 		H7 += h;
 
 		//
-		// reset the offset and clean out the word buffer.
+		// 초기화
 		//
 		wOff = 0;
 		for (int i = 0; i < 16; i++) {
@@ -220,7 +205,7 @@ public class SHA256Digest extends GeneralDigest {
 		}
 	}
 
-	/* SHA-256 functions */
+	/* SHA-256 함수 */
 	private int Ch(int x, int y, int z) {
 		return (x & y) ^ ((~x) & z);
 	}
@@ -248,8 +233,7 @@ public class SHA256Digest extends GeneralDigest {
 	}
 
 	/*
-	 * SHA-256 Constants (represent the first 32 bits of the fractional parts of
-	 * the cube roots of the first sixty-four prime numbers)
+	 * SHA-256의 상수
 	 */
 	static final int K[] = { 0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5,
 			0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5, 0xd807aa98,

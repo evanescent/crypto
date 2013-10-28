@@ -9,7 +9,7 @@ package kr.co.bizframe.crypto.digests;
 import kr.co.bizframe.crypto.util.Pack;
 
 /**
- * FIPS 180-2 implementation of SHA-512.
+ * FIPS 180-2, SHA-512의 구현.
  *
  * <pre>
  *         block  word  digest
@@ -24,14 +24,15 @@ public class SHA512Digest extends LongDigest {
 	private static final int DIGEST_LENGTH = 64;
 
 	/**
-	 * Standard constructor
+	 * 기본 생성자
 	 */
 	public SHA512Digest() {
 	}
 
 	/**
-	 * Copy constructor. This will copy the state of the provided message
-	 * digest.
+	 * 복사 생성자
+	 * 
+	 * @param t 복사 대상
 	 */
 	public SHA512Digest(SHA512Digest t) {
 		super(t);
@@ -62,15 +63,11 @@ public class SHA512Digest extends LongDigest {
 		return DIGEST_LENGTH;
 	}
 
-	/**
-	 * reset the chaining variables
-	 */
 	public void reset() {
 		super.reset();
 
 		/*
-		 * SHA-512 initial hash value The first 64 bits of the fractional parts
-		 * of the square roots of the first eight prime numbers
+		 * SHA-512의 초기값
 		 */
 		H0 = 0x6a09e667f3bcc908L;
 		H1 = 0xbb67ae8584caa73bL;

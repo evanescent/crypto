@@ -6,7 +6,9 @@
  */
 package kr.co.bizframe.crypto.digests;
 
-
+/**
+ * 
+ */
 public class HAS160Digest extends GeneralDigest {
 
 	private static final int DIGEST_LENGTH = 20;
@@ -22,8 +24,9 @@ public class HAS160Digest extends GeneralDigest {
 	}
 
 	/**
-	 * Copy constructor. This will copy the state of the provided message
-	 * digest.
+	 * 복사 생성자
+	 * 
+	 * @param t 복사 대상
 	 */
 	public HAS160Digest(HAS160Digest t) {
 		super(t);

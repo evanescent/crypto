@@ -9,7 +9,7 @@ package kr.co.bizframe.crypto.digests;
 import kr.co.bizframe.crypto.util.Pack;
 
 /**
- * FIPS 180-2 implementation of SHA-384.
+ * FIPS 180-2, SHA-384의 구현.
  *
  * <pre>
  *         block  word  digest
@@ -24,14 +24,15 @@ public class SHA384Digest extends LongDigest {
 	private static final int DIGEST_LENGTH = 48;
 
 	/**
-	 * Standard constructor
+	 * 기본 생성자
 	 */
 	public SHA384Digest() {
 	}
 
 	/**
-	 * Copy constructor. This will copy the state of the provided message
-	 * digest.
+	 * 복사 생성자
+	 * 
+	 * @param t 복사 대상
 	 */
 	public SHA384Digest(SHA384Digest t) {
 		super(t);
@@ -67,8 +68,7 @@ public class SHA384Digest extends LongDigest {
 		super.reset();
 
 		/*
-		 * SHA-384 initial hash value The first 64 bits of the fractional parts
-		 * of the square roots of the 9th through 16th prime numbers
+		 * SHA-384의 초기값
 		 */
 		H0 = 0xcbbb9d5dc1059ed8l;
 		H1 = 0x629a292a367cd507l;

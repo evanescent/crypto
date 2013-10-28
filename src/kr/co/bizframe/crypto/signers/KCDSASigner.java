@@ -158,8 +158,7 @@ public class KCDSASigner implements KCDSA {
 
 		if (r.bitLength() > digest.getDigestSize() * 8) {
 			if (_debug) {
-				_logger
-						.debug("[IllegalArgument] R's bit length must be less than "
+				_logger.debug("[IllegalArgument] R's bit length must be less than "
 								+ (digest.getDigestSize() * 8)
 								+ ". but, "
 								+ r.bitLength());
@@ -231,8 +230,7 @@ public class KCDSASigner implements KCDSA {
 				random);
 		if (!verifier.verifyParameters(params)) {
 			if (_debug) {
-				_logger
-						.debug("[Warning] DO NOT TRUST the Result using this parameters.");
+				_logger.debug("[Warning] DO NOT TRUST the Result using this parameters.");
 			}
 		}
 	}

@@ -9,9 +9,7 @@ package kr.co.bizframe.crypto.digests;
 import kr.co.bizframe.crypto.util.Pack;
 
 /**
- * "Handbook of Applied Cryptography" pages 346 - 349 를 토대로 한 SHA-1 구현이다. It is
- * interesting to ponder why the, apart from the extra IV, the other difference
- * here from MD5 is the "endienness" of the word processing!
+ * SHA-1의 구현
  */
 public class SHA1Digest extends GeneralDigest {
 
@@ -30,9 +28,9 @@ public class SHA1Digest extends GeneralDigest {
 	}
 
 	/**
-	 * 제공된 Message Digest를 복제하는 생성자이다.
+	 * 복사 생성자
 	 * 
-	 * @param SHA1Digest
+	 * @param t 복사 대상
 	 */
 	public SHA1Digest(SHA1Digest t) {
 		super(t);
@@ -47,20 +45,10 @@ public class SHA1Digest extends GeneralDigest {
 		wOff = t.wOff;
 	}
 
-	/**
-	 * 알고리즘 명을 반환한다.
-	 * 
-	 * @return SHA-1 알고리즘 명
-	 */
 	public String getAlgorithmName() {
 		return "SHA-1";
 	}
 
-	/**
-	 * Digest 길이를 반환한다.
-	 * 
-	 * @return Digest 길이
-	 */
 	public int getDigestSize() {
 		return DIGEST_LENGTH;
 	}
@@ -163,7 +151,7 @@ public class SHA1Digest extends GeneralDigest {
 		int idx = 0;
 
 		// ////////////////////////////////////////////////////////////
-		// 총 4라운드, 라운드당 20단계
+		// 총 4라운드, 라운드 당 20단계
 		//
 		// ////////////////////////////////////////////////////////////
 
