@@ -7,24 +7,20 @@
 package kr.co.bizframe.crypto;
 
 /**
- * this exception is thrown if a buffer that is meant to have output copied into
- * it turns out to be too short, or if we've been given insufficient input. In
- * general this exception will get thrown rather than an ArrayOutOfBounds
- * exception.
+ * 이 오류는 주어진 입력의 길이가 충분치 않아 출력 결과를 생성할 수 없는 경우 발생한다.
  */
 public class DataLengthException extends RuntimeCryptoException {
 
 	/**
-	 * base constructor.
+	 * 기본 생성자
 	 */
 	public DataLengthException() {
 	}
 
 	/**
-	 * create a DataLengthException with the given message.
-	 *
-	 * @param message
-	 *            the message to be carried with the exception.
+	 * 주어진 메시지를 가지는 생성자
+	 * 
+	 * @param message 오류가 담고 있을 메시지
 	 */
 	public DataLengthException(String message) {
 		super(message);

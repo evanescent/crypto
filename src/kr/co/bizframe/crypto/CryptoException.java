@@ -7,22 +7,20 @@
 package kr.co.bizframe.crypto;
 
 /**
- * crypto 모듈에 의해 발생하는 오류에 대한 기본 Exception 클래스
- *
+ * crypto 모듈에 의해 발생하는 기본 오류 클래스
  */
 public class CryptoException extends Exception {
 
 	/**
-	 * base constructor.
+	 * 기본 생성자.
 	 */
 	public CryptoException() {
 	}
 
 	/**
-	 * create a CryptoException with the given message.
+	 * 주어진 메시지를 가지는 생성자
 	 *
-	 * @param message
-	 *            the message to be carried with the exception.
+	 * @param message 오류가 담고 있을 메시지
 	 */
 	public CryptoException(String message) {
 		super(message);
