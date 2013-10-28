@@ -21,17 +21,15 @@ public class BizframeCrypto {
 		init();
 	}
 
-
-	public void init(){
-		//검증 대상 함수로딩
+	public void init() {
+		// 검증 대상 함수로딩
 		loadApproved();
 
-		//비검증 대상 함수 로딩
-		loadUnApproved();
+		// 비검증 대상 함수 로딩
+		loadUnapproved();
 	}
 
-	private void loadApproved(){
-
+	private void loadApproved() {
 		algos.addBlockCipher("SEED", SEEDEngine.class);
 		algos.addBlockCipher("ARIA", ARIAEngine.class);
 
@@ -45,17 +43,16 @@ public class BizframeCrypto {
 		algos.addDigest("SHA256", SHA1Digest.class);
 	}
 
-
-	private void loadUnApproved(){
+	private void loadUnapproved() {
 
 	}
 
-
-	public CipherManager getBlockCipher(String name){
+	public CipherManager getBlockCipher(String name) {
 		return algos.getBlockCipher(name);
 	}
 
-	public DigestManager getDigest(String name){
+	public DigestManager getDigest(String name) {
 		return algos.getDigest(name);
 	}
+	
 }

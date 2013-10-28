@@ -12,7 +12,7 @@ import kr.co.bizframe.crypto.DataLengthException;
 import kr.co.bizframe.crypto.params.ParametersWithIV;
 
 /**
- * implements a Output-FeedBack (OFB) mode on top of a simple cipher.
+ * OFB(Output-FeedBack) 운용 모드에 대한 구현
  */
 public class OFBBlockCipher implements BlockCipher {
 	private byte[] IV;
@@ -23,12 +23,10 @@ public class OFBBlockCipher implements BlockCipher {
 	private final BlockCipher cipher;
 
 	/**
-	 * Basic constructor.
+	 * 기본 생성자
 	 *
-	 * @param cipher
-	 *            the block cipher to be used as the basis of the feedback mode.
-	 * @param blockSize
-	 *            the block size in bits (note: a multiple of 8)
+	 * @param cipher 대상 블록 암호화 엔진
+	 * @param blockSize 단위 블록 크기 (비트)
 	 */
 	public OFBBlockCipher(BlockCipher cipher, int blockSize) {
 		this.cipher = cipher;
@@ -40,28 +38,23 @@ public class OFBBlockCipher implements BlockCipher {
 	}
 
 	/**
-	 * return the underlying block cipher that we are wrapping.
+	 * 블록 암호 엔진을 반환한다.
 	 *
-	 * @return the underlying block cipher that we are wrapping.
+	 * @return 블록 암호 엔진
 	 */
 	public BlockCipher getUnderlyingCipher() {
 		return cipher;
 	}
 
 	/**
-	 * Initialise the cipher and, possibly, the initialisation vector (IV). If
-	 * an IV isn't passed as part of the parameter, the IV will be all zeros. An
-	 * IV which is too short is handled in FIPS compliant fashion.
-	 *
-	 * @param encrypting
-	 *            if true the cipher is initialised for encryption, if false for
-	 *            decryption.
-	 * @param params
-	 *            the key and other data required by the cipher.
-	 * @exception IllegalArgumentException
-	 *                if the params argument is inappropriate.
+	 * 엔진 초기화 시에 호출한다. IV가 없다면 '0'(zero)를 사용한다.
+	 *  
+	 * @param forEncryption 암호화 여부, <code>true</code>면 암호화, 
+	 *                      <code>false</code>면 복호화.
+	 * @param params 처리에 필요한 키와 기타 초기화 매개변수
+	 * @throws IllegalArgumentException 설정이 올바르지 않은 경우
 	 */
-	public void init(boolean encrypting, // ignored by this OFB mode
+	public void init(boolean encrypting, // 무시됨.
 			CipherParameters params) throws IllegalArgumentException {
 		if (params instanceof ParametersWithIV) {
 			ParametersWithIV ivParam = (ParametersWithIV) params;
@@ -88,41 +81,33 @@ public class OFBBlockCipher implements BlockCipher {
 	}
 
 	/**
-	 * return the algorithm name and mode.
+	 * 알고리즘명과 운용모드를 반환한다.
 	 *
-	 * @return the name of the underlying algorithm followed by "/OFB" and the
-	 *         block size in bits
+	 * @return 블록 암호 알고리즘명 + "/OFB" + 블록 크기(비트) 
 	 */
 	public String getAlgorithmName() {
 		return cipher.getAlgorithmName() + "/OFB" + (blockSize * 8);
 	}
 
 	/**
-	 * return the block size we are operating at (in bytes).
-	 *
-	 * @return the block size we are operating at (in bytes).
+	 * 블록 암호의 블록 크기를 반환한다.
+	 * 
+	 * @return 블록 암호의 블록 크기
 	 */
 	public int getBlockSize() {
 		return blockSize;
 	}
 
 	/**
-	 * Process one block of input from the array in and write it to the out
-	 * array.
+	 * 주어진 입/출력 바이트 배열을 사용해 처리한다.
 	 *
-	 * @param in
-	 *            the array containing the input data.
-	 * @param inOff
-	 *            offset into the in array the data starts at.
-	 * @param out
-	 *            the array the output data will be copied into.
-	 * @param outOff
-	 *            the offset into the out array the output will start at.
-	 * @exception DataLengthException
-	 *                if there isn't enough data in in, or space in out.
-	 * @exception IllegalStateException
-	 *                if the cipher isn't initialised.
-	 * @return the number of bytes processed and produced.
+	 * @param in 입력 바이트 배열
+	 * @param inOff 입력 바이트 위치
+	 * @param out 출력 바이트 배열
+	 * @param outOff 출력 바이트 위치
+	 * @exception DataLengthException 바이트 배열이 충분치 않은 경우
+	 * @exception IllegalStateException 초기화되지 않은 경우
+	 * @return 처리된 바이트 배열의 길이
 	 */
 	public int processBlock(byte[] in, int inOff, byte[] out, int outOff)
 			throws DataLengthException, IllegalStateException {
@@ -154,7 +139,7 @@ public class OFBBlockCipher implements BlockCipher {
 	}
 
 	/**
-	 * reset the feedback vector back to the IV and reset the underlying cipher.
+	 * IV와 블록 암호 엔진을 초기화 전으로 되돌린다.
 	 */
 	public void reset() {
 		System.arraycopy(IV, 0, ofbV, 0, IV.length);

@@ -11,8 +11,16 @@ package kr.co.bizframe.crypto;
  */
 public interface AsymmetricCipherKeyPairGenerator {
 
-
+	/**
+	 * 
+	 * @param param
+	 */
 	public void init(KeyGenerationParameters param);
 
+	/**
+	 * 
+	 * @return
+	 */
 	public AsymmetricCipherKeyPair generateKeyPair();
+	
 }
