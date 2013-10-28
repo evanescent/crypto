@@ -7,21 +7,20 @@
 package kr.co.bizframe.crypto;
 
 /**
- * the foundation class for the exceptions thrown by the crypto packages.
+ * crypto 모듈에 의해 발생하는 기본 오류 클래스
  */
 public class RuntimeCryptoException extends RuntimeException {
 
 	/**
-	 * base constructor.
+	 * 기본 생성자.
 	 */
 	public RuntimeCryptoException() {
 	}
 
 	/**
-	 * create a RuntimeCryptoException with the given message.
+	 * 주어진 메시지를 가지는 생성자
 	 *
-	 * @param message
-	 *            the message to be carried with the exception.
+	 * @param message 오류가 담고 있을 메시지
 	 */
 	public RuntimeCryptoException(String message) {
 		super(message);

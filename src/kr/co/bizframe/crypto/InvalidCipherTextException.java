@@ -7,22 +7,20 @@
 package kr.co.bizframe.crypto;
 
 /**
- * this exception is thrown whenever we find something we don't expect in a
- * message.
+ * 암호화 문구가 올바르지 않은 경우 발생하는 오류
  */
 public class InvalidCipherTextException extends CryptoException {
 
 	/**
-	 * base constructor.
+	 * 기본 생성자
 	 */
 	public InvalidCipherTextException() {
 	}
 
 	/**
-	 * create a InvalidCipherTextException with the given message.
+	 * 주어진 메시지를 가지는 생성자
 	 *
-	 * @param message
-	 *            the message to be carried with the exception.
+	 * @param message 오류가 담고 있을 메시지
 	 */
 	public InvalidCipherTextException(String message) {
 		super(message);

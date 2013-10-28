@@ -111,34 +111,24 @@ public class BufferedBlockCipher {
 	}
 
 	/**
-	 * return the size of the output buffer required for an update plus a
-	 * doFinal with an input of 'length' bytes.
+	 * 주어진 길이에 출력 버퍼를 더한 길이를 반환한다.
 	 * 
-	 * @param length
-	 *            the length of the input.
-	 * @return the space required to accommodate a call to update and doFinal
-	 *         with 'length' bytes of input.
+	 * @param length 입력 길이
+	 * @return 주어진 길이에 출력 버퍼를 더한 길이
 	 */
 	public int getOutputSize(int length) {
-		// Note: Can assume partialBlockOkay is true for purposes of this
-		// calculation
 		return length + bufOff;
 	}
 
 	/**
-	 * process a single byte, producing an output block if neccessary.
+	 * 단일 바이트에 대한 처리를 진행한다.
 	 * 
-	 * @param in
-	 *            the input byte.
-	 * @param out
-	 *            the space for any output that might be produced.
-	 * @param outOff
-	 *            the offset from which the output will be copied.
-	 * @return the number of output bytes copied to out.
-	 * @exception DataLengthException
-	 *                if there isn't enough space in out.
-	 * @exception IllegalStateException
-	 *                if the cipher isn't initialised.
+	 * @param in 입력 바이트
+	 * @param out 출력 바이트 배열
+	 * @param outOff 출력 바이트 위치
+	 * @return 출력 바이트 결과에 복사된 길이
+	 * @exception DataLengthException 출력 바이트 배열이 충분치 않은 경우
+	 * @exception IllegalStateException 초기화되지 않은 경우
 	 */
 	public int processByte(byte in, byte[] out, int outOff)
 			throws DataLengthException, IllegalStateException {
