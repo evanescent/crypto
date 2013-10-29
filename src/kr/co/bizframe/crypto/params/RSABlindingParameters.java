@@ -10,10 +10,18 @@ import java.math.BigInteger;
 
 import kr.co.bizframe.crypto.CipherParameters;
 
+/**
+ * 
+ */
 public class RSABlindingParameters implements CipherParameters {
 	private RSAKeyParameters publicKey;
 	private BigInteger blindingFactor;
 
+	/**
+	 * 
+	 * @param publicKey
+	 * @param blindingFactor
+	 */
 	public RSABlindingParameters(RSAKeyParameters publicKey,
 			BigInteger blindingFactor) {
 		if (publicKey instanceof RSAPrivateCrtKeyParameters) {
@@ -25,10 +33,18 @@ public class RSABlindingParameters implements CipherParameters {
 		this.blindingFactor = blindingFactor;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public RSAKeyParameters getPublicKey() {
 		return publicKey;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public BigInteger getBlindingFactor() {
 		return blindingFactor;
 	}

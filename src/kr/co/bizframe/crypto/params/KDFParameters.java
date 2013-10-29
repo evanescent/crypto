@@ -17,6 +17,11 @@ public class KDFParameters
     byte[]  iv;
     byte[]  shared;
 
+    /**
+     * 
+     * @param shared
+     * @param iv
+     */
     public KDFParameters(
         byte[]  shared,
         byte[]  iv)
@@ -25,11 +30,19 @@ public class KDFParameters
         this.iv = iv;
     }
 
+    /**
+     * 
+     * @return
+     */
     public byte[] getSharedSecret()
     {
         return shared;
     }
 
+    /**
+     * 
+     * @return
+     */
     public byte[] getIV()
     {
         return iv;

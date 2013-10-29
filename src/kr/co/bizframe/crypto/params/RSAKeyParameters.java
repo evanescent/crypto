@@ -8,11 +8,20 @@ package kr.co.bizframe.crypto.params;
 
 import java.math.BigInteger;
 
+/**
+ * 
+ */
 public class RSAKeyParameters extends AsymmetricKeyParameter {
 
 	private BigInteger modulus;
 	private BigInteger exponent;
 
+	/**
+	 * 
+	 * @param isPrivate
+	 * @param modulus
+	 * @param exponent
+	 */
 	public RSAKeyParameters(boolean isPrivate, BigInteger modulus,
 			BigInteger exponent) {
 
@@ -22,10 +31,18 @@ public class RSAKeyParameters extends AsymmetricKeyParameter {
 		this.exponent = exponent;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public BigInteger getModulus() {
 		return modulus;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public BigInteger getExponent() {
 		return exponent;
 	}

@@ -6,12 +6,19 @@
  */
 package kr.co.bizframe.crypto.params;
 
-
+/**
+ * 
+ */
 public class KCDSAKeyParameters
 	extends AsymmetricKeyParameter {
 
 	private KCDSAParameters    params;
 
+	/**
+	 * 
+	 * @param isPrivate
+	 * @param params
+	 */
     public KCDSAKeyParameters(
         boolean         isPrivate,
         KCDSAParameters   params)
@@ -21,6 +28,10 @@ public class KCDSAKeyParameters
         this.params = params;
     }
 
+    /**
+     * 
+     * @return
+     */
     public KCDSAParameters getParameters()
     {
         return params;

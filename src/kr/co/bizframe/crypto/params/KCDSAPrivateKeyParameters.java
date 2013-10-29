@@ -8,10 +8,18 @@ package kr.co.bizframe.crypto.params;
 
 import java.math.BigInteger;
 
+/**
+ * 
+ */
 public class KCDSAPrivateKeyParameters 
 	extends KCDSAKeyParameters {
 	private BigInteger      x;
 
+	/**
+	 * 
+	 * @param x
+	 * @param params
+	 */
     public KCDSAPrivateKeyParameters(
         BigInteger      x,
         KCDSAParameters   params)
@@ -21,6 +29,10 @@ public class KCDSAPrivateKeyParameters
         this.x = x;
     }   
 
+    /**
+     * 
+     * @return
+     */
     public BigInteger getX()
     {
         return x;

@@ -6,8 +6,15 @@
  */
 package kr.co.bizframe.crypto.params;
 
+/**
+ * 
+ */
 public class DESParameters extends KeyParameter {
 
+	/**
+	 * 
+	 * @param key
+	 */
 	public DESParameters(byte[] key) {
 		super(key);
 
