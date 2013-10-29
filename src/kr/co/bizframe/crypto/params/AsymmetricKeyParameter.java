@@ -18,8 +18,7 @@ public class AsymmetricKeyParameter implements CipherParameters {
 	/**
 	 * 기본 생성자
 	 * 
-	 * @param privateKey
-	 *            개인키 설정
+	 * @param privateKey 개인키 설정
 	 */
 	public AsymmetricKeyParameter(boolean privateKey) {
 		this.privateKey = privateKey;
@@ -28,7 +27,7 @@ public class AsymmetricKeyParameter implements CipherParameters {
 	/**
 	 * 개인키 여부를 체크한다.
 	 * 
-	 * @return 설정된 키가 개인키인경우 true, 아닌 경우 false
+	 * @return 설정된 키가 개인키인 경우 true, 아닌 경우 false
 	 */
 	public boolean isPrivate() {
 		return privateKey;

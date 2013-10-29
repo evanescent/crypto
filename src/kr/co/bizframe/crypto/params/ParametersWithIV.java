@@ -9,7 +9,7 @@ package kr.co.bizframe.crypto.params;
 import kr.co.bizframe.crypto.CipherParameters;
 
 /**
- * 
+ * 초기화 벡터를 포함한 암호화 매개변수 클래스
  */
 public class ParametersWithIV implements CipherParameters {
 
@@ -19,24 +19,20 @@ public class ParametersWithIV implements CipherParameters {
 	/**
 	 * 기본 생성자
 	 * 
-	 * @param parameters
-	 *            복호화 시 필요한 암호화 시 사용된 파라미터 값
-	 * @param iv
-	 *            초기 벡터값
+	 * @param parameters 암복호화 시 필요한 매개변수
+	 * @param iv 초기 벡터값
 	 */
 	public ParametersWithIV(CipherParameters parameters, byte[] iv) {
 		this(parameters, iv, 0, iv.length);
 	}
 
 	/**
-	 * 복제 생성자
+	 * 복사 생성자
 	 * 
-	 * @param parameters
-	 *            복호화 시 필요한 암호화 시 사용된 파라미터 값
-	 * @param iv
-	 *            초기 벡터 값
-	 * @param ivOff 입력 바이트 배열
-	 * @param ivLen 결과 바이트 배열
+	 * @param parameters 암복호화 시 필요한 매개변수
+	 * @param iv 초기 벡터 값
+	 * @param ivOff 입력 바이트 배열의 시작 위치
+	 * @param ivLen 추출할 길이
 	 */
 	public ParametersWithIV(CipherParameters parameters, byte[] iv, int ivOff,
 			int ivLen) {
@@ -47,7 +43,7 @@ public class ParametersWithIV implements CipherParameters {
 	}
 
 	/**
-	 * 초기화 벡터 값은 반환한다.
+	 * 초기화 벡터 값을 반환한다.
 	 * 
 	 * @return 초기화 벡터
 	 */
@@ -56,9 +52,9 @@ public class ParametersWithIV implements CipherParameters {
 	}
 
 	/**
-	 * 암호화 시 사용된 파라미터 값을 반환한다.
+	 *암복호화 시 필요한 매개변수을 반환한다.
 	 * 
-	 * @return 암호화시 사용된 파라미터
+	 * @return 암복호화 시 필요한 매개변수
 	 */
 	public CipherParameters getParameters() {
 		return parameters;

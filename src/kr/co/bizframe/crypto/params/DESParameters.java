@@ -14,8 +14,7 @@ public class DESParameters extends KeyParameter {
 	/**
 	 * 기본 생성자
 	 * 
-	 * @param key
-	 *            대칭키 바이트 배열
+	 * @param key 대칭키 바이트 배열
 	 */
 	public DESParameters(byte[] key) {
 		super(key);
@@ -68,8 +67,8 @@ public class DESParameters extends KeyParameter {
 			(byte) 0xf1 };
 
 	/**
-	 * DES 대칭키가 16개의 취약키 혹은 준 취약키에 속하는지 체크한다. 키의 길이가 지정된 키 길이인 8보다 작은 경우 취약키로
-	 * 간주한다.
+	 * DES 대칭키가 16개의 취약키 혹은 준 취약키에 속하는지 체크한다. 
+	 * 키의 길이가 지정된 키 길이인 8보다 작은 경우 취약키로 간주한다.
 	 * <p>
 	 * See <a href="http://www.counterpane.com/applied.html">"Applied
 	 * Cryptography"</a> by Bruce Schneier for more information.
@@ -97,8 +96,7 @@ public class DESParameters extends KeyParameter {
 	 * 
 	 * DES 대칭키는 LSB의 홀수 패리티 비트를 사용한다. 올바른 키의 여부를 체크한다.
 	 * 
-	 * @param bytes
-	 *            패리티 비트를 추가하기 위한 바이트 배열
+	 * @param bytes 패리티 비트를 추가하기 위한 바이트 배열
 	 */
 	public static void setOddParity(byte[] bytes) {
 		for (int i = 0; i < bytes.length; i++) {
