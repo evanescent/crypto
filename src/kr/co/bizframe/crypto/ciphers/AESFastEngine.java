@@ -14,7 +14,8 @@ import kr.co.bizframe.crypto.params.KeyParameter;
 /**
  * FIPS-197에 따라 구현된 AES (Rijndael)의 구현이다.
  * <p>
- * 보다 자세한 사항은 다음을 참조: <a href="http://csrc.nist.gov/encryption/aes/">http://csrc.nist.gov/encryption/aes/</a>. 
+ * 보다 자세한 사항은 다음을 참조: 
+ * <a href="http://csrc.nist.gov/encryption/aes/">http://csrc.nist.gov/encryption/aes/</a>. 
  * <p>
  * 
  * 최적화를 위해 각 라운드별 전처리된 8k 바이트의 불변 테이블이 포함되어 있다.
@@ -659,19 +660,11 @@ public class AESFastEngine implements BlockCipher {
     private static final int BLOCK_SIZE = 16;
 
     /**
-     * default constructor - 128 bit block size.
+     * 기본 생성자 - 128 비트 블록
      */
     public AESFastEngine(){
     }
 
-    /**
-     * initialise an AES cipher.
-     *
-     * @param forEncryption whether or not we are for encryption.
-     * @param params the parameters required to set up the cipher.
-     * @exception IllegalArgumentException if the params argument is
-     * inappropriate.
-     */
     public void init(
         boolean           forEncryption,
         CipherParameters  params)

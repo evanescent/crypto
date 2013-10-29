@@ -12,7 +12,7 @@ import kr.co.bizframe.crypto.params.KeyParameter;
 
 
 /**
- * a class that provides a basic DESede (or Triple DES) engine.
+ * DESede(트리플 DES)에 대한 기본 구현 엔진
  */
 public class DESedeEngine extends DESEngine {
 
@@ -25,19 +25,11 @@ public class DESedeEngine extends DESEngine {
     private boolean             forEncryption;
 
     /**
-     * standard constructor.
+     * 기본 생성자
      */
     public DESedeEngine(){
     }
 
-    /**
-     * initialise a DESede cipher.
-     *
-     * @param encrypting whether or not we are for encryption.
-     * @param params the parameters required to set up the cipher.
-     * @exception IllegalArgumentException if the params argument is
-     * inappropriate.
-     */
     public void init(
         boolean           encrypting,
         CipherParameters  params) {

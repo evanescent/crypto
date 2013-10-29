@@ -12,7 +12,7 @@ import kr.co.bizframe.crypto.DataLengthException;
 import kr.co.bizframe.crypto.params.KeyParameter;
 
 /**
- * a class that provides a basic DES engine.
+ * DES 기본 구현 엔진
  */
 public class DESEngine implements BlockCipher {
 
@@ -21,21 +21,11 @@ public class DESEngine implements BlockCipher {
 	private int[] workingKey = null;
 
 	/**
-	 * standard constructor.
+	 * 기본 생성자
 	 */
 	public DESEngine() {
 	}
 
-	/**
-	 * initialise a DES cipher.
-	 * 
-	 * @param encrypting
-	 *            whether or not we are for encryption.
-	 * @param params
-	 *            the parameters required to set up the cipher.
-	 * @exception IllegalArgumentException
-	 *                if the params argument is inappropriate.
-	 */
 	public void init(boolean encrypting, CipherParameters params) {
 		
 		if (params instanceof KeyParameter) {

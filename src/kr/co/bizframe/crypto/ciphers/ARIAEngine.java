@@ -11,6 +11,9 @@ import kr.co.bizframe.crypto.CipherParameters;
 import kr.co.bizframe.crypto.DataLengthException;
 import kr.co.bizframe.crypto.params.KeyParameter;
 
+/**
+ * 
+ */
 public class ARIAEngine implements BlockCipher {
 
 	private static final byte[][] S1 = new byte[][] {

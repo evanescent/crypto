@@ -10,16 +10,12 @@ import java.math.BigInteger;
 
 import kr.co.bizframe.crypto.AsymmetricBlockCipher;
 import kr.co.bizframe.crypto.CipherParameters;
-import kr.co.bizframe.crypto.DataLengthException;
 import kr.co.bizframe.crypto.params.ParametersWithRandom;
 import kr.co.bizframe.crypto.params.RSABlindingParameters;
 import kr.co.bizframe.crypto.params.RSAKeyParameters;
 
 /**
- * This does your basic RSA Chaum's blinding and unblinding as outlined in
- * "Handbook of Applied Cryptography", page 475. You need to use this if you are
- * trying to get another party to generate signatures without them being aware
- * of the message they are signing.
+ * Blind RSA 서명 엔진
  */
 public class RSABlindingEngine implements AsymmetricBlockCipher {
 
@@ -30,14 +26,6 @@ public class RSABlindingEngine implements AsymmetricBlockCipher {
 
 	private boolean forEncryption;
 
-	/**
-	 * Initialise the blinding engine.
-	 *
-	 * @param forEncryption
-	 *            true if we are encrypting (blinding), false otherwise.
-	 * @param param
-	 *            the necessary RSA key parameters.
-	 */
 	public void init(boolean forEncryption, CipherParameters param) {
 		RSABlindingParameters p;
 
@@ -57,40 +45,27 @@ public class RSABlindingEngine implements AsymmetricBlockCipher {
 	}
 
 	/**
-	 * Return the maximum size for an input block to this engine. For RSA this
-	 * is always one byte less than the key size on encryption, and the same
-	 * length as the key size on decryption.
+	 * 입력 블록의 최대 크기를 반환한다.
+	 * 암호화 시에는 항상 키 길이보다 1 바이트가 작고,
+	 * 복호화 시에는 키 길이와 같다.
 	 *
-	 * @return maximum size for an input block.
+	 * @return 입력 블록의 최대 크기
 	 */
 	public int getInputBlockSize() {
 		return core.getInputBlockSize();
 	}
 
 	/**
-	 * Return the maximum size for an output block to this engine. For RSA this
-	 * is always one byte less than the key size on decryption, and the same
-	 * length as the key size on encryption.
+	 * 출력 블록의 최대 크기를 반환한다.
+	 * 복호화 시에는 항상 키 길이보다 1 바이트가 작고,
+	 * 암호화 시에는 키 길이와 같다.
 	 *
-	 * @return maximum size for an output block.
+	 * @return 출력 블록의 최대 크기
 	 */
 	public int getOutputBlockSize() {
 		return core.getOutputBlockSize();
 	}
 
-	/**
-	 * Process a single block using the RSA blinding algorithm.
-	 *
-	 * @param in
-	 *            the input array.
-	 * @param inOff
-	 *            the offset into the input buffer where the data starts.
-	 * @param inLen
-	 *            the length of the data to be processed.
-	 * @return the result of the RSA process.
-	 * @throws DataLengthException
-	 *             the input block is too large.
-	 */
 	public byte[] processBlock(byte[] in, int inOff, int inLen) {
 		BigInteger msg = core.convertInput(in, inOff, inLen);
 
