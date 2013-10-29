@@ -20,7 +20,7 @@ public class ParametersWithIV implements CipherParameters {
 	 * 기본 생성자
 	 * 
 	 * @param parameters 암복호화 시 필요한 매개변수
-	 * @param iv 초기 벡터값
+	 * @param iv 초기화 벡터
 	 */
 	public ParametersWithIV(CipherParameters parameters, byte[] iv) {
 		this(parameters, iv, 0, iv.length);
@@ -30,7 +30,7 @@ public class ParametersWithIV implements CipherParameters {
 	 * 복사 생성자
 	 * 
 	 * @param parameters 암복호화 시 필요한 매개변수
-	 * @param iv 초기 벡터 값
+	 * @param iv 초기화 벡터
 	 * @param ivOff 입력 바이트 배열의 시작 위치
 	 * @param ivLen 추출할 길이
 	 */
@@ -43,7 +43,7 @@ public class ParametersWithIV implements CipherParameters {
 	}
 
 	/**
-	 * 초기화 벡터 값을 반환한다.
+	 * 초기화 벡터를 반환한다.
 	 * 
 	 * @return 초기화 벡터
 	 */
@@ -52,7 +52,7 @@ public class ParametersWithIV implements CipherParameters {
 	}
 
 	/**
-	 *암복호화 시 필요한 매개변수을 반환한다.
+	 * 암복호화 시 필요한 매개변수을 반환한다.
 	 * 
 	 * @return 암복호화 시 필요한 매개변수
 	 */
