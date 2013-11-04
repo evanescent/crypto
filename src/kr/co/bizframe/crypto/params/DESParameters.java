@@ -6,16 +6,16 @@
  */
 package kr.co.bizframe.crypto.params;
 
-/**
- * 
- */
 public class DESParameters extends KeyParameter {
 
+<<<<<<< HEAD
 	/**
 	 * 기본 생성자
 	 * 
 	 * @param key 대칭키 바이트 배열
 	 */
+=======
+>>>>>>> parent of 8173965... 주석 (10)
 	public DESParameters(byte[] key) {
 		super(key);
 
