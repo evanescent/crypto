@@ -7,13 +7,15 @@
 package kr.co.bizframe.crypto.params;
 
 /**
- * 
+ * DES 키 매개변수
  */
 public class DESParameters extends KeyParameter {
 
 	/**
+	 * DES 키를 바이트 배열로 포함하는 생성자. 
 	 * 
-	 * @param key
+	 * @param key 바이트 배열 DES 키
+	 * @throws IllegalArgumentException 해당 DES 키가 Weak Key인 경우
 	 */
 	public DESParameters(byte[] key) {
 		super(key);
@@ -94,11 +96,9 @@ public class DESParameters extends KeyParameter {
 	}
 
 	/**
-	 * DES Keys use the LSB as the odd parity bit. This can be used to check for
-	 * corrupt keys.
+	 * 홀수 패리티 비트를 설정한다. 후에 키의 올바른지 여부를 체크할 때 사용한다.
 	 *
-	 * @param bytes
-	 *            the byte array to set the parity on.
+	 * @param bytes 패리티 비트를 설정한 바이트 배열
 	 */
 	public static void setOddParity(byte[] bytes) {
 		for (int i = 0; i < bytes.length; i++) {

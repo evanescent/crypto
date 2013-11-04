@@ -11,16 +11,17 @@ import java.math.BigInteger;
 import kr.co.bizframe.crypto.CipherParameters;
 
 /**
- * 
+ * RSA 블라인딩 매개변수
  */
 public class RSABlindingParameters implements CipherParameters {
 	private RSAKeyParameters publicKey;
 	private BigInteger blindingFactor;
 
 	/**
+	 * RSA 공개키 매개변수와 블라인딩 인자를 포함하는 생성자.
 	 * 
-	 * @param publicKey
-	 * @param blindingFactor
+	 * @param publicKey RSA 공개키 매개변수
+	 * @param blindingFactor 블라인딩 인자
 	 */
 	public RSABlindingParameters(RSAKeyParameters publicKey,
 			BigInteger blindingFactor) {
@@ -34,16 +35,18 @@ public class RSABlindingParameters implements CipherParameters {
 	}
 
 	/**
+	 * RSA 공개키 매개변수를 반환한다.
 	 * 
-	 * @return
+	 * @return RSA 공개키 매개변수
 	 */
 	public RSAKeyParameters getPublicKey() {
 		return publicKey;
 	}
 
 	/**
+	 * 블라인딩 인자를 반환한다.
 	 * 
-	 * @return
+	 * @return 블라인딩 인자
 	 */
 	public BigInteger getBlindingFactor() {
 		return blindingFactor;

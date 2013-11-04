@@ -11,7 +11,7 @@ import java.security.SecureRandom;
 import kr.co.bizframe.crypto.KeyGenerationParameters;
 
 /**
- * 
+ * KCDSA 키 생성 매개변수
  */
 public class KCDSAKeyGenerationParameters
 	extends KeyGenerationParameters {
@@ -19,9 +19,10 @@ public class KCDSAKeyGenerationParameters
 	private KCDSAParameters params;
 
 	/**
+	 * 난수생성기와 KCDSA 매개변수를 설정한다.
 	 * 
-	 * @param random
-	 * @param params
+	 * @param random 난수생성기
+	 * @param params KCDSA 매개변수
 	 */
 	public KCDSAKeyGenerationParameters(
 			SecureRandom random,
@@ -32,8 +33,9 @@ public class KCDSAKeyGenerationParameters
 	}
 
 	/**
+	 * KCDSA 매개변수를 반환한다.
 	 * 
-	 * @return
+	 * @return KCDSA 매개변수
 	 */
 	public KCDSAParameters getParameters() {
 		return params;

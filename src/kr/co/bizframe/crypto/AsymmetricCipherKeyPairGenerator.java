@@ -7,7 +7,7 @@
 package kr.co.bizframe.crypto;
 
 /**
- * 공개/비공개 키 쌍 생성기의 인터페이스
+ * 비대칭키 쌍 생성기의 인터페이스
  */
 public interface AsymmetricCipherKeyPairGenerator {
 
@@ -19,9 +19,9 @@ public interface AsymmetricCipherKeyPairGenerator {
 	public void init(KeyGenerationParameters param);
 
 	/**
-	 * 공개/비공개 키 쌍을 생성, 반환한다.
+	 * 비대칭키 쌍을 생성, 반환한다.
 	 *  
-	 * @return 생성한 공개/비공개 키 쌍 
+	 * @return 생성한 비대칭키 쌍
 	 */
 	public AsymmetricCipherKeyPair generateKeyPair();
 	

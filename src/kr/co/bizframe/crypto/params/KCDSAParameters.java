@@ -11,7 +11,7 @@ import java.math.BigInteger;
 import kr.co.bizframe.crypto.CipherParameters;
 
 /**
- * 
+ * KCDSA 매개변수
  */
 public class KCDSAParameters
 	implements CipherParameters {
@@ -22,10 +22,11 @@ public class KCDSAParameters
     private KCDSAValidationParameters   validation;
 
     /**
+     * 매개변수를 포함하는 생성자
      * 
-     * @param p
-     * @param q
-     * @param g
+     * @param p 매개변수 P
+     * @param q 매개변수 Q
+     * @param g 매개변수 G
      */
     public KCDSAParameters(
         BigInteger  p,
@@ -38,11 +39,12 @@ public class KCDSAParameters
     }
 
     /**
+     * 매개변수와 검증 매개변수를 포함하는 생성자
      * 
-     * @param p
-     * @param q
-     * @param g
-     * @param params
+     * @param p 매개변수 P
+     * @param q 매개변수 Q
+     * @param g 매개변수 G
+     * @param params 검증 매개변수
      */
     public KCDSAParameters(
         BigInteger              p,
@@ -57,8 +59,9 @@ public class KCDSAParameters
     }
 
     /**
+     * 매개변수 P를 반환한다.
      * 
-     * @return
+     * @return 매개변수 P
      */
     public BigInteger getP()
     {
@@ -66,8 +69,9 @@ public class KCDSAParameters
     }
 
     /**
+     * 매개변수 Q를 반환한다.
      * 
-     * @return
+     * @return 매개변수 Q
      */
     public BigInteger getQ()
     {
@@ -75,8 +79,9 @@ public class KCDSAParameters
     }
 
     /**
+     * 매개변수 G를 반환한다.
      * 
-     * @return
+     * @return 매개변수 G
      */
     public BigInteger getG()
     {
@@ -84,8 +89,9 @@ public class KCDSAParameters
     }
 
     /**
+     * 검증 매개변수를 반환한다.
      * 
-     * @return
+     * @return 검증 매개변수
      */
     public KCDSAValidationParameters getValidationParams()
     {

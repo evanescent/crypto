@@ -7,7 +7,7 @@
 package kr.co.bizframe.crypto.prngs;
 
 /**
- * Generic interface for objects generating random bytes.
+ * 난수생성기를 위한 인터페이스
  */
 public interface RandomGenerator {
 
@@ -28,22 +28,18 @@ public interface RandomGenerator {
 	public void addSeedMaterial(long seed);
 
 	/**
-	 * Fill bytes with random values.
+	 * 주어진 바이트 배열에 임의의 값을 채워넣는다.
 	 *
-	 * @param bytes
-	 *            byte array to be filled.
+	 * @param bytes 임의의 값을 채워넣고자 하는 바이트 배열 
 	 */
 	public void nextBytes(byte[] bytes);
 
 	/**
-	 * Fill part of bytes with random values.
+	 * 주어진 바이트 배열의 지정한 위치에 임의의 값을 채워넣는다.
 	 *
-	 * @param bytes
-	 *            byte array to be filled.
-	 * @param start
-	 *            index to start filling at.
-	 * @param len
-	 *            length of segment to fill.
+	 * @param bytes 임의의 값을 채워넣고자 하는 바이트 배열
+	 * @param start 채워넣고자 하는 시작 위치
+	 * @param len 채워넣고자 하는 길이
 	 */
 	public void nextBytes(byte[] bytes, int start, int len);
 

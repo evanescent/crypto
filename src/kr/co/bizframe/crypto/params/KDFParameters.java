@@ -9,7 +9,7 @@ package kr.co.bizframe.crypto.params;
 import kr.co.bizframe.crypto.DerivationParameters;
 
 /**
- * parameters for Key derivation functions for IEEE P1363a
+ * KDF(Key Derivation Function)s 매개변수
  */
 public class KDFParameters
     implements DerivationParameters
@@ -18,9 +18,10 @@ public class KDFParameters
     byte[]  shared;
 
     /**
+     * 공유 비밀키와 IV를 포함하는 생성자.
      * 
-     * @param shared
-     * @param iv
+     * @param shared 공유 비밀키
+     * @param iv IV
      */
     public KDFParameters(
         byte[]  shared,
@@ -31,8 +32,9 @@ public class KDFParameters
     }
 
     /**
+     * 공유 비밀키를 반환한다.
      * 
-     * @return
+     * @return 공유 비밀키
      */
     public byte[] getSharedSecret()
     {
@@ -40,8 +42,9 @@ public class KDFParameters
     }
 
     /**
+     * IV를 반환한다.
      * 
-     * @return
+     * @return IV
      */
     public byte[] getIV()
     {

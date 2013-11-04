@@ -11,6 +11,9 @@ import java.util.Random;
 
 import kr.co.bizframe.crypto.digests.HAS160Digest;
 
+/**
+ * KCDSA를 위한 난수생성기
+ */
 public class KCDSARandomGenerator {
 
 	private HAS160Digest d = new HAS160Digest();

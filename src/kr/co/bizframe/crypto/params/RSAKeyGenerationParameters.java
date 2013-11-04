@@ -12,7 +12,7 @@ import java.security.SecureRandom;
 import kr.co.bizframe.crypto.KeyGenerationParameters;
 
 /**
- * 
+ * RSA 키 생성 매개변수
  */
 public class RSAKeyGenerationParameters extends KeyGenerationParameters {
 
@@ -20,11 +20,12 @@ public class RSAKeyGenerationParameters extends KeyGenerationParameters {
 	private int certainty;
 
 	/**
+	 * Exponent, 난수생성기, 강도 및 확실성을 포함하는 생성자
 	 * 
-	 * @param publicExponent
-	 * @param random
-	 * @param strength
-	 * @param certainty
+	 * @param publicExponent Exponent
+	 * @param random 난수생성기
+	 * @param strength 강도
+	 * @param certainty 확실성
 	 */
 	public RSAKeyGenerationParameters(BigInteger publicExponent,
 			SecureRandom random, int strength, int certainty) {
@@ -46,16 +47,18 @@ public class RSAKeyGenerationParameters extends KeyGenerationParameters {
 	}
 
 	/**
+	 * Exponent를 반환한다.
 	 * 
-	 * @return
+	 * @return Exponent
 	 */
 	public BigInteger getPublicExponent() {
 		return publicExponent;
 	}
 
 	/**
+	 * 확실성을 반환한다.
 	 * 
-	 * @return
+	 * @return 확실성
 	 */
 	public int getCertainty() {
 		return certainty;

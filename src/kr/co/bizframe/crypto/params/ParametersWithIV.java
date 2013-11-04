@@ -9,7 +9,7 @@ package kr.co.bizframe.crypto.params;
 import kr.co.bizframe.crypto.CipherParameters;
 
 /**
- * 
+ * IV를 포함하는 매개변수
  */
 public class ParametersWithIV implements CipherParameters {
 
@@ -17,20 +17,22 @@ public class ParametersWithIV implements CipherParameters {
 	private CipherParameters parameters;
 
 	/**
+	 * 암/복호화에 필요한 매개변수와 IV를 포함하는 생성자.
 	 * 
-	 * @param parameters
-	 * @param iv
+	 * @param parameters 암/복호화에 필요한 매개변수
+	 * @param iv IV
 	 */
 	public ParametersWithIV(CipherParameters parameters, byte[] iv) {
 		this(parameters, iv, 0, iv.length);
 	}
 
 	/**
+	 * 암/복호화에 필요한 매개변수와 IV를 포함하는 생성자.
 	 * 
-	 * @param parameters
-	 * @param iv
-	 * @param ivOff
-	 * @param ivLen
+	 * @param parameters 암/복호화에 필요한 매개변수
+	 * @param iv IV 바이트 배열
+	 * @param ivOff IV 바이트 배열의 시작 위치
+	 * @param ivLen IV 바이트 배열의 사용 길이
 	 */
 	public ParametersWithIV(CipherParameters parameters, byte[] iv, 
 			int ivOff, int ivLen) {
@@ -41,16 +43,18 @@ public class ParametersWithIV implements CipherParameters {
 	}
 
 	/**
+	 * IV를 반환한다.
 	 * 
-	 * @return
+	 * @return IV
 	 */
 	public byte[] getIV() {
 		return iv;
 	}
 
 	/**
+	 * 암/복호화에 필요한 매개변수를 반환한다.
 	 * 
-	 * @return
+	 * @return 암/복호화에 필요한 매개변수
 	 */
 	public CipherParameters getParameters() {
 		return parameters;

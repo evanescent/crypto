@@ -7,7 +7,7 @@
 package kr.co.bizframe.crypto.params;
 
 /**
- * 
+ * KCDSA 키 매개변수
  */
 public class KCDSAKeyParameters
 	extends AsymmetricKeyParameter {
@@ -15,9 +15,11 @@ public class KCDSAKeyParameters
 	private KCDSAParameters    params;
 
 	/**
+	 * 비공개키 여부와 매개변수를 포함하는 생성자.
 	 * 
-	 * @param isPrivate
-	 * @param params
+	 * @param privateKey 비공개키 여부. 
+	 *                   <code>true</code>면 비공개키, <code>false</code>면 공개키
+	 * @param params 매개변수 
 	 */
     public KCDSAKeyParameters(
         boolean         isPrivate,
@@ -29,8 +31,9 @@ public class KCDSAKeyParameters
     }
 
     /**
+     * 매개변수를 반환한다.
      * 
-     * @return
+     * @return 매개변수
      */
     public KCDSAParameters getParameters()
     {

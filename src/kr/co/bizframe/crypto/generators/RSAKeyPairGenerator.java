@@ -16,7 +16,7 @@ import kr.co.bizframe.crypto.params.RSAKeyParameters;
 import kr.co.bizframe.crypto.params.RSAPrivateCrtKeyParameters;
 
 /**
- * an RSA key pair generator.
+ * RSA 키 쌍 생성기.
  */
 public class RSAKeyPairGenerator implements AsymmetricCipherKeyPairGenerator {
 

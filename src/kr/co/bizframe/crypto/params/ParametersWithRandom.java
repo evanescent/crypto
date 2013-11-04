@@ -11,6 +11,7 @@ import java.security.SecureRandom;
 import kr.co.bizframe.crypto.CipherParameters;
 
 /**
+ * 난수발생기를 포함하는 매개변수
  * 
  */
 public class ParametersWithRandom implements CipherParameters {
@@ -18,9 +19,10 @@ public class ParametersWithRandom implements CipherParameters {
 	private CipherParameters parameters;
 
 	/**
+	 * 암/복호화에 필요한 매개변수와 난수발생기를 포함하는 생성자.
 	 * 
-	 * @param parameters
-	 * @param random
+	 * @param parameters 암/복호화에 필요한 매개변수
+	 * @param random 난수발생기
 	 */
 	public ParametersWithRandom(CipherParameters parameters, SecureRandom random) {
 		this.random = random;
@@ -28,24 +30,27 @@ public class ParametersWithRandom implements CipherParameters {
 	}
 
 	/**
+	 * 암/복호화에 필요한 매개변수를 포함하는 생성자.
 	 * 
-	 * @param parameters
+	 * @param parameters 암/복호화에 필요한 매개변수
 	 */
 	public ParametersWithRandom(CipherParameters parameters) {
 		this(parameters, new SecureRandom());
 	}
 
 	/**
+	 * 난수발생기를 반환한다.
 	 * 
-	 * @return
+	 * @return 난수발생기
 	 */
 	public SecureRandom getRandom() {
 		return random;
 	}
 
 	/**
+	 * 암/복호화에 필요한 매개변수를 반환한다.
 	 * 
-	 * @return
+	 * @return 암/복호화에 필요한 매개변수
 	 */
 	public CipherParameters getParameters() {
 		return parameters;

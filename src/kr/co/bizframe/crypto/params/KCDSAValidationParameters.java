@@ -11,7 +11,7 @@ import java.math.BigInteger;
 import kr.co.bizframe.crypto.util.Arrays;
 
 /**
- * 
+ * KCDSA 검증 매개변수
  */
 public class KCDSAValidationParameters {
 
@@ -20,10 +20,11 @@ public class KCDSAValidationParameters {
     private int                 counter;
 
     /**
+     * 매개변수를 포함하는 생성자
      * 
-     * @param j
-     * @param seed
-     * @param counter
+     * @param j 매개변수 J
+     * @param seed 시드
+     * @param counter 카운터
      */
     public KCDSAValidationParameters(
     	BigInteger  j,
@@ -36,16 +37,18 @@ public class KCDSAValidationParameters {
     }
 
     /**
+     * 매개변수 J를 반환한다.
      * 
-     * @return
+     * @return 매개변수 J
      */
     public BigInteger getJ() {
     	return j;
     }
 
     /**
+     * 시드를 반환한다.
      * 
-     * @return
+     * @return 시드
      */
     public byte[] getSeed()
     {
@@ -53,8 +56,9 @@ public class KCDSAValidationParameters {
     }
 
     /**
+     * 카운터를 반환한다.
      * 
-     * @return
+     * @return 카운터
      */
     public int getCounter()
     {
