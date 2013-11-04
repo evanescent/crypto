@@ -1,9 +1,3 @@
-/**
- * Copyright (c) 2013-2014 Torpedo Corporations. All rights reserved.
- *
- * BizFrame and BizFrame-related trademarks and logos are
- * trademarks or registered trademarks of Torpedo Corporations
- */
 package kr.co.bizframe.crypto.ciphers;
 
 import java.math.BigInteger;
@@ -15,7 +9,7 @@ import kr.co.bizframe.crypto.params.RSAKeyParameters;
 import kr.co.bizframe.crypto.params.RSAPrivateCrtKeyParameters;
 
 /**
- * RSA 기본 구현 엔진
+ * this does your basic RSA algorithm.
  */
 class RSACoreEngine {
 
@@ -23,11 +17,12 @@ class RSACoreEngine {
 	private boolean forEncryption;
 
 	/**
-	 * 엔진 초기화 시에 호출한다.
-	 *  
-	 * @param forEncryption 암호화 여부, <code>true</code>면 암호화, 
-	 *                      <code>false</code>면 복호화.
-	 * @param params 처리에 필요한 키와 기타 초기화 매개변수
+	 * initialise the RSA engine.
+	 *
+	 * @param forEncryption
+	 *            true if we are encrypting, false otherwise.
+	 * @param param
+	 *            the necessary RSA key parameters.
 	 */
 	public void init(boolean forEncryption, CipherParameters param) {
 
@@ -43,11 +38,11 @@ class RSACoreEngine {
 	}
 
 	/**
-	 * 입력 블록의 최대 크기를 반환한다.
-	 * 암호화 시에는 항상 키 길이보다 1 바이트가 작고,
-	 * 복호화 시에는 키 길이와 같다.
+	 * Return the maximum size for an input block to this engine. For RSA this
+	 * is always one byte less than the key size on encryption, and the same
+	 * length as the key size on decryption.
 	 *
-	 * @return 입력 블록의 최대 크기
+	 * @return maximum size for an input block.
 	 */
 	public int getInputBlockSize() {
 		int bitSize = key.getModulus().bitLength();
@@ -60,11 +55,11 @@ class RSACoreEngine {
 	}
 
 	/**
-	 * 출력 블록의 최대 크기를 반환한다.
-	 * 복호화 시에는 항상 키 길이보다 1 바이트가 작고,
-	 * 암호화 시에는 키 길이와 같다.
+	 * Return the maximum size for an output block to this engine. For RSA this
+	 * is always one byte less than the key size on decryption, and the same
+	 * length as the key size on encryption.
 	 *
-	 * @return 출력 블록의 최대 크기
+	 * @return maximum size for an output block.
 	 */
 	public int getOutputBlockSize() {
 		int bitSize = key.getModulus().bitLength();
@@ -76,15 +71,6 @@ class RSACoreEngine {
 		}
 	}
 
-	/**
-	 * 입력 바이트 배열을 정수로 변환한다.
-	 * 
-	 * @param in 입력 바이트 배열
-	 * @param inOff 입력 바이트 위치
-	 * @param inLen 입력 바이트 길이
-	 * @return 변환된 정수
-	 * @throws DataLengthException 입력 바이트 배열의 길이가 너무 큰 경우
-	 */
 	public BigInteger convertInput(byte[] in, int inOff, int inLen) {
 		if (inLen > (getInputBlockSize() + 1)) {
 			throw new DataLengthException("input too large for RSA cipher.");
@@ -110,18 +96,20 @@ class RSACoreEngine {
 		return res;
 	}
 
-	/**
-	 * 입력 정수를 바이트 배열로 변환한다.
-	 * 
-	 * @param result 입력 정수
-	 * @return 변환된 바이트 배열
-	 */
 	public byte[] convertOutput(BigInteger result) {
 		byte[] output = result.toByteArray();
 
 		if (forEncryption) {
-			// have ended up with an extra zero byte, copy down.
-			if (output[0] == 0 && output.length > getOutputBlockSize()) 
+			if (output[0] == 0 && output.length > getOutputBlockSize()) // have
+																		// ended
+																		// up
+																		// with
+																		// an
+																		// extra
+																		// zero
+																		// byte,
+																		// copy
+																		// down.
 			{
 				byte[] tmp = new byte[output.length - 1];
 
@@ -142,7 +130,8 @@ class RSACoreEngine {
 				return tmp;
 			}
 		} else {
-			if (output[0] == 0) // have ended up with an extra zero byte, copy down.
+			if (output[0] == 0) // have ended up with an extra zero byte, copy
+								// down.
 			{
 				byte[] tmp = new byte[output.length - 1];
 
@@ -155,12 +144,6 @@ class RSACoreEngine {
 		return output;
 	}
 
-	/**
-	 * 입력 정수에 대해 RSA 처리를 진행한다.
-	 * 
-	 * @param input 입력 정수
-	 * @return 출력 정수
-	 */
 	public BigInteger processBlock(BigInteger input) {
 		if (key instanceof RSAPrivateCrtKeyParameters) {
 			//

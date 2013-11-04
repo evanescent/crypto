@@ -1,9 +1,3 @@
-/**
- * Copyright (c) 2013-2014 Torpedo Corporations. All rights reserved.
- *
- * BizFrame and BizFrame-related trademarks and logos are
- * trademarks or registered trademarks of Torpedo Corporations
- */
 package kr.co.bizframe.crypto.modes;
 
 import kr.co.bizframe.crypto.BlockCipher;
@@ -12,7 +6,7 @@ import kr.co.bizframe.crypto.DataLengthException;
 import kr.co.bizframe.crypto.params.ParametersWithIV;
 
 /**
- * OFB(Output-FeedBack) 운용 모드에 대한 구현
+ * implements a Output-FeedBack (OFB) mode on top of a simple cipher.
  */
 public class OFBBlockCipher implements BlockCipher {
 	private byte[] IV;
@@ -23,10 +17,12 @@ public class OFBBlockCipher implements BlockCipher {
 	private final BlockCipher cipher;
 
 	/**
-	 * 기본 생성자
+	 * Basic constructor.
 	 *
-	 * @param cipher 대상 블록 암호화 엔진
-	 * @param blockSize 단위 블록 크기 (비트)
+	 * @param cipher
+	 *            the block cipher to be used as the basis of the feedback mode.
+	 * @param blockSize
+	 *            the block size in bits (note: a multiple of 8)
 	 */
 	public OFBBlockCipher(BlockCipher cipher, int blockSize) {
 		this.cipher = cipher;
@@ -38,23 +34,28 @@ public class OFBBlockCipher implements BlockCipher {
 	}
 
 	/**
-	 * 블록 암호 엔진을 반환한다.
+	 * return the underlying block cipher that we are wrapping.
 	 *
-	 * @return 블록 암호 엔진
+	 * @return the underlying block cipher that we are wrapping.
 	 */
 	public BlockCipher getUnderlyingCipher() {
 		return cipher;
 	}
 
 	/**
-	 * 엔진 초기화 시에 호출한다. IV가 없다면 '0'(zero)를 사용한다.
-	 *  
-	 * @param forEncryption 암호화 여부, <code>true</code>면 암호화, 
-	 *                      <code>false</code>면 복호화.
-	 * @param params 처리에 필요한 키와 기타 초기화 매개변수
-	 * @throws IllegalArgumentException 설정이 올바르지 않은 경우
+	 * Initialise the cipher and, possibly, the initialisation vector (IV). If
+	 * an IV isn't passed as part of the parameter, the IV will be all zeros. An
+	 * IV which is too short is handled in FIPS compliant fashion.
+	 *
+	 * @param encrypting
+	 *            if true the cipher is initialised for encryption, if false for
+	 *            decryption.
+	 * @param params
+	 *            the key and other data required by the cipher.
+	 * @exception IllegalArgumentException
+	 *                if the params argument is inappropriate.
 	 */
-	public void init(boolean encrypting, // 무시됨.
+	public void init(boolean encrypting, // ignored by this OFB mode
 			CipherParameters params) throws IllegalArgumentException {
 		if (params instanceof ParametersWithIV) {
 			ParametersWithIV ivParam = (ParametersWithIV) params;
@@ -81,33 +82,41 @@ public class OFBBlockCipher implements BlockCipher {
 	}
 
 	/**
-	 * 알고리즘명과 운용모드를 반환한다.
+	 * return the algorithm name and mode.
 	 *
-	 * @return 블록 암호 알고리즘명 + "/OFB" + 블록 크기(비트) 
+	 * @return the name of the underlying algorithm followed by "/OFB" and the
+	 *         block size in bits
 	 */
 	public String getAlgorithmName() {
 		return cipher.getAlgorithmName() + "/OFB" + (blockSize * 8);
 	}
 
 	/**
-	 * 블록 암호의 블록 크기를 반환한다.
-	 * 
-	 * @return 블록 암호의 블록 크기
+	 * return the block size we are operating at (in bytes).
+	 *
+	 * @return the block size we are operating at (in bytes).
 	 */
 	public int getBlockSize() {
 		return blockSize;
 	}
 
 	/**
-	 * 주어진 입/출력 바이트 배열을 사용해 처리한다.
+	 * Process one block of input from the array in and write it to the out
+	 * array.
 	 *
-	 * @param in 입력 바이트 배열
-	 * @param inOff 입력 바이트 위치
-	 * @param out 출력 바이트 배열
-	 * @param outOff 출력 바이트 위치
-	 * @exception DataLengthException 바이트 배열이 충분치 않은 경우
-	 * @exception IllegalStateException 초기화되지 않은 경우
-	 * @return 처리된 바이트 배열의 길이
+	 * @param in
+	 *            the array containing the input data.
+	 * @param inOff
+	 *            offset into the in array the data starts at.
+	 * @param out
+	 *            the array the output data will be copied into.
+	 * @param outOff
+	 *            the offset into the out array the output will start at.
+	 * @exception DataLengthException
+	 *                if there isn't enough data in in, or space in out.
+	 * @exception IllegalStateException
+	 *                if the cipher isn't initialised.
+	 * @return the number of bytes processed and produced.
 	 */
 	public int processBlock(byte[] in, int inOff, byte[] out, int outOff)
 			throws DataLengthException, IllegalStateException {
@@ -139,7 +148,7 @@ public class OFBBlockCipher implements BlockCipher {
 	}
 
 	/**
-	 * IV와 블록 암호 엔진을 초기화 전으로 되돌린다.
+	 * reset the feedback vector back to the IV and reset the underlying cipher.
 	 */
 	public void reset() {
 		System.arraycopy(IV, 0, ofbV, 0, IV.length);

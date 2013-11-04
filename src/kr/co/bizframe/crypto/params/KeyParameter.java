@@ -16,18 +16,20 @@ public class KeyParameter implements CipherParameters {
 	private byte[] key;
 
 	/**
+	 * 기본 생성자
 	 * 
-	 * @param key
+	 * @param key 입력 바이트 배열 키 값
 	 */
 	public KeyParameter(byte[] key) {
 		this(key, 0, key.length);
 	}
 
 	/**
+	 * 복사 생성자
 	 * 
-	 * @param key
-	 * @param keyOff
-	 * @param keyLen
+	 * @param key 입력 바이트 배열 키 값
+	 * @param keyOff 입력 바이트 배열의 시작 위치
+	 * @param keyLen 추출할 길이
 	 */
 	public KeyParameter(byte[] key, int keyOff, int keyLen) {
 		this.key = new byte[keyLen];
@@ -36,8 +38,9 @@ public class KeyParameter implements CipherParameters {
 	}
 
 	/**
+	 * 입력 바이트 배열 키 값을 반환한다.
 	 * 
-	 * @return
+	 * @return 입력 바이트 배열 키 값
 	 */
 	public byte[] getKey() {
 		return key;

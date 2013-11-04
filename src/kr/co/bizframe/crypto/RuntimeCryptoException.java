@@ -1,26 +1,21 @@
-/**
- * Copyright (c) 2013-2014 Torpedo Corporations. All rights reserved.
- *
- * BizFrame and BizFrame-related trademarks and logos are
- * trademarks or registered trademarks of Torpedo Corporations
- */
 package kr.co.bizframe.crypto;
 
 /**
- * crypto 모듈에 의해 발생하는 기본 오류 클래스
+ * the foundation class for the exceptions thrown by the crypto packages.
  */
 public class RuntimeCryptoException extends RuntimeException {
 
 	/**
-	 * 기본 생성자.
+	 * base constructor.
 	 */
 	public RuntimeCryptoException() {
 	}
 
 	/**
-	 * 주어진 메시지를 가지는 생성자
+	 * create a RuntimeCryptoException with the given message.
 	 *
-	 * @param message 오류가 담고 있을 메시지
+	 * @param message
+	 *            the message to be carried with the exception.
 	 */
 	public RuntimeCryptoException(String message) {
 		super(message);

@@ -12,20 +12,22 @@ import kr.co.bizframe.crypto.CipherParameters;
  * 
  */
 public class AsymmetricKeyParameter implements CipherParameters {
-	
+
 	boolean privateKey;
 
 	/**
+	 * 기본 생성자
 	 * 
-	 * @param privateKey
+	 * @param privateKey 개인키 설정 여부
 	 */
 	public AsymmetricKeyParameter(boolean privateKey) {
 		this.privateKey = privateKey;
 	}
 
 	/**
+	 * 개인키 설정 여부를 반환한다.
 	 * 
-	 * @return
+	 * @return <code>true</code>면 개인키, <code>false</code>면 공개키
 	 */
 	public boolean isPrivate() {
 		return privateKey;

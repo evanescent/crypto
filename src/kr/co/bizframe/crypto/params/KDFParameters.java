@@ -1,9 +1,3 @@
-/**
- * Copyright (c) 2013-2014 Torpedo Corporations. All rights reserved.
- *
- * BizFrame and BizFrame-related trademarks and logos are
- * trademarks or registered trademarks of Torpedo Corporations
- */
 package kr.co.bizframe.crypto.params;
 
 import kr.co.bizframe.crypto.DerivationParameters;
@@ -17,11 +11,6 @@ public class KDFParameters
     byte[]  iv;
     byte[]  shared;
 
-    /**
-     * 
-     * @param shared
-     * @param iv
-     */
     public KDFParameters(
         byte[]  shared,
         byte[]  iv)
@@ -30,19 +19,11 @@ public class KDFParameters
         this.iv = iv;
     }
 
-    /**
-     * 
-     * @return
-     */
     public byte[] getSharedSecret()
     {
         return shared;
     }
 
-    /**
-     * 
-     * @return
-     */
     public byte[] getIV()
     {
         return iv;

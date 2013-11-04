@@ -1,9 +1,3 @@
-/**
- * Copyright (c) 2013-2014 Torpedo Corporations. All rights reserved.
- *
- * BizFrame and BizFrame-related trademarks and logos are
- * trademarks or registered trademarks of Torpedo Corporations
- */
 package kr.co.bizframe.crypto.ciphers;
 
 import kr.co.bizframe.crypto.BlockCipher;
@@ -12,7 +6,7 @@ import kr.co.bizframe.crypto.DataLengthException;
 import kr.co.bizframe.crypto.params.KeyParameter;
 
 /**
- * DES 기본 구현 엔진
+ * a class that provides a basic DES engine.
  */
 public class DESEngine implements BlockCipher {
 
@@ -21,11 +15,21 @@ public class DESEngine implements BlockCipher {
 	private int[] workingKey = null;
 
 	/**
-	 * 기본 생성자
+	 * standard constructor.
 	 */
 	public DESEngine() {
 	}
 
+	/**
+	 * initialise a DES cipher.
+	 * 
+	 * @param encrypting
+	 *            whether or not we are for encryption.
+	 * @param params
+	 *            the parameters required to set up the cipher.
+	 * @exception IllegalArgumentException
+	 *                if the params argument is inappropriate.
+	 */
 	public void init(boolean encrypting, CipherParameters params) {
 		
 		if (params instanceof KeyParameter) {

@@ -1,16 +1,10 @@
-/**
- * Copyright (c) 2013-2014 Torpedo Corporations. All rights reserved.
- *
- * BizFrame and BizFrame-related trademarks and logos are
- * trademarks or registered trademarks of Torpedo Corporations
- */
 package kr.co.bizframe.crypto.digests;
 
 import kr.co.bizframe.crypto.ExtendedDigest;
 import kr.co.bizframe.crypto.util.Pack;
 
 /**
- * SHA-384와 SHA-512를 위한 기본 클래스이다.
+ * Base class for SHA-384 and SHA-512.
  */
 public abstract class LongDigest implements ExtendedDigest {
 
@@ -28,7 +22,7 @@ public abstract class LongDigest implements ExtendedDigest {
 	private int wOff;
 
 	/**
-	 * 기본 생성자
+	 * Constructor for variable length word
 	 */
 	protected LongDigest() {
 		xBuf = new byte[8];
@@ -38,9 +32,8 @@ public abstract class LongDigest implements ExtendedDigest {
 	}
 
 	/**
-	 * 복사 생성자
-	 * 
-	 * @param t 복사 대상
+	 * Copy constructor. We are using copy constructors in place of the
+	 * Object.clone() interface as this interface is not supported by J2ME.
 	 */
 	protected LongDigest(LongDigest t) {
 		xBuf = new byte[t.xBuf.length];
@@ -107,9 +100,6 @@ public abstract class LongDigest implements ExtendedDigest {
 		}
 	}
 
-	/**
-	 * 패딩 등의 최종 처리를 완료한다.
-	 */
 	public void finish() {
 		adjustByteCounts();
 
@@ -117,7 +107,7 @@ public abstract class LongDigest implements ExtendedDigest {
 		long hiBitLength = byteCount2;
 
 		//
-		// 패딩 바이트를 추가한다.
+		// add the pad bytes.
 		//
 		update((byte) 128);
 

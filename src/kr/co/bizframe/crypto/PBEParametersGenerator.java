@@ -1,15 +1,10 @@
-/**
- * Copyright (c) 2013-2014 Torpedo Corporations. All rights reserved.
- *
- * BizFrame and BizFrame-related trademarks and logos are
- * trademarks or registered trademarks of Torpedo Corporations
- */
 package kr.co.bizframe.crypto;
 
 import kr.co.bizframe.crypto.util.Strings;
 
 /**
- * 모든 PBE(Password Based Encryption) 매개변수 생성기에서 사용할 부모 클래스
+ * super class for all Password Based Encryption (PBE) parameter generator
+ * classes.
  */
 public abstract class PBEParametersGenerator {
 	protected byte[] password;
@@ -17,17 +12,21 @@ public abstract class PBEParametersGenerator {
 	protected int iterationCount;
 
 	/**
-	 * 기본 생성자
+	 * base constructor.
 	 */
 	protected PBEParametersGenerator() {
 	}
 
 	/**
-	 * PBE 생성기를 초기화한다.
-	 * 
-	 * @param password 비밀번호
-	 * @param salt salt
-	 * @param iterationCount 반복수
+	 * initialise the PBE generator.
+	 *
+	 * @param password
+	 *            the password converted into bytes (see below).
+	 * @param salt
+	 *            the salt to be mixed with the password.
+	 * @param iterationCount
+	 *            the number of iterations the "mixing" function is to be
+	 *            applied for.
 	 */
 	public void init(byte[] password, byte[] salt, int iterationCount) {
 		this.password = password;
@@ -36,63 +35,71 @@ public abstract class PBEParametersGenerator {
 	}
 
 	/**
-	 * 설정한 비밀번호를 반환한다.
+	 * return the password byte array.
 	 *
-	 * @return 설정한 비밀번호
+	 * @return the password byte array.
 	 */
 	public byte[] getPassword() {
 		return password;
 	}
 
 	/**
-	 * 설정한 salt를 반환한다.
+	 * return the salt byte array.
 	 *
-	 * @return 설정한 salt
+	 * @return the salt byte array.
 	 */
 	public byte[] getSalt() {
 		return salt;
 	}
 
 	/**
-	 * 설정한 반복수를 반환한다.
+	 * return the iteration count.
 	 *
-	 * @return 설정한 반복수
+	 * @return the iteration count.
 	 */
 	public int getIterationCount() {
 		return iterationCount;
 	}
 
 	/**
-	 * 주어진 키 길이에 따라 유도된 매개변수를 생성한다.
+	 * generate derived parameters for a key of length keySize.
 	 *
-	 * @param keySize 키 길이 (비트)
-	 * @return 생성된 매개변수
+	 * @param keySize
+	 *            the length, in bits, of the key required.
+	 * @return a parameters object representing a key.
 	 */
 	public abstract CipherParameters generateDerivedParameters(int keySize);
 
 	/**
-	 * 주어진 키/IV 길이에 따라 유도된 매개변수를 생성한다.
+	 * generate derived parameters for a key of length keySize, and an
+	 * initialisation vector (IV) of length ivSize.
 	 *
-	 * @param keySize 키 길이 (비트)
-	 * @param ivSize IV 길이 (비트)
-	 * @return 생성된 매개변수
+	 * @param keySize
+	 *            the length, in bits, of the key required.
+	 * @param ivSize
+	 *            the length, in bits, of the iv required.
+	 * @return a parameters object representing a key and an IV.
 	 */
 	public abstract CipherParameters generateDerivedParameters(int keySize,
 			int ivSize);
 
 	/**
-	 * 주어진 키/IV 길이에 따라 유도된 MAC 매개변수를 생성한다.
+	 * generate derived parameters for a key of length keySize, specifically for
+	 * use with a MAC.
 	 *
-	 * @param keySize 키 길이 (비트)
-	 * @return 생성된 매개변수
+	 * @param keySize
+	 *            the length, in bits, of the key required.
+	 * @return a parameters object representing a key.
 	 */
 	public abstract CipherParameters generateDerivedMacParameters(int keySize);
 
 	/**
-	 * PKCS #5에 따라 ASCII 문자 배열을 바이트 배열로 변환한다.
+	 * converts a password to a byte array according to the scheme in PKCS5
+	 * (ascii, no padding)
 	 *
-	 * @param password ASCII 문자 배열
-	 * @return 변환된 바이트 배열
+	 * @param password
+	 *            a character array reqpresenting the password.
+	 * @return a byte array representing the password.
 	 */
 	public static byte[] PKCS5PasswordToBytes(char[] password) {
 		byte[] bytes = new byte[password.length];
@@ -105,21 +112,24 @@ public abstract class PBEParametersGenerator {
 	}
 
 	/**
-	 * PKCS #5에 따라 UTF-8 문자 배열을 바이트 배열로 변환한다.
+	 * converts a password to a byte array according to the scheme in PKCS5
+	 * (UTF-8, no padding)
 	 *
-	 * @param password UTF-8 문자 배열
-	 * @return 변환된 바이트 배열
+	 * @param password
+	 *            a character array reqpresenting the password.
+	 * @return a byte array representing the password.
 	 */
 	public static byte[] PKCS5PasswordToUTF8Bytes(char[] password) {
 		return Strings.toUTF8ByteArray(password);
 	}
 
 	/**
-	 * PKCS #12에 따라 (2개의 패드 바이트가 끝에 추가된) 유니코드(빅 엔디안) 배열을 
-	 * 바이트 배열로 변환한다.
+	 * converts a password to a byte array according to the scheme in PKCS12
+	 * (unicode, big endian, 2 zero pad bytes at the end).
 	 *
-	 * @param password 유니코드(빅 엔디안) 문자 배열
-	 * @return 변환된 바이트 배열
+	 * @param password
+	 *            a character array representing the password.
+	 * @return a byte array representing the password.
 	 */
 	public static byte[] PKCS12PasswordToBytes(char[] password) {
 		if (password.length > 0) {

@@ -1,9 +1,3 @@
-/**
- * Copyright (c) 2013-2014 Torpedo Corporations. All rights reserved.
- *
- * BizFrame and BizFrame-related trademarks and logos are
- * trademarks or registered trademarks of Torpedo Corporations
- */
 package kr.co.bizframe.crypto;
 
 import java.util.HashMap;
@@ -12,81 +6,39 @@ import java.util.Map;
 import kr.co.bizframe.crypto.ciphers.CipherManager;
 import kr.co.bizframe.crypto.digests.DigestManager;
 
-/**
- * 지원하는 알고리즘을 담고 있는 클래스
- */
+
 public class Algorithms {
 
 	public static enum Type {
-		/**
-		 * 블록 암호 알고리즘
-		 */
-		BLOCK_CIPHER, 
-		
-		/**
-		 * 운용 모드
-		 */
-		MODE, 
-		
-		/**
-		 * 메시지 인증 코드
-		 */
-		MAC,
-		
-		/**
-		 * 해쉬 함수
-		 */
-		DIGEST
+		BLOCK_CIPHER, MODE, MAC, DIGEST
 	}
 
-	private Map<String, Algorithm> algorithms = new HashMap<String, Algorithm>();
+	private Map<String, Algorithm> algorithms =new HashMap<String, Algorithm>();
 
-	/**
-	 * 블록 암호 알고리즘을 추가한다.
-	 * 
-	 * @param name 블록 암호 알고리즘명
-	 * @param clazz 블록 암호 알고리즘 구현 클래스
-	 */
-	public void addBlockCipher(String name, Class<? extends BlockCipher> clazz) {
+	public void addBlockCipher(String name, Class<? extends BlockCipher> clazz){
+
 		Algorithm algo = new BlockCipherAlgorithm(name, Type.BLOCK_CIPHER, clazz, null);
 		algorithms.put(name, algo);
 	}
 
-	/**
-	 * 블록 암호 알고리즘을 추가한다.
-	 * 
-	 * @param name 블록 암호 알고리즘명
-	 * @param clazz 블록 암호 알고리즘 구현 클래스
-	 * @param mode 운용 모드
-	 */
-	public void addBlockCipher(String name, Class<? extends BlockCipher> clazz, 
-			Class<? extends BlockCipher> mode) {
+	public void addBlockCipher(String name, Class<? extends BlockCipher> clazz,
+			Class<? extends BlockCipher> mode){
+
 		BlockCipherAlgorithm algo = new BlockCipherAlgorithm(name, Type.BLOCK_CIPHER, clazz, mode);
 		algorithms.put(name, algo);
 	}
 
-	/**
-	 * 해쉬 함수를 추가한다.
-	 * 
-	 * @param name 해쉬 함수명
-	 * @param clazz 해쉬 함수 구현 클래스
-	 */
-	public void addDigest(String name, Class<? extends Digest> clazz) {
+	public void addDigest(String name, Class<? extends Digest> clazz){
+
 		DigestAlgorithm algo = new DigestAlgorithm(name, Type.DIGEST, clazz);
 		algorithms.put(name, algo);
 	}
 
-	/**
-	 * 주어진 알고리즘명에 해당하는 블록 암호 알고리즘 구현을 반환한다.
-	 * 
-	 * @param name 블록 암호 알고리즘명
-	 * @return 해당하는 알고리즘에 대한 구현
-	 * @throws NullPointerException 해당 알고리즘명이 등록되어 있지 않은 경우
-	 * @throws IllegalStateException 해당 알고리즘에 대한 구현체를 생성할 수 없는 경우
-	 */
-	public CipherManager getBlockCipher(String name) {
-		BlockCipherAlgorithm algo = (BlockCipherAlgorithm) algorithms.get(name);
-		if (algo == null) {
+
+	public CipherManager getBlockCipher(String name){
+
+		BlockCipherAlgorithm algo =  (BlockCipherAlgorithm)algorithms.get(name);
+		if(algo == null){
 			throw new NullPointerException("algorithm is null");
 		}
 
@@ -94,38 +46,33 @@ public class Algorithms {
 		Class<? extends BlockCipher> modeClass = algo.getModeClass();
 
 		BlockCipher cipher = null;
-		try {
+		try{
 			cipher = blockClass.newInstance();
-			if (modeClass != null)
-				cipher = modeClass.getConstructor(blockClass).newInstance(cipher);
 
-		} catch (Exception e) {
-			throw new IllegalStateException(e);
+			if(modeClass != null)
+			cipher = modeClass.getConstructor(blockClass).newInstance(cipher);
+
+		}catch(Exception e){
+			e.printStackTrace();
 		}
 		CipherManager manager = new CipherManager(cipher);
 		return manager;
 	}
 
-	/**
-	 * 주어진 알고리즘명에 해당하는 해쉬 함수 구현을 반환한다.
-	 * 
-	 * @param name 해쉬 함수 알고리즘명
-	 * @return 해당하는 알고리즘에 대한 구현
-	 * @throws NullPointerException 해당 알고리즘명이 등록되어 있지 않은 경우
-	 * @throws IllegalStateException 해당 알고리즘에 대한 구현체를 생성할 수 없는 경우
-	 */
-	public DigestManager getDigest(String name) {
-		DigestAlgorithm algo = (DigestAlgorithm) algorithms.get(name);
-		if (algo == null) {
-			throw new NullPointerException("algorithm=[" + name + "] is not supported.");
+
+	public DigestManager getDigest(String name){
+
+		DigestAlgorithm algo =  (DigestAlgorithm)algorithms.get(name);
+		if(algo == null){
+			throw new NullPointerException("algorithm=["+name+"] is not supported.");
 		}
 
 		Class<? extends Digest> digestClass = algo.getDigestClass();
 		Digest digest = null;
-		try {
+		try{
 			digest = digestClass.newInstance();
-		} catch (Exception e) {
-			throw new IllegalStateException(e);
+		}catch(Exception e){
+			e.printStackTrace();
 		}
 
 		DigestManager manager = new DigestManager(digest);
@@ -137,13 +84,13 @@ public class Algorithms {
 		private String name;
 		private Type type;
 
-		public Algorithm(String name, Type type) {
+		public Algorithm(String name, Type type){
 			this.name = name;
 			this.type = type;
 		}
 
 		public String getName() {
-			return name;
+ 			return name;
 		}
 
 		public Type getType() {
@@ -158,10 +105,11 @@ public class Algorithms {
 
 		private Class<? extends BlockCipher> modeClass;
 
-		public BlockCipherAlgorithm(String name, Type type, 
-				Class<? extends BlockCipher> clazz, Class<? extends BlockCipher> mode) {
+		public BlockCipherAlgorithm(String name, Type type,
+				Class<? extends BlockCipher> clazz, Class<? extends BlockCipher> mode){
+
 			super(name, type);
-			this.blockClass = clazz;
+			this.blockClass  = clazz;
 			this.modeClass = mode;
 		}
 
@@ -179,10 +127,12 @@ public class Algorithms {
 
 		private Class<? extends Digest> digestClass;
 
-		public DigestAlgorithm(String name, Type type, Class<? extends Digest> clazz) {
+		public DigestAlgorithm(String name, Type type, 	Class<? extends Digest> clazz){
+
 			super(name, type);
-			this.digestClass = clazz;
+			this.digestClass  = clazz;
 		}
+
 
 		public Class<? extends Digest> getDigestClass() {
 			return digestClass;

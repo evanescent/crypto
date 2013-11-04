@@ -1,30 +1,15 @@
-/**
- * Copyright (c) 2013-2014 Torpedo Corporations. All rights reserved.
- *
- * BizFrame and BizFrame-related trademarks and logos are
- * trademarks or registered trademarks of Torpedo Corporations
- */
 package kr.co.bizframe.crypto.params;
 
 import java.math.BigInteger;
 
 import kr.co.bizframe.crypto.util.Arrays;
 
-/**
- * 
- */
 public class KCDSAValidationParameters {
 
 	private BigInteger          j;
     private byte[]              seed;
     private int                 counter;
 
-    /**
-     * 
-     * @param j
-     * @param seed
-     * @param counter
-     */
     public KCDSAValidationParameters(
     	BigInteger  j,
         byte[]      seed,
@@ -35,27 +20,15 @@ public class KCDSAValidationParameters {
         this.counter = counter;
     }
 
-    /**
-     * 
-     * @return
-     */
     public BigInteger getJ() {
     	return j;
     }
 
-    /**
-     * 
-     * @return
-     */
     public byte[] getSeed()
     {
         return seed;
     }
 
-    /**
-     * 
-     * @return
-     */
     public int getCounter()
     {
         return counter;

@@ -1,9 +1,3 @@
-/**
- * Copyright (c) 2013-2014 Torpedo Corporations. All rights reserved.
- *
- * BizFrame and BizFrame-related trademarks and logos are
- * trademarks or registered trademarks of Torpedo Corporations
- */
 package kr.co.bizframe.crypto.ciphers;
 
 import javax.crypto.BadPaddingException;
@@ -20,53 +14,32 @@ import kr.co.bizframe.crypto.paddings.PaddedBufferedBlockCipher;
 import kr.co.bizframe.crypto.params.KeyParameter;
 import kr.co.bizframe.crypto.params.ParametersWithIV;
 
-/**
- * 
- */
 public class CipherManager {
 
 	private BlockCipher baseEngine;
 
 	private GenericBlockCipher cipher;
 
-	/**
-	 * 
-	 * @param engine
-	 */
-	public CipherManager(BlockCipher engine) {
+	public CipherManager(BlockCipher engine){
 		this.baseEngine = engine;
 		this.cipher = new BufferedGenericBlockCipher(engine);
 	}
 
-	/**
-	 * 
-	 * @param encrypting
-	 * @param keyBytes
-	 */
-	public void init(boolean encrypting, byte[] keyBytes) {
+	public void init(boolean encrypting,byte[] keyBytes){
+
 		KeyParameter key = new KeyParameter(keyBytes);
 		cipher.init(encrypting, key);
 	}
 
-	/**
-	 * 
-	 * @param encrypting
-	 * @param keyBytes
-	 * @param ivBytes
-	 */
-	public void init(boolean encrypting, byte[] keyBytes, byte[] ivBytes) {
+
+	public void init(boolean encrypting, byte[] keyBytes, byte[] ivBytes){
+
 		KeyParameter key = new KeyParameter(keyBytes);
 		ParametersWithIV iv = new ParametersWithIV(key, ivBytes);
 		cipher.init(encrypting, iv);
 	}
 
-	/**
-	 * 
-	 * @param input
-	 * @param inputOffset
-	 * @param inputLen
-	 * @return
-	 */
+
 	public byte[] update(byte[] input, int inputOffset, int inputLen) {
 		int length = cipher.getUpdateOutputSize(inputLen);
 
@@ -91,36 +64,16 @@ public class CipherManager {
 		return null;
 	}
 
-	/**
-	 * 
-	 * @param input
-	 * @param inputOffset
-	 * @param inputLen
-	 * @param output
-	 * @param outputOffset
-	 * @return
-	 * @throws ShortBufferException
-	 */
-	public int update(
-			byte[] input, int inputOffset, int inputLen, 
+	public int update(byte[] input, int inputOffset, int inputLen,
 			byte[] output, int outputOffset) throws ShortBufferException {
 		try {
-			return cipher.processBytes(
-					input, inputOffset, inputLen, output, outputOffset);
+			return cipher.processBytes(input, inputOffset, inputLen, output,
+					outputOffset);
 		} catch (DataLengthException e) {
 			throw new ShortBufferException(e.getMessage());
 		}
 	}
 
-	/**
-	 * 
-	 * @param input
-	 * @param inputOffset
-	 * @param inputLen
-	 * @return
-	 * @throws IllegalBlockSizeException
-	 * @throws BadPaddingException
-	 */
 	public byte[] doFinal(byte[] input, int inputOffset, int inputLen)
 			throws IllegalBlockSizeException, BadPaddingException {
 		int len = 0;
@@ -149,26 +102,14 @@ public class CipherManager {
 		return out;
 	}
 
-	/**
-	 * 
-	 * @param input
-	 * @param inputOffset
-	 * @param inputLen
-	 * @param output
-	 * @param outputOffset
-	 * @return
-	 * @throws IllegalBlockSizeException
-	 * @throws BadPaddingException
-	 */
-	public int doFinal(
-			byte[] input, int inputOffset, int inputLen,
+	public int doFinal(byte[] input, int inputOffset, int inputLen,
 			byte[] output, int outputOffset) throws IllegalBlockSizeException,
 			BadPaddingException {
 		int len = 0;
 
 		if (inputLen != 0) {
-			len = cipher.processBytes(
-					input, inputOffset, inputLen, output, outputOffset);
+			len = cipher.processBytes(input, inputOffset, inputLen, output,
+					outputOffset);
 		}
 
 		try {
@@ -203,8 +144,8 @@ public class CipherManager {
 				throws IllegalStateException, InvalidCipherTextException;
 	}
 
-	private static class BufferedGenericBlockCipher 
-		implements GenericBlockCipher {
+	private static class BufferedGenericBlockCipher implements
+			GenericBlockCipher {
 
 		private BufferedBlockCipher cipher;
 

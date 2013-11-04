@@ -1,9 +1,3 @@
-/**
- * Copyright (c) 2013-2014 Torpedo Corporations. All rights reserved.
- *
- * BizFrame and BizFrame-related trademarks and logos are
- * trademarks or registered trademarks of Torpedo Corporations
- */
 package kr.co.bizframe.crypto.generators;
 
 import java.math.BigInteger;
@@ -45,9 +39,9 @@ public class KCDSAParametersGenerator {
 	}
 
 	/*
-	 * [TTAS.KO-12.001/R1] í‘œì¤€ì— ë”°ë¥´ë©´(<b>ë¶€ê¸° 3.2 ì†Œìˆ˜ P, Q ìƒì„± ì•Œê³ ë¦¬ì¦˜</b>)
-	 * countê°€ 2<sup>24</sup>(16777216) ë³´ë‹¤ í´ ê²½ìš° ë‹¤ì‹œ ì‹œì‘í•˜ë„ë¡ ê¸°ìˆ í•˜ê³  ìˆì§€ë§Œ,
-	 * íš¨ìœ¨ì´ ë–¨ì–´ì ¸ 2<sup>16</sup>(65536)ë¡œ ë‚®ì¶”ì–´ êµ¬í˜„í•¨.
+	 * [TTAS.KO-12.001/R1] Ç¥ÁØ¿¡ µû¸£¸é(<b>ºÎ±â 3.2 ¼Ò¼ö P, Q »ı¼º ¾Ë°í¸®Áò</b>)
+	 * count°¡ 2<sup>24</sup>(16777216) º¸´Ù Å¬ °æ¿ì ´Ù½Ã ½ÃÀÛÇÏµµ·Ï ±â¼úÇÏ°í ÀÖÁö¸¸,
+	 * È¿À²ÀÌ ¶³¾îÁ® 2<sup>16</sup>(65536)·Î ³·Ãß¾î ±¸ÇöÇÔ.
 	 */
 	public KCDSAParameters generateParameters() {
 		BigInteger p = null, q = null, j = null, g = null;

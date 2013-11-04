@@ -1,9 +1,3 @@
-/**
- * Copyright (c) 2013-2014 Torpedo Corporations. All rights reserved.
- *
- * BizFrame and BizFrame-related trademarks and logos are
- * trademarks or registered trademarks of Torpedo Corporations
- */
 package kr.co.bizframe.crypto.ciphers;
 
 import kr.co.bizframe.crypto.BlockCipher;
@@ -11,9 +5,6 @@ import kr.co.bizframe.crypto.CipherParameters;
 import kr.co.bizframe.crypto.DataLengthException;
 import kr.co.bizframe.crypto.params.KeyParameter;
 
-/**
- * 
- */
 public class ARIAEngine implements BlockCipher {
 
 	private static final byte[][] S1 = new byte[][] {

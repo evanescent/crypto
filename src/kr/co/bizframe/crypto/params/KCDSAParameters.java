@@ -1,18 +1,10 @@
-/**
- * Copyright (c) 2013-2014 Torpedo Corporations. All rights reserved.
- *
- * BizFrame and BizFrame-related trademarks and logos are
- * trademarks or registered trademarks of Torpedo Corporations
- */
 package kr.co.bizframe.crypto.params;
 
 import java.math.BigInteger;
 
 import kr.co.bizframe.crypto.CipherParameters;
 
-/**
- * 
- */
+
 public class KCDSAParameters
 	implements CipherParameters {
 
@@ -21,12 +13,6 @@ public class KCDSAParameters
     private BigInteger              p;
     private KCDSAValidationParameters   validation;
 
-    /**
-     * 
-     * @param p
-     * @param q
-     * @param g
-     */
     public KCDSAParameters(
         BigInteger  p,
         BigInteger  q,
@@ -37,13 +23,6 @@ public class KCDSAParameters
         this.q = q;
     }
 
-    /**
-     * 
-     * @param p
-     * @param q
-     * @param g
-     * @param params
-     */
     public KCDSAParameters(
         BigInteger              p,
         BigInteger              q,
@@ -56,37 +35,21 @@ public class KCDSAParameters
         this.validation = params;
     }
 
-    /**
-     * 
-     * @return
-     */
     public BigInteger getP()
     {
         return p;
     }
 
-    /**
-     * 
-     * @return
-     */
     public BigInteger getQ()
     {
         return q;
     }
 
-    /**
-     * 
-     * @return
-     */
     public BigInteger getG()
     {
         return g;
     }
 
-    /**
-     * 
-     * @return
-     */
     public KCDSAValidationParameters getValidationParams()
     {
         return validation;

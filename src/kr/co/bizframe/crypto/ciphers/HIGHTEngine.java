@@ -1,19 +1,11 @@
-/**
- * Copyright (c) 2013-2014 Torpedo Corporations. All rights reserved.
- *
- * BizFrame and BizFrame-related trademarks and logos are
- * trademarks or registered trademarks of Torpedo Corporations
- */
 package kr.co.bizframe.crypto.ciphers;
 
 import kr.co.bizframe.crypto.BlockCipher;
 import kr.co.bizframe.crypto.CipherParameters;
 import kr.co.bizframe.crypto.DataLengthException;
 import kr.co.bizframe.crypto.params.KeyParameter;
+import kr.co.bizframe.crypto.util.ByteUtil;
 
-/**
- * HIGHT에 대한 기본 구현 엔진
- */
 public class HIGHTEngine implements BlockCipher {
 
 	private static final int BLOCK_SIZE = 8;
@@ -118,7 +110,7 @@ public class HIGHTEngine implements BlockCipher {
     };
 
 	/**
-	 * 기본 생성자 - 64비트 블록
+	 * default constructor - 64 bit block size.
 	 */
 	public HIGHTEngine() {
 	}
@@ -303,5 +295,49 @@ public class HIGHTEngine implements BlockCipher {
 	    dst[dstIndex + 4] = (byte) (dst[dstIndex + 4] - WK[2]);
 	    dst[dstIndex + 6] = (byte) (dst[dstIndex + 6] ^ WK[3]);
     }
-	
+
+	public static void main(String[] args) {
+
+//		byte[] key = new byte [] { (byte) 0xff, (byte) 0xee, (byte) 0xdd, (byte) 0xcc, (byte) 0xbb, (byte) 0xaa, (byte) 0x99, (byte) 0x88, (byte) 0x77, (byte) 0x66, (byte) 0x55, (byte) 0x44, (byte) 0x33, (byte) 0x22, (byte) 0x11, (byte) 0x00 };
+//		byte[] p = new byte[] { (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00 };
+
+		//byte[] key = new byte [] { (byte) 0x00, (byte) 0x11, (byte) 0x22, (byte) 0x33, (byte) 0x44, (byte) 0x55, (byte) 0x66, (byte) 0x77, (byte) 0x88, (byte) 0x99, (byte) 0xaa, (byte) 0xbb, (byte) 0xcc, (byte) 0xdd, (byte) 0xee, (byte) 0xff };
+		//byte[] p = new byte[] { (byte) 0x77, (byte) 0x66, (byte) 0x55, (byte) 0x44, (byte) 0x33, (byte) 0x22,(byte) 0x11, (byte) 0x00 };
+
+		byte[] key = { (byte) 0x0f, (byte) 0x0e, (byte) 0x0d, (byte) 0x0c, (byte) 0x0b, (byte) 0x0a, (byte) 0x09, (byte) 0x08, (byte) 0x07, (byte) 0x06, (byte) 0x05, (byte) 0x04, (byte) 0x03, (byte) 0x02, (byte) 0x01, (byte) 0x00 };
+		byte[] p = { (byte) 0xef, (byte) 0xcd, (byte) 0xab, (byte) 0x89, (byte) 0x67, (byte) 0x45, (byte) 0x23, (byte) 0x01 };
+
+//		byte[] key = { (byte) 0xe7, (byte) 0x2b, (byte) 0x42, (byte) 0x1d, (byte) 0xb1, (byte) 0x09, (byte) 0xa5, (byte) 0xcf, (byte) 0x7d, (byte) 0xd8, (byte) 0xff, (byte) 0x49, (byte) 0xbc, (byte) 0xc3, (byte) 0xdb, (byte) 0x28 };
+//		byte[] p = { (byte) 0x14,(byte) 0x4a,(byte) 0xa8,(byte) 0xeb,(byte) 0xe2,(byte) 0x6b,(byte) 0x1e,(byte) 0xb4 };
+
+
+		System.out.println(toHexString(key));
+		System.out.println(ByteUtil.toHexString(key));
+
+		HIGHTEngine e = new HIGHTEngine();
+		e.MK = key;
+		e.setKey();
+		byte[] c = new byte[8];
+		e.encryptBlock(p, 0, c, 0);
+		System.out.println(toHexString(c));
+
+		e.MK = key;
+		e.setKey();
+		byte[] d = new byte[8];
+		e.decryptBlock(c, 0, d, 0);
+		System.out.println(toHexString(d));
+	}
+
+	public static String HEX = "0123456789abcdef";
+
+	public static String toHexString(byte[] b) {
+		StringBuffer sb = new StringBuffer();
+
+		for(int i = b.length - 1; i >= 0; i--) {
+			sb.append( HEX.charAt( (b[i] >> 4) & 0x0f ) );
+			sb.append( HEX.charAt( (b[i]) & 0x0f ) );
+		}
+
+		return sb.toString();
+	}
 }

@@ -1,13 +1,12 @@
-/**
- * Copyright (c) 2013-2014 Torpedo Corporations. All rights reserved.
- *
- * BizFrame and BizFrame-related trademarks and logos are
- * trademarks or registered trademarks of Torpedo Corporations
- */
 package kr.co.bizframe.crypto;
 
 /**
- * {@link kr.co.bizframe.crypto.BlockCipher}에 대한 래퍼 클래스
+ * A wrapper class that allows block ciphers to be used to process data in a
+ * piecemeal fashion. The BufferedBlockCipher outputs a block only when the
+ * buffer is full and more data is being added, or on a doFinal.
+ * <p>
+ * Note: in the case where the underlying cipher is either a CFB cipher or an
+ * OFB one the last block may not be a multiple of the block size.
  */
 public class BufferedBlockCipher {
 
@@ -21,15 +20,16 @@ public class BufferedBlockCipher {
 	protected boolean pgpCFB;
 
 	/**
-	 * 서브클래싱을 위한 기본 생성자
+	 * constructor for subclasses
 	 */
 	protected BufferedBlockCipher() {
 	}
 
 	/**
-	 * 패딩을 적용하지 않은 버퍼 블록 암호 엔징을 생성한다.
+	 * Create a buffered block cipher without padding.
 	 * 
-	 * @param cipher 버퍼링을 적용할 블록 암호 엔진
+	 * @param cipher
+	 *            the underlying block cipher this buffering object wraps.
 	 */
 	public BufferedBlockCipher(BlockCipher cipher) {
 
@@ -58,43 +58,52 @@ public class BufferedBlockCipher {
 	}
 
 	/**
-	 * 감싸진 대상 암호 엔진을 반환한다.
+	 * return the cipher this object wraps.
 	 * 
-	 * @return 감싸진 대상 암호 엔진을 반환
+	 * @return the cipher this object wraps.
 	 */
 	public BlockCipher getUnderlyingCipher() {
 		return cipher;
 	}
 
 	/**
-	 * 엔진 초기화 시에 호출한다.
-	 *  
-	 * @param forEncryption 암호화 여부, <code>true</code>면 암호화, 
-	 *                      <code>false</code>면 복호화.
-	 * @param params 처리에 필요한 키와 기타 초기화 매개변수
-	 * @throws IllegalArgumentException 설정이 올바르지 않은 경우
+	 * initialise the cipher.
+	 * 
+	 * @param forEncryption
+	 *            if true the cipher is initialised for encryption, if false for
+	 *            decryption.
+	 * @param params
+	 *            the key and other data required by the cipher.
+	 * @exception IllegalArgumentException
+	 *                if the params argument is inappropriate.
 	 */
 	public void init(boolean forEncryption, CipherParameters params)
 			throws IllegalArgumentException {
+
 		this.forEncryption = forEncryption;
+
 		reset();
+
 		cipher.init(forEncryption, params);
 	}
 
 	/**
-	 * 블록 크기를 반환한다.
+	 * return the blocksize for the underlying cipher.
 	 * 
-	 * @return 블록 크기
+	 * @return the blocksize for the underlying cipher.
 	 */
 	public int getBlockSize() {
 		return cipher.getBlockSize();
 	}
 
 	/**
-	 * 업데이트 할 입력 바이트 배열의 길이로부터 필요한 출력 버퍼의 크기를 반환한다.
+	 * return the size of the output buffer required for an update an input of
+	 * len bytes.
 	 * 
-	 * @param len 입력 바이트 배열의 크기
-	 * @return 업데이트에 필요한 출력 버퍼의 크기
+	 * @param len
+	 *            the length of the input.
+	 * @return the space required to accommodate a call to update with len bytes
+	 *         of input.
 	 */
 	public int getUpdateOutputSize(int len) {
 
@@ -111,24 +120,34 @@ public class BufferedBlockCipher {
 	}
 
 	/**
-	 * 주어진 길이에 출력 버퍼를 더한 길이를 반환한다.
+	 * return the size of the output buffer required for an update plus a
+	 * doFinal with an input of 'length' bytes.
 	 * 
-	 * @param length 입력 길이
-	 * @return 주어진 길이에 출력 버퍼를 더한 길이
+	 * @param length
+	 *            the length of the input.
+	 * @return the space required to accommodate a call to update and doFinal
+	 *         with 'length' bytes of input.
 	 */
 	public int getOutputSize(int length) {
+		// Note: Can assume partialBlockOkay is true for purposes of this
+		// calculation
 		return length + bufOff;
 	}
 
 	/**
-	 * 단일 바이트에 대한 처리를 진행한다.
+	 * process a single byte, producing an output block if neccessary.
 	 * 
-	 * @param in 입력 바이트
-	 * @param out 출력 바이트 배열
-	 * @param outOff 출력 바이트 위치
-	 * @return 출력 바이트 결과에 복사된 길이
-	 * @exception DataLengthException 출력 바이트 배열이 충분치 않은 경우
-	 * @exception IllegalStateException 초기화되지 않은 경우
+	 * @param in
+	 *            the input byte.
+	 * @param out
+	 *            the space for any output that might be produced.
+	 * @param outOff
+	 *            the offset from which the output will be copied.
+	 * @return the number of output bytes copied to out.
+	 * @exception DataLengthException
+	 *                if there isn't enough space in out.
+	 * @exception IllegalStateException
+	 *                if the cipher isn't initialised.
 	 */
 	public int processByte(byte in, byte[] out, int outOff)
 			throws DataLengthException, IllegalStateException {
@@ -146,15 +165,23 @@ public class BufferedBlockCipher {
 	}
 
 	/**
-	 * 바이트 배열에 대한 처리를 진행한다.
+	 * process an array of bytes, producing output if necessary.
 	 * 
-	 * @param in 입력 바이트 배열
-	 * @param inOff 입력 바이트 위치
-	 * @param out 출력 바이트 배열
-	 * @param outOff 출력 바이트 위치
-	 * @return 출력 바이트 결과에 복사된 길이
-	 * @exception DataLengthException 출력 바이트 배열이 충분치 않은 경우
-	 * @exception IllegalStateException 초기화되지 않은 경우
+	 * @param in
+	 *            the input byte array.
+	 * @param inOff
+	 *            the offset at which the input data starts.
+	 * @param len
+	 *            the number of bytes to be copied out of the input array.
+	 * @param out
+	 *            the space for any output that might be produced.
+	 * @param outOff
+	 *            the offset from which the output will be copied.
+	 * @return the number of output bytes copied to out.
+	 * @exception DataLengthException
+	 *                if there isn't enough space in out.
+	 * @exception IllegalStateException
+	 *                if the cipher isn't initialised.
 	 */
 	public int processBytes(byte[] in, int inOff, int len, byte[] out,
 			int outOff) throws DataLengthException, IllegalStateException {
@@ -207,15 +234,22 @@ public class BufferedBlockCipher {
 	}
 
 	/**
-	 * 버퍼의 마지막 블록에 대한 처리를 진행한다.
+	 * Process the last block in the buffer.
 	 * 
-	 * @param out 출력 바이트 배열
-	 * @param outOff 출력 바이트 배열 위치
-	 * @return 출력 바이트 결과에 복사된 길이
-	 * @exception DataLengthException 출력 바이트 배열이 충분치 않은 경우
-	 * @exception IllegalStateException 초기화되지 않은 경우
-	 * @exception InvalidCipherTextException 패딩이 존재하지 않는 경우
-	 * @exception DataLengthException 블록 크기가 맞지 않는 경우
+	 * @param out
+	 *            the array the block currently being held is copied into.
+	 * @param outOff
+	 *            the offset at which the copying starts.
+	 * @return the number of output bytes copied to out.
+	 * @exception DataLengthException
+	 *                if there is insufficient space in out for the output, or
+	 *                the input is not block size aligned and should be.
+	 * @exception IllegalStateException
+	 *                if the underlying cipher is not initialised.
+	 * @exception InvalidCipherTextException
+	 *                if padding is expected and not found.
+	 * @exception DataLengthException
+	 *                if the input is not block size aligned.
 	 */
 	public int doFinal(byte[] out, int outOff) throws DataLengthException,
 			IllegalStateException, InvalidCipherTextException {
@@ -245,11 +279,12 @@ public class BufferedBlockCipher {
 	}
 
 	/**
-	 * 
+	 * Reset the buffer and cipher. After resetting the object is in the same
+	 * state as it was after the last init (if there was one).
 	 */
 	public void reset() {
 		//
-		// 버퍼를 비운다.
+		// clean the buffer.
 		//
 		for (int i = 0; i < buf.length; i++) {
 			buf[i] = 0;
@@ -258,7 +293,7 @@ public class BufferedBlockCipher {
 		bufOff = 0;
 
 		//
-		// 암호화 엔진을 리셋한다.
+		// reset the underlying cipher.
 		//
 		cipher.reset();
 	}

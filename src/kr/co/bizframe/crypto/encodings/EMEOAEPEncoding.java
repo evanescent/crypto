@@ -1,9 +1,3 @@
-/**
- * Copyright (c) 2013-2014 Torpedo Corporations. All rights reserved.
- *
- * BizFrame and BizFrame-related trademarks and logos are
- * trademarks or registered trademarks of Torpedo Corporations
- */
 package kr.co.bizframe.crypto.encodings;
 
 import java.security.SecureRandom;
@@ -168,7 +162,7 @@ public class EMEOAEPEncoding implements AsymmetricBlockCipher {
 		}
 
 		System.out.println("xxx block=" + ByteUtil.toHexString(block));
-		// engine ì•”í˜¸í™” ì ìš©
+		// engine ¾ÏÈ£È­ Àû¿ë
 		return engine.processBlock(block, 0, block.length);
 	}
 

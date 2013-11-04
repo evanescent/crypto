@@ -1,9 +1,3 @@
-/**
- * Copyright (c) 2013-2014 Torpedo Corporations. All rights reserved.
- *
- * BizFrame and BizFrame-related trademarks and logos are
- * trademarks or registered trademarks of Torpedo Corporations
- */
 package kr.co.bizframe.crypto.macs;
 
 import java.util.Hashtable;
@@ -35,7 +29,7 @@ public class HMac implements Mac {
 	private static Hashtable<String, Integer> blockLengths;
 
 	static {
-		blockLengths = new Hashtable<String, Integer>();
+		blockLengths= new Hashtable<String, Integer>();
 		blockLengths.put("MD5", new Integer(64));
 		blockLengths.put("SHA1", new Integer(64));
 		blockLengths.put("SHA256", new Integer(64));

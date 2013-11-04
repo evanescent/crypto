@@ -1,9 +1,3 @@
-/**
- * Copyright (c) 2013-2014 Torpedo Corporations. All rights reserved.
- *
- * BizFrame and BizFrame-related trademarks and logos are
- * trademarks or registered trademarks of Torpedo Corporations
- */
 package kr.co.bizframe.crypto.params;
 
 import java.math.BigInteger;
@@ -11,21 +5,11 @@ import java.security.SecureRandom;
 
 import kr.co.bizframe.crypto.KeyGenerationParameters;
 
-/**
- * 
- */
 public class RSAKeyGenerationParameters extends KeyGenerationParameters {
 
 	private BigInteger publicExponent;
 	private int certainty;
 
-	/**
-	 * 
-	 * @param publicExponent
-	 * @param random
-	 * @param strength
-	 * @param certainty
-	 */
 	public RSAKeyGenerationParameters(BigInteger publicExponent,
 			SecureRandom random, int strength, int certainty) {
 		super(random, strength);
@@ -45,18 +29,10 @@ public class RSAKeyGenerationParameters extends KeyGenerationParameters {
 		this.certainty = certainty;
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
 	public BigInteger getPublicExponent() {
 		return publicExponent;
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
 	public int getCertainty() {
 		return certainty;
 	}
