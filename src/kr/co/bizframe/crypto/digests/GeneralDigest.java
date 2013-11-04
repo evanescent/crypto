@@ -1,10 +1,15 @@
+/**
+ * Copyright (c) 2013-2014 Torpedo Corporations. All rights reserved.
+ *
+ * BizFrame and BizFrame-related trademarks and logos are
+ * trademarks or registered trademarks of Torpedo Corporations
+ */
 package kr.co.bizframe.crypto.digests;
 
 import kr.co.bizframe.crypto.ExtendedDigest;
 
 /**
- * base implementation of MD4 family style digest as outlined in
- * "Handbook of Applied Cryptography", pages 344 - 347.
+ * MD4의 기본 구현. 기타 MD4 family의 골자가 된다.
  */
 public abstract class GeneralDigest implements ExtendedDigest {
 
@@ -15,7 +20,7 @@ public abstract class GeneralDigest implements ExtendedDigest {
 	private long byteCount;
 
 	/**
-	 * Standard constructor
+	 * 기본 생성자
 	 */
 	protected GeneralDigest() {
 		xBuf = new byte[4];
@@ -23,8 +28,9 @@ public abstract class GeneralDigest implements ExtendedDigest {
 	}
 
 	/**
-	 * Copy constructor. We are using copy constructors in place of the
-	 * Object.clone() interface as this interface is not supported by J2ME.
+	 * 복사 생성자
+	 * 
+	 * @param t 복사 대상
 	 */
 	protected GeneralDigest(GeneralDigest t) {
 		xBuf = new byte[t.xBuf.length];
@@ -47,7 +53,7 @@ public abstract class GeneralDigest implements ExtendedDigest {
 
 	public void update(byte[] in, int inOff, int len) {
 		//
-		// fill the current word
+		// 현재 단어를 채운다.
 		//
 		while ((xBufOff != 0) && (len > 0)) {
 			update(in[inOff]);
@@ -57,7 +63,7 @@ public abstract class GeneralDigest implements ExtendedDigest {
 		}
 
 		//
-		// process whole words.
+		// 모든 단어를 처리한다.
 		//
 		while (len > xBuf.length) {
 			processWord(in, inOff);
@@ -68,7 +74,7 @@ public abstract class GeneralDigest implements ExtendedDigest {
 		}
 
 		//
-		// load in the remainder.
+		// 남겨진 단어를 로드시킨다.
 		//
 		while (len > 0) {
 			update(in[inOff]);
@@ -78,11 +84,14 @@ public abstract class GeneralDigest implements ExtendedDigest {
 		}
 	}
 
+	/**
+	 * 패딩 등의 최종 처리를 완료한다.
+	 */
 	public void finish() {
 		long bitLength = (byteCount << 3);
 
 		//
-		// add the pad bytes.
+		// 패딩 바이트를 추가한다.
 		//
 		update((byte) 128);
 

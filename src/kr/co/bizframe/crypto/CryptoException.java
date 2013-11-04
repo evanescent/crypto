@@ -1,22 +1,26 @@
+/**
+ * Copyright (c) 2013-2014 Torpedo Corporations. All rights reserved.
+ *
+ * BizFrame and BizFrame-related trademarks and logos are
+ * trademarks or registered trademarks of Torpedo Corporations
+ */
 package kr.co.bizframe.crypto;
 
 /**
- * crypto ¸ğµâ¿¡ ÀÇÇØ ¹ß»ıÇÏ´Â ¿À·ù¿¡ ´ëÇÑ ±âº» Exception Å¬·¡½º
- *
+ * crypto ëª¨ë“ˆì— ì˜í•´ ë°œìƒí•˜ëŠ” ê¸°ë³¸ ì˜¤ë¥˜ í´ë˜ìŠ¤
  */
 public class CryptoException extends Exception {
 
 	/**
-	 * base constructor.
+	 * ê¸°ë³¸ ìƒì„±ì.
 	 */
 	public CryptoException() {
 	}
 
 	/**
-	 * create a CryptoException with the given message.
+	 * ì£¼ì–´ì§„ ë©”ì‹œì§€ë¥¼ ê°€ì§€ëŠ” ìƒì„±ì
 	 *
-	 * @param message
-	 *            the message to be carried with the exception.
+	 * @param message ì˜¤ë¥˜ê°€ ë‹´ê³  ìˆì„ ë©”ì‹œì§€
 	 */
 	public CryptoException(String message) {
 		super(message);

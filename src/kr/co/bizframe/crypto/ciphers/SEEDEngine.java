@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2013-2014 Torpedo Corporations. All rights reserved.
+ *
+ * BizFrame and BizFrame-related trademarks and logos are
+ * trademarks or registered trademarks of Torpedo Corporations
+ */
 package kr.co.bizframe.crypto.ciphers;
 
 import kr.co.bizframe.crypto.BlockCipher;
@@ -5,9 +11,8 @@ import kr.co.bizframe.crypto.CipherParameters;
 import kr.co.bizframe.crypto.DataLengthException;
 import kr.co.bizframe.crypto.params.KeyParameter;
 
-
 /**
- * Implementation of the SEED algorithm as described in RFC 4009
+ * SEED(RFC 4009)에 대한 기본 구현 엔진
  */
 public class SEEDEngine  implements BlockCipher {
 
@@ -167,7 +172,8 @@ public class SEEDEngine  implements BlockCipher {
     private int[] wKey;
     private boolean forEncryption;
 
-    public void init(boolean forEncryption, CipherParameters params) throws IllegalArgumentException {
+    public void init(boolean forEncryption, CipherParameters params) 
+    		throws IllegalArgumentException {
         this.forEncryption = forEncryption;
         wKey = createWorkingKey(((KeyParameter)params).getKey());
     }

@@ -1,9 +1,13 @@
+/**
+ * Copyright (c) 2013-2014 Torpedo Corporations. All rights reserved.
+ *
+ * BizFrame and BizFrame-related trademarks and logos are
+ * trademarks or registered trademarks of Torpedo Corporations
+ */
 package kr.co.bizframe.crypto.digests;
 
-
-/*
- *
- *
+/**
+ * 
  */
 public class HAS160Digest extends GeneralDigest {
 
@@ -13,15 +17,16 @@ public class HAS160Digest extends GeneralDigest {
 	private int wOff;
 
 	/**
-	 * Standard constructor
+	 * 기본 생성자
 	 */
 	public HAS160Digest() {
 		reset();
 	}
 
 	/**
-	 * Copy constructor. This will copy the state of the provided message
-	 * digest.
+	 * 복사 생성자
+	 * 
+	 * @param t 복사 대상
 	 */
 	public HAS160Digest(HAS160Digest t) {
 		super(t);

@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2013-2014 Torpedo Corporations. All rights reserved.
+ *
+ * BizFrame and BizFrame-related trademarks and logos are
+ * trademarks or registered trademarks of Torpedo Corporations
+ */
 package kr.co.bizframe.crypto.ciphers;
 
 import kr.co.bizframe.crypto.BlockCipher;
@@ -5,47 +11,18 @@ import kr.co.bizframe.crypto.CipherParameters;
 import kr.co.bizframe.crypto.DataLengthException;
 import kr.co.bizframe.crypto.params.KeyParameter;
 
-
 /**
- * an implementation of the AES (Rijndael), from FIPS-197.
+ * FIPS-197에 따라 구현된 AES (Rijndael)의 구현이다.
  * <p>
- * For further details see: <a href="http://csrc.nist.gov/encryption/aes/">http://csrc.nist.gov/encryption/aes/</a>.
- *
- * This implementation is based on optimizations from Dr. Brian Gladman's paper and C code at
- * <a href="http://fp.gladman.plus.com/cryptography_technology/rijndael/">http://fp.gladman.plus.com/cryptography_technology/rijndael/</a>
- *
- * There are three levels of tradeoff of speed vs memory
- * Because java has no preprocessor, they are written as three separate classes from which to choose
- *
- * The fastest uses 8Kbytes of static tables to precompute round calculations, 4 256 word tables for encryption
- * and 4 for decryption.
- *
- * The middle performance version uses only one 256 word table for each, for a total of 2Kbytes,
- * adding 12 rotate operations per round to compute the values contained in the other tables from
- * the contents of the first
- *
- * The slowest version uses no static tables at all and computes the values in each round
+ * 보다 자세한 사항은 다음을 참조: 
+ * <a href="http://csrc.nist.gov/encryption/aes/">http://csrc.nist.gov/encryption/aes/</a>. 
  * <p>
- * This file contains the fast version with 8Kbytes of static tables for round precomputation
- *
- * FIPS-197 AES (Rijndael)의 구현체 
- * 좀더 자세한 사항을 참고할 수 있는 사이트 : <a href="http://csrc.nist.gov/encryption/aes/">http://csrc.nist.gov/encryption/aes/</a>.
  * 
- * Dr. Brian Gladman's paper 과 <a href="http://fp.gladman.plus.com/cryptography_technology/rijndael/">http://fp.gladman.plus.com/cryptography_technology/rijndael/</a>
- * 의 C code 에서 설명된 최적화를 기초로 구현되었다.
- * 
- * speed vs memory에 교환에 대한 3가지 단계가 있다.
- * 자바에는 전처리기가 없기 떄문에 3 단계에 대해 각각 분리된 클래스로 구현해 두었다.
- * 
- * 이미 계산된 순환 계산기에 고정된 테이블에서 8Kbytes 씩 빠른 사용을 위해 4256 단어의 테이블들은 암호화를 위해 4는 복호화를 위해 사용된다.
- * 
- * 보통의 퍼포먼스 버전에서는 오직 256 단어를 2Kybtes의 전체를 위해 한번만 사용되며  
- * 1 round 당 12번의 연산을 수행한다.
- *
+ * 최적화를 위해 각 라운드별 전처리된 8k 바이트의 불변 테이블이 포함되어 있다.
  */
 public class AESFastEngine implements BlockCipher {
 
-    // The S box ( 전방향 S Box )
+    // The S box
     private static final byte[] S = {
         (byte)99, (byte)124, (byte)119, (byte)123, (byte)242, (byte)107, (byte)111, (byte)197,
         (byte)48,   (byte)1, (byte)103,  (byte)43, (byte)254, (byte)215, (byte)171, (byte)118,
@@ -81,7 +58,7 @@ public class AESFastEngine implements BlockCipher {
         (byte)65, (byte)153,  (byte)45,  (byte)15, (byte)176,  (byte)84, (byte)187,  (byte)22,
     };
 
-    // The inverse S-box ( 역방향 S-box)
+    // The inverse S-box
     private static final byte[] Si = {
         (byte)82,   (byte)9, (byte)106, (byte)213,  (byte)48,  (byte)54, (byte)165,  (byte)56,
         (byte)191,  (byte)64, (byte)163, (byte)158, (byte)129, (byte)243, (byte)215, (byte)251,
@@ -612,11 +589,6 @@ public class AESFastEngine implements BlockCipher {
      * The number of calculations depends on key size and block size
      * AES specified a fixed block size of 128 bits and key sizes 128/192/256 bits
      * This code is written assuming those are the only possible values
-	 *
-	 * 필수 암호화키를 구한다.
-	 * AES의 평문의 사이즈는 128 bits 이며 암호화 키 사이즈는  128/192/256 bits이다.
-	 * 아래 메소드는 암호화키 값을 얻을 수 있다는 가정하에 암호화 키의 사이즈와 블록 사이즈에 의해 결정된다.
-	 * 
      */
     private int[][] generateWorkingKey(
                                     byte[] key,
@@ -688,25 +660,11 @@ public class AESFastEngine implements BlockCipher {
     private static final int BLOCK_SIZE = 16;
 
     /**
-     * default constructor - 128 bit block size.
+     * 기본 생성자 - 128 비트 블록
      */
     public AESFastEngine(){
     }
 
-    /**
-     * initialise an AES cipher.
-     *
-     * @param forEncryption whether or not we are for encryption.
-     * @param params the parameters required to set up the cipher.
-     * @exception IllegalArgumentException if the params argument is
-     * inappropriate.
-	 *
-	 * AES cipher 초기화
-	 *
-	 * @param forEncryption 암호화 여부
-	 * @param params cipher 초기화에 필요한 파라미터 값
-	 * @exception IllegalArgumentException params 값이 적절하지 않은 경우
-     */
     public void init(
         boolean           forEncryption,
         CipherParameters  params)
@@ -772,7 +730,6 @@ public class AESFastEngine implements BlockCipher {
     {
     }
 
-	
     private void unpackBlock(
         byte[]      bytes,
         int         off)

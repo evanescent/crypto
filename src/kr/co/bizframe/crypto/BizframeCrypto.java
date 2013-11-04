@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2013-2014 Torpedo Corporations. All rights reserved.
+ *
+ * BizFrame and BizFrame-related trademarks and logos are
+ * trademarks or registered trademarks of Torpedo Corporations
+ */
 package kr.co.bizframe.crypto;
 
 import kr.co.bizframe.crypto.ciphers.ARIAEngine;
@@ -15,17 +21,15 @@ public class BizframeCrypto {
 		init();
 	}
 
-
-	public void init(){
-		//°ËÁõ ´ë»ó ÇÔ¼ö·Îµù
+	public void init() {
+		// ê²€ì¦ ëŒ€ìƒ í•¨ìˆ˜ë¡œë”©
 		loadApproved();
 
-		//ºñ°ËÁõ ´ë»ó ÇÔ¼ö ·Îµù
-		loadUnApproved();
+		// ë¹„ê²€ì¦ ëŒ€ìƒ í•¨ìˆ˜ ë¡œë”©
+		loadUnapproved();
 	}
 
-	private void loadApproved(){
-
+	private void loadApproved() {
 		algos.addBlockCipher("SEED", SEEDEngine.class);
 		algos.addBlockCipher("ARIA", ARIAEngine.class);
 
@@ -39,17 +43,16 @@ public class BizframeCrypto {
 		algos.addDigest("SHA256", SHA1Digest.class);
 	}
 
-
-	private void loadUnApproved(){
+	private void loadUnapproved() {
 
 	}
 
-
-	public CipherManager getBlockCipher(String name){
+	public CipherManager getBlockCipher(String name) {
 		return algos.getBlockCipher(name);
 	}
 
-	public DigestManager getDigest(String name){
+	public DigestManager getDigest(String name) {
 		return algos.getDigest(name);
 	}
+	
 }

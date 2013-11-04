@@ -1,9 +1,15 @@
+/**
+ * Copyright (c) 2013-2014 Torpedo Corporations. All rights reserved.
+ *
+ * BizFrame and BizFrame-related trademarks and logos are
+ * trademarks or registered trademarks of Torpedo Corporations
+ */
 package kr.co.bizframe.crypto;
 
 import java.security.SecureRandom;
 
 /**
- * The base class for parameters to key generators.
+ * 키 생성기에 설정할 매개변수의 기본 클래스
  */
 public class KeyGenerationParameters {
 
@@ -11,13 +17,10 @@ public class KeyGenerationParameters {
 	private int strength;
 
 	/**
-	 * initialise the generator with a source of randomness and a strength (in
-	 * bits).
-	 *
-	 * @param random
-	 *            the random byte source.
-	 * @param strength
-	 *            the size, in bits, of the keys we want to produce.
+	 * 난수생성기와 강도(비트)를 설정한다.
+	 * 
+	 * @param random 난수생성기
+	 * @param strength 생성할 키가 가질 강도(비트)
 	 */
 	public KeyGenerationParameters(SecureRandom random, int strength) {
 		this.random = random;
@@ -25,18 +28,18 @@ public class KeyGenerationParameters {
 	}
 
 	/**
-	 * return the random source associated with this generator.
-	 *
-	 * @return the generators random source.
+	 * 생성기에서 사용할 난수생성기를 반환한다.
+	 * 
+	 * @return 생성기에서 사용할 난수생성기
 	 */
 	public SecureRandom getRandom() {
 		return random;
 	}
 
 	/**
-	 * return the bit strength for keys produced by this generator,
-	 *
-	 * @return the strength of the keys this generator produces (in bits).
+	 * 생성기에 의해 제작될 키의 강도(비트)를 반환한다.
+	 * 
+	 * @return 생성기에 의해 제작될 키의 강도(비트)
 	 */
 	public int getStrength() {
 		return strength;
